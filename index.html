@@ -29,10 +29,16 @@
       margin: 0 auto;
     }
 
-    h1 {
-      margin: 0 0 10px 0;
+    .home-button {
+      background: none;
+      border: none;
+      color: white;
       font-size: 34px;
+      font-weight: bold;
+      padding: 0;
+      margin: 0 0 10px 0;
       cursor: pointer;
+      text-align: left;
     }
 
     .sub {
@@ -85,17 +91,15 @@
       background: white;
     }
 
-    .small {
-      color: #6b7280;
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    .person-box {
+    .person-box,
+    .home-box {
       background: #f9fafb;
       border: 1px solid #e5e7eb;
       border-radius: 12px;
       padding: 16px;
+    }
+
+    .person-box {
       display: none;
     }
 
@@ -205,7 +209,7 @@
 <body>
   <header>
     <div class="wrap">
-      <h1 id="homeLink">HOYDALAR Portalur</h1>
+      <button id="homeLink" class="home-button" type="button">HOYDALAR Portalur</button>
       <div class="sub">
         Demo til produktion, call sheets og mødetider
       </div>
@@ -222,6 +226,10 @@
             <option value="">Vel ein persón</option>
           </select>
 
+          <div id="homeBox" class="home-box">
+            Vel navn fyri at síggja tínar upplýsingar. Trýst á HOYDALAR Portalur ovast fyri at fara aftur til home.
+          </div>
+
           <div id="personCard" class="person-box">
             <div class="person-name" id="personName"></div>
             <div class="row"><span class="label-inline">Leiklutur:</span> <span id="personRole"></span></div>
@@ -232,7 +240,7 @@
           </div>
 
           <div class="footer-note">
-            Vel navn fyri at síggja tínar upplýsingar. Niðanfyri sært tú eisini øll call sheets fyri allar dagar.
+            Niðanfyri sært tú eisini øll call sheets fyri allar dagar.
           </div>
         </div>
 
@@ -449,6 +457,7 @@
 
     const select = document.getElementById("personSelect");
     const personCard = document.getElementById("personCard");
+    const homeBox = document.getElementById("homeBox");
     const personName = document.getElementById("personName");
     const personRole = document.getElementById("personRole");
     const personGroup = document.getElementById("personGroup");
@@ -463,6 +472,7 @@
     let activeDay = productionData.days[0].key;
 
     function renderPeople() {
+      select.innerHTML = '<option value="">Vel ein persón</option>';
       productionData.people.forEach(person => {
         const option = document.createElement("option");
         option.value = person.name;
@@ -476,9 +486,11 @@
 
       if (!person) {
         personCard.style.display = "none";
+        homeBox.style.display = "block";
         return;
       }
 
+      homeBox.style.display = "none";
       personName.textContent = person.name;
       personRole.textContent = person.role;
       personGroup.textContent = person.group;
@@ -533,23 +545,26 @@
       `).join("");
     }
 
-    select.addEventListener("change", function () {
-      renderSelectedPerson(this.value);
-    });
-
-    homeLink.addEventListener("click", function () {
+    function goHome() {
       select.value = "";
       renderSelectedPerson("");
       activeDay = productionData.days[0].key;
       renderDaysNav();
       renderDayContent();
       window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    select.addEventListener("change", function () {
+      renderSelectedPerson(this.value);
     });
+
+    homeLink.addEventListener("click", goHome);
 
     renderPeople();
     renderDaysNav();
     renderDayContent();
     renderWeekOverview();
+    renderSelectedPerson("");
   </script>
 </body>
 </html>

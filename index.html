@@ -32,6 +32,7 @@
     h1 {
       margin: 0 0 10px 0;
       font-size: 34px;
+      cursor: pointer;
     }
 
     .sub {
@@ -95,6 +96,7 @@
       border: 1px solid #e5e7eb;
       border-radius: 12px;
       padding: 16px;
+      display: none;
     }
 
     .person-name {
@@ -203,7 +205,7 @@
 <body>
   <header>
     <div class="wrap">
-      <h1>HOYDALAR Portalur</h1>
+      <h1 id="homeLink">HOYDALAR Portalur</h1>
       <div class="sub">
         Demo til produktion, call sheets og mødetider
       </div>
@@ -220,7 +222,7 @@
             <option value="">Vel ein persón</option>
           </select>
 
-          <div id="personCard" class="person-box" style="display:none;">
+          <div id="personCard" class="person-box">
             <div class="person-name" id="personName"></div>
             <div class="row"><span class="label-inline">Leiklutur:</span> <span id="personRole"></span></div>
             <div class="row"><span class="label-inline">Bólkur:</span> <span id="personGroup"></span></div>
@@ -282,7 +284,6 @@
         {
           key: "30mar",
           label: "Mánadag 30. mars",
-          short: "30. mars",
           calls: [
             {
               time: "19:00",
@@ -296,7 +297,6 @@
         {
           key: "1apr",
           label: "Mikudagur 1. apríl",
-          short: "1. apríl",
           calls: [
             {
               time: "19:00",
@@ -310,7 +310,6 @@
         {
           key: "3apr",
           label: "Fríggjadagur 3. apríl",
-          short: "3. apríl",
           calls: [
             {
               time: "15:00",
@@ -345,7 +344,6 @@
         {
           key: "4apr",
           label: "Leygardagur 4. apríl – Konsertdagur",
-          short: "4. apríl",
           calls: [
             {
               time: "09:30",
@@ -436,7 +434,6 @@
         {
           key: "5apr",
           label: "Sunnudagur 5. apríl",
-          short: "5. apríl",
           calls: [
             {
               time: "10:00",
@@ -461,6 +458,7 @@
     const daysNav = document.getElementById("daysNav");
     const dayContent = document.getElementById("dayContent");
     const weekOverview = document.getElementById("weekOverview");
+    const homeLink = document.getElementById("homeLink");
 
     let activeDay = productionData.days[0].key;
 
@@ -537,6 +535,15 @@
 
     select.addEventListener("change", function () {
       renderSelectedPerson(this.value);
+    });
+
+    homeLink.addEventListener("click", function () {
+      select.value = "";
+      renderSelectedPerson("");
+      activeDay = productionData.days[0].key;
+      renderDaysNav();
+      renderDayContent();
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
     renderPeople();

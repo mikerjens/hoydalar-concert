@@ -1,0 +1,555 @@
+{\rtf1\mac\ansicpg10000\cocoartf2868
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!DOCTYPE html>\
+<html lang="fo">\
+<head>\
+  <meta charset="UTF-8" />\
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />\
+  <title>HOYDALAR Portalur</title>\
+  <style>\
+    * \{\
+      box-sizing: border-box;\
+    \}\
+\
+    body \{\
+      font-family: Arial, sans-serif;\
+      background: #f4f6f8;\
+      color: #1f2937;\
+      margin: 0;\
+      padding: 0;\
+    \}\
+\
+    header \{\
+      background: #111827;\
+      color: white;\
+      padding: 30px 20px;\
+    \}\
+\
+    header .wrap,\
+    main \{\
+      max-width: 1100px;\
+      margin: 0 auto;\
+    \}\
+\
+    h1 \{\
+      margin: 0 0 10px 0;\
+      font-size: 34px;\
+    \}\
+\
+    .sub \{\
+      color: #d1d5db;\
+      font-size: 16px;\
+    \}\
+\
+    main \{\
+      padding: 24px 20px 50px 20px;\
+    \}\
+\
+    .grid \{\
+      display: grid;\
+      grid-template-columns: 320px 1fr;\
+      gap: 20px;\
+      align-items: start;\
+    \}\
+\
+    .card \{\
+      background: white;\
+      border-radius: 14px;\
+      padding: 20px;\
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);\
+      margin-bottom: 20px;\
+    \}\
+\
+    h2 \{\
+      margin-top: 0;\
+      font-size: 24px;\
+    \}\
+\
+    h3 \{\
+      margin-top: 0;\
+      font-size: 20px;\
+    \}\
+\
+    label \{\
+      display: block;\
+      font-weight: bold;\
+      margin-bottom: 8px;\
+    \}\
+\
+    select \{\
+      width: 100%;\
+      padding: 12px;\
+      font-size: 16px;\
+      border: 1px solid #d1d5db;\
+      border-radius: 10px;\
+      margin-bottom: 15px;\
+      background: white;\
+    \}\
+\
+    .small \{\
+      color: #6b7280;\
+      font-size: 14px;\
+      line-height: 1.5;\
+    \}\
+\
+    .person-box \{\
+      background: #f9fafb;\
+      border: 1px solid #e5e7eb;\
+      border-radius: 12px;\
+      padding: 16px;\
+    \}\
+\
+    .person-name \{\
+      font-size: 24px;\
+      margin: 0 0 6px 0;\
+    \}\
+\
+    .row \{\
+      margin-bottom: 8px;\
+      line-height: 1.5;\
+    \}\
+\
+    .label-inline \{\
+      font-weight: bold;\
+    \}\
+\
+    .days-nav \{\
+      display: flex;\
+      flex-wrap: wrap;\
+      gap: 10px;\
+      margin-bottom: 18px;\
+    \}\
+\
+    .day-btn \{\
+      padding: 10px 14px;\
+      border-radius: 999px;\
+      border: 1px solid #d1d5db;\
+      background: white;\
+      cursor: pointer;\
+      font-size: 14px;\
+    \}\
+\
+    .day-btn.active \{\
+      background: #111827;\
+      color: white;\
+      border-color: #111827;\
+    \}\
+\
+    .call-item \{\
+      border: 1px solid #e5e7eb;\
+      border-radius: 12px;\
+      padding: 14px;\
+      margin-bottom: 12px;\
+      background: #fafafa;\
+    \}\
+\
+    .call-time \{\
+      font-size: 22px;\
+      font-weight: bold;\
+      margin-bottom: 4px;\
+    \}\
+\
+    .call-title \{\
+      font-size: 18px;\
+      font-weight: bold;\
+      margin-bottom: 6px;\
+    \}\
+\
+    .tag \{\
+      display: inline-block;\
+      font-size: 12px;\
+      padding: 4px 8px;\
+      border-radius: 999px;\
+      background: #e5e7eb;\
+      margin-right: 6px;\
+      margin-top: 6px;\
+    \}\
+\
+    .section-title \{\
+      margin: 24px 0 10px 0;\
+      font-size: 18px;\
+      font-weight: bold;\
+    \}\
+\
+    .overview-list \{\
+      display: grid;\
+      gap: 10px;\
+    \}\
+\
+    .overview-day \{\
+      border: 1px solid #e5e7eb;\
+      border-radius: 12px;\
+      padding: 14px;\
+      background: #fafafa;\
+    \}\
+\
+    .overview-day strong \{\
+      display: block;\
+      margin-bottom: 6px;\
+      font-size: 17px;\
+    \}\
+\
+    .footer-note \{\
+      color: #6b7280;\
+      font-size: 13px;\
+      margin-top: 10px;\
+    \}\
+\
+    @media (max-width: 900px) \{\
+      .grid \{\
+        grid-template-columns: 1fr;\
+      \}\
+    \}\
+  </style>\
+</head>\
+<body>\
+  <header>\
+    <div class="wrap">\
+      <h1>HOYDALAR Portalur</h1>\
+      <div class="sub">\
+        Demo til produktion, call sheets og m\'f8detider\
+      </div>\
+    </div>\
+  </header>\
+\
+  <main>\
+    <div class="grid">\
+      <div>\
+        <div class="card">\
+          <h3>Vel navn</h3>\
+          <label for="personSelect">Pers\'f3nur</label>\
+          <select id="personSelect">\
+            <option value="">Vel ein pers\'f3n</option>\
+          </select>\
+\
+          <div id="personCard" class="person-box" style="display:none;">\
+            <div class="person-name" id="personName"></div>\
+            <div class="row"><span class="label-inline">Leiklutur:</span> <span id="personRole"></span></div>\
+            <div class="row"><span class="label-inline">B\'f3lkur:</span> <span id="personGroup"></span></div>\
+            <div class="row"><span class="label-inline">N\'e6sta m\'f8tit\'ed\'f0:</span> <span id="personNextCall"></span></div>\
+            <div class="row"><span class="label-inline">Sta\'f0:</span> <span id="personPlace"></span></div>\
+            <div class="row"><span class="label-inline">Bo\'f0:</span> <span id="personNote"></span></div>\
+          </div>\
+\
+          <div class="footer-note">\
+            Vel navn fyri at s\'edggja t\'ednar uppl\'fdsingar. Ni\'f0anfyri s\'e6rt t\'fa eisini \'f8ll call sheets fyri allar dagar.\
+          </div>\
+        </div>\
+\
+        <div class="card">\
+          <h3>Stutt yvirlit</h3>\
+          <div id="weekOverview" class="overview-list"></div>\
+        </div>\
+      </div>\
+\
+      <div>\
+        <div class="card">\
+          <h2>Call sheets pr. dag</h2>\
+          <div id="daysNav" class="days-nav"></div>\
+          <div id="dayContent"></div>\
+        </div>\
+      </div>\
+    </div>\
+  </main>\
+\
+  <script>\
+    const productionData = \{\
+      people: [\
+        \{ name: "R\'fani Djurhuus", role: "Konsertfyriskipari", group: "Produktion", nextCall: "Leygardag 4. apr\'edl kl. 10:00", place: "Tjarnir", note: "Juridisk \'e1byrgd, markna\'f0arf\'f8ring og yvirskipa\'f0 avvikling" \},\
+        \{ name: "Per Zachariassen", role: "Konsept / kreativa lei\'f0sla", group: "Produktion", nextCall: "Leygardag 4. apr\'edl kl. 12:00", place: "Tjarnir", note: "Konsertkonsept og kunstnerisk lei\'f0sla" \},\
+        \{ name: "Maria Winther Olsen", role: "Program og grafik", group: "Produktion", nextCall: "Leygardag 4. apr\'edl kl. 12:00", place: "Tjarnir", note: "Programinnihald, grafik og hj\'e1lp til Per" \},\
+        \{ name: "Michael Koba", role: "Aftalur / sponsorater / call sheets", group: "Produktion", nextCall: "Leygardag 4. apr\'edl kl. 09:30", place: "Tjarnir", note: "Koordinering, avtalur, call sheets og praktiskt yvirlit" \},\
+\
+        \{ name: "Kim Hansen", role: "Kapelmestari", group: "Orkestur", nextCall: "M\'e1nadag 30. mars kl. 19:00", place: "Venjingarsta\'f0", note: "Lei\'f0ir orkestri\'f0 og fyrireikar arrangement" \},\
+        \{ name: "V\'e1r", role: "T\'f3nleikari", group: "Orkestur", nextCall: "M\'e1nadag 30. mars kl. 19:00", place: "Venjingarsta\'f0", note: "Orkesturvenjing" \},\
+        \{ name: "Pauli", role: "T\'f3nleikari", group: "Orkestur", nextCall: "M\'e1nadag 30. mars kl. 19:00", place: "Venjingarsta\'f0", note: "Orkesturvenjing" \},\
+        \{ name: "Johannes", role: "T\'f3nleikari", group: "Orkestur", nextCall: "M\'e1nadag 30. mars kl. 19:00", place: "Venjingarsta\'f0", note: "Orkesturvenjing" \},\
+\
+        \{ name: "Bjarki", role: "Sp\'edri", group: "Sp\'edrar", nextCall: "Fr\'edggjadag 3. apr\'edl kl. 17:00", place: "Tjarnir", note: "Fyrsta felags lj\'f3\'f0roynd" \},\
+        \{ name: "Anna Lovisa", role: "Sp\'edri", group: "Sp\'edrar", nextCall: "Fr\'edggjadag 3. apr\'edl kl. 17:00", place: "Tjarnir", note: "Fyrsta felags lj\'f3\'f0roynd" \},\
+        \{ name: "Filip", role: "Sp\'edri", group: "Sp\'edrar", nextCall: "Fr\'edggjadag 3. apr\'edl kl. 17:00", place: "Tjarnir", note: "Fyrsta felags lj\'f3\'f0roynd" \},\
+        \{ name: "J\'f3hann", role: "Sp\'edri", group: "Sp\'edrar", nextCall: "Fr\'edggjadag 3. apr\'edl kl. 17:00", place: "Tjarnir", note: "Fyrsta felags lj\'f3\'f0roynd" \},\
+        \{ name: "Emma", role: "Sp\'edri", group: "Sp\'edrar", nextCall: "Fr\'edggjadag 3. apr\'edl kl. 17:00", place: "Tjarnir", note: "Fyrsta felags lj\'f3\'f0roynd" \},\
+        \{ name: "Sophilia", role: "Sp\'edri", group: "Sp\'edrar", nextCall: "Fr\'edggjadag 3. apr\'edl kl. 17:00", place: "Tjarnir", note: "Fyrsta felags lj\'f3\'f0roynd" \},\
+\
+        \{ name: "Ey\'f0un Nols\'f8e", role: "Gestasangari", group: "Gestasangarar", nextCall: "Fr\'edggjadag 3. apr\'edl kl. 18:00", place: "Tjarnir", note: "Lj\'f3\'f0roynd og gj\'f8gnumrenning" \},\
+        \{ name: "MC", role: "Gestasangari", group: "Gestasangarar", nextCall: "Fr\'edggjadag 3. apr\'edl kl. 18:30", place: "Tjarnir", note: "Lj\'f3\'f0roynd og gj\'f8gnumrenning" \},\
+        \{ name: "Martin", role: "Gestasangari", group: "Gestasangarar", nextCall: "Fr\'edggjadag 3. apr\'edl kl. 18:30", place: "Tjarnir", note: "Lj\'f3\'f0roynd og gj\'f8gnumrenning" \},\
+\
+        \{ name: "Lj\'f3\'f0", role: "Lj\'f3\'f0t\'f8kni", group: "T\'f8kni", nextCall: "Leygardag 4. apr\'edl kl. 10:00", place: "Tjarnir", note: "Opseting av PA, monitorum, mikrofonum og soundcheck" \},\
+        \{ name: "Lj\'f3s", role: "Lj\'f3st\'f8kni", group: "T\'f8kni", nextCall: "Leygardag 4. apr\'edl kl. 10:00", place: "Tjarnir", note: "Opseting av lj\'f3sum, fokus, cues og pall\'fdsing" \}\
+      ],\
+\
+      days: [\
+        \{\
+          key: "30mar",\
+          label: "M\'e1nadag 30. mars",\
+          short: "30. mars",\
+          calls: [\
+            \{\
+              time: "19:00",\
+              title: "Orkesturvenjing internt",\
+              location: "Venjingarsta\'f0",\
+              notes: "Kim Hansen, V\'e1r, Pauli og Johannes arbei\'f0a vi\'f0 arrangementum uttan solistar.",\
+              groups: ["Orkestur"]\
+            \}\
+          ]\
+        \},\
+        \{\
+          key: "1apr",\
+          label: "Mikudagur 1. apr\'edl",\
+          short: "1. apr\'edl",\
+          calls: [\
+            \{\
+              time: "19:00",\
+              title: "Orkesturvenjing internt",\
+              location: "Venjingarsta\'f0",\
+              notes: "Finpussing av arrangementum, dur og skiftir fram m\'f3ti felagsroynd.",\
+              groups: ["Orkestur"]\
+            \}\
+          ]\
+        \},\
+        \{\
+          key: "3apr",\
+          label: "Fr\'edggjadagur 3. apr\'edl",\
+          short: "3. apr\'edl",\
+          calls: [\
+            \{\
+              time: "15:00",\
+              title: "T\'f8kni riggar til",\
+              location: "Tjarnir",\
+              notes: "Lj\'f3\'f0 og lj\'f3s gera kl\'e1rt til felagsroynd og m\'f8guligar setup tillagingar.",\
+              groups: ["T\'f8kni"]\
+            \},\
+            \{\
+              time: "17:00",\
+              title: "Sp\'edrar m\'f8ta til felags lj\'f3\'f0roynd",\
+              location: "Tjarnir",\
+              notes: "Allir Sp\'edrar m\'f8ta til fyrstu felagsroynd vi\'f0 orkestri.",\
+              groups: ["Sp\'edrar"]\
+            \},\
+            \{\
+              time: "17:00",\
+              title: "Orkestur m\'f8tir",\
+              location: "Tjarnir",\
+              notes: "Orkestri\'f0 er kl\'e1rt til felagsroynd vi\'f0 Sp\'edrum.",\
+              groups: ["Orkestur"]\
+            \},\
+            \{\
+              time: "18:00",\
+              title: "Gestasangarar m\'f8ta",\
+              location: "Tjarnir",\
+              notes: "Ey\'f0un og m\'f8guligir a\'f0rir gestasangarar til lj\'f3\'f0roynd og gj\'f8gnumrenning.",\
+              groups: ["Gestasangarar"]\
+            \}\
+          ]\
+        \},\
+        \{\
+          key: "4apr",\
+          label: "Leygardagur 4. apr\'edl \'96 Konsertdagur",\
+          short: "4. apr\'edl",\
+          calls: [\
+            \{\
+              time: "09:30",\
+              title: "Produktion m\'f8tir",\
+              location: "Tjarnir",\
+              notes: "Michael Koba og EVENTZ f\'e1a yvirlit yvir dagin og avviklingina.",\
+              groups: ["Produktion"]\
+            \},\
+            \{\
+              time: "10:00",\
+              title: "Venue opnar / t\'f8kni m\'f8tir",\
+              location: "Tjarnir",\
+              notes: "Lj\'f3\'f0 og lj\'f3s seta \'fatger\'f0 upp. R\'fani hevur yvirskipa\'f0 \'e1byrgd \'e1 avvikling.",\
+              groups: ["T\'f8kni", "Produktion"]\
+            \},\
+            \{\
+              time: "12:00",\
+              title: "Orkestur m\'f8tir",\
+              location: "Pallur / Tjarnir",\
+              notes: "Orkestri\'f0 setir upp og ger seg kl\'e1rt til lj\'f3\'f0roynd.",\
+              groups: ["Orkestur"]\
+            \},\
+            \{\
+              time: "12:00",\
+              title: "Per og Maria m\'f8ta",\
+              location: "Tjarnir",\
+              notes: "Program, innihald og kreativ gj\'f8gnumganga av konsertdegnum.",\
+              groups: ["Produktion"]\
+            \},\
+            \{\
+              time: "14:00",\
+              title: "Sp\'edrar m\'f8ta",\
+              location: "Backstage / Tjarnir",\
+              notes: "Sp\'edrar m\'f8ta kl\'e1rir til lj\'f3\'f0roynd og dagsins gj\'f8gnumgongd.",\
+              groups: ["Sp\'edrar"]\
+            \},\
+            \{\
+              time: "15:00",\
+              title: "Lj\'f3\'f0roynd",\
+              location: "Tjarnir",\
+              notes: "Orkestur, Sp\'edrar og gestasangarar. Gj\'f8gnumgang av sni\'f0i og n\'f8glum l\'f8tum.",\
+              groups: ["Orkestur", "Sp\'edrar", "Gestasangarar", "T\'f8kni"]\
+            \},\
+            \{\
+              time: "17:30",\
+              title: "M\'f8gulig eyka gj\'f8gnumrenning",\
+              location: "Tjarnir",\
+              notes: "Bert um t\'f8rvur er \'e1 t\'ed.",\
+              groups: ["Orkestur", "Sp\'edrar", "Gestasangarar", "Produktion"]\
+            \},\
+            \{\
+              time: "18:00",\
+              title: "Matur / ste\'f0gur",\
+              location: "Backstage",\
+              notes: "Stuttur ste\'f0gur \'e1\'f0renn konsert.",\
+              groups: ["Orkestur", "Sp\'edrar", "Gestasangarar", "Produktion", "T\'f8kni"]\
+            \},\
+            \{\
+              time: "19:00",\
+              title: "Dyrnar lata upp",\
+              location: "Tjarnir",\
+              notes: "Publikum sleppur inn.",\
+              groups: ["Produktion", "T\'f8kni"]\
+            \},\
+            \{\
+              time: "19:15",\
+              title: "Allir kl\'e1rir backstage",\
+              location: "Backstage",\
+              notes: "S\'ed\'f0sta kl\'e1rgering \'e1\'f0renn showstart.",\
+              groups: ["Sp\'edrar", "Gestasangarar", "Produktion"]\
+            \},\
+            \{\
+              time: "19:30",\
+              title: "HOYDALAR konsert byrjar",\
+              location: "Tjarnir",\
+              notes: "Showstart.",\
+              groups: ["\'d8ll"]\
+            \},\
+            \{\
+              time: "21:30",\
+              title: "Konsert li\'f0ug / ni\'f0urt\'f8ka byrjar",\
+              location: "Tjarnir",\
+              notes: "T\'f8kni og framlei\'f0sla byrja ni\'f0urt\'f8ku eftir t\'f8rvi.",\
+              groups: ["T\'f8kni", "Produktion"]\
+            \}\
+          ]\
+        \},\
+        \{\
+          key: "5apr",\
+          label: "Sunnudagur 5. apr\'edl",\
+          short: "5. apr\'edl",\
+          calls: [\
+            \{\
+              time: "10:00",\
+              title: "Oprudding og ni\'f0urt\'f8ka",\
+              location: "Tjarnir",\
+              notes: "Uppfylging, ni\'f0urt\'f8ka av \'fatger\'f0 og praktisk avslutning.",\
+              groups: ["Produktion", "T\'f8kni"]\
+            \}\
+          ]\
+        \}\
+      ]\
+    \};\
+\
+    const select = document.getElementById("personSelect");\
+    const personCard = document.getElementById("personCard");\
+    const personName = document.getElementById("personName");\
+    const personRole = document.getElementById("personRole");\
+    const personGroup = document.getElementById("personGroup");\
+    const personNextCall = document.getElementById("personNextCall");\
+    const personPlace = document.getElementById("personPlace");\
+    const personNote = document.getElementById("personNote");\
+    const daysNav = document.getElementById("daysNav");\
+    const dayContent = document.getElementById("dayContent");\
+    const weekOverview = document.getElementById("weekOverview");\
+\
+    let activeDay = productionData.days[0].key;\
+\
+    function renderPeople() \{\
+      productionData.people.forEach(person => \{\
+        const option = document.createElement("option");\
+        option.value = person.name;\
+        option.textContent = `$\{person.name\} \'96 $\{person.role\}`;\
+        select.appendChild(option);\
+      \});\
+    \}\
+\
+    function renderSelectedPerson(name) \{\
+      const person = productionData.people.find(p => p.name === name);\
+\
+      if (!person) \{\
+        personCard.style.display = "none";\
+        return;\
+      \}\
+\
+      personName.textContent = person.name;\
+      personRole.textContent = person.role;\
+      personGroup.textContent = person.group;\
+      personNextCall.textContent = person.nextCall;\
+      personPlace.textContent = person.place;\
+      personNote.textContent = person.note;\
+      personCard.style.display = "block";\
+    \}\
+\
+    function renderDaysNav() \{\
+      daysNav.innerHTML = "";\
+\
+      productionData.days.forEach(day => \{\
+        const btn = document.createElement("button");\
+        btn.className = "day-btn" + (day.key === activeDay ? " active" : "");\
+        btn.textContent = day.label;\
+        btn.onclick = () => \{\
+          activeDay = day.key;\
+          renderDaysNav();\
+          renderDayContent();\
+        \};\
+        daysNav.appendChild(btn);\
+      \});\
+    \}\
+\
+    function renderDayContent() \{\
+      const day = productionData.days.find(d => d.key === activeDay);\
+      if (!day) return;\
+\
+      dayContent.innerHTML = `\
+        <div class="section-title">$\{day.label\}</div>\
+        $\{day.calls.map(call => `\
+          <div class="call-item">\
+            <div class="call-time">$\{call.time\}</div>\
+            <div class="call-title">$\{call.title\}</div>\
+            <div><strong>Sta\'f0:</strong> $\{call.location\}</div>\
+            <div style="margin-top:6px;">$\{call.notes\}</div>\
+            <div style="margin-top:8px;">\
+              $\{call.groups.map(group => `<span class="tag">$\{group\}</span>`).join("")\}\
+            </div>\
+          </div>\
+        `).join("")\}\
+      `;\
+    \}\
+\
+    function renderWeekOverview() \{\
+      weekOverview.innerHTML = productionData.days.map(day => `\
+        <div class="overview-day">\
+          <strong>$\{day.label\}</strong>\
+          $\{day.calls.map(call => `$\{call.time\} \'96 $\{call.title\}`).join("<br>")\}\
+        </div>\
+      `).join("");\
+    \}\
+\
+    select.addEventListener("change", function () \{\
+      renderSelectedPerson(this.value);\
+    \});\
+\
+    renderPeople();\
+    renderDaysNav();\
+    renderDayContent();\
+    renderWeekOverview();\
+  </script>\
+</body>\
+</html>}

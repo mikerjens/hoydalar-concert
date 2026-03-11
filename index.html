@@ -15,6 +15,8 @@
       --accent-soft: #ecfeff;
       --my-bg: #f0fdfa;
       --my-border: #99f6e4;
+      --next-bg: #fff7ed;
+      --next-border: #fdba74;
       --gold: #f59e0b;
       --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
       --radius: 18px;
@@ -323,6 +325,30 @@
       font-size: 16px;
     }
 
+    .next-meeting {
+      background: var(--next-bg);
+      border: 2px solid var(--next-border);
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+
+    .next-meeting-label {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #9a3412;
+      margin-bottom: 8px;
+    }
+
+    .next-meeting-time {
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1.2;
+      color: #7c2d12;
+    }
+
     .my-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -575,6 +601,10 @@
       .my-view-title {
         font-size: 24px;
       }
+
+      .next-meeting-time {
+        font-size: 22px;
+      }
     }
 
     @media print {
@@ -621,7 +651,7 @@
   </header>
 
   <main class="wrap">
-    <section class="hero-grid" id="heroSection">
+    <section class="hero-grid">
       <div class="card hero-card">
         <h2>Projekt overblik</h2>
         <p>
@@ -683,7 +713,7 @@
       </div>
     </section>
 
-    <section class="stats-row" id="statsSection">
+    <section class="stats-row">
       <div class="card stat">
         <div class="label">Samlet antal personer</div>
         <div class="value" id="peopleCount">0</div>
@@ -706,7 +736,7 @@
       <div class="card selector-card">
         <h2>Vælg dit navn</h2>
         <p class="selector-note">
-          Når du vælger dit navn her, kommer din egen plan lige nedenunder. Resten af portalen bliver stadig liggende længere nede, så alle stadig kan se ugeplan og kontakter.
+          Når du vælger dit navn her, kommer din egen plan lige nedenunder. Resten af portalen bliver liggende længere nede, så alle stadig kan se ugeplan og kontakter.
         </p>
 
         <div class="filters">
@@ -720,9 +750,14 @@
           <div class="my-view-title" id="myViewName">Mit overblik</div>
           <div class="my-view-sub" id="myViewRole">Rolle</div>
 
+          <div class="next-meeting">
+            <div class="next-meeting-label">Næste mødetid</div>
+            <div class="next-meeting-time" id="nextMeetingTime">Ingen mødetid endnu</div>
+          </div>
+
           <div class="my-grid">
             <div class="my-box">
-              <h3>Hvornår skal jeg møde</h3>
+              <h3>Min plan</h3>
               <div id="mySchedule"></div>
             </div>
 
@@ -757,7 +792,7 @@
       <div class="people-grid" id="peopleGrid"></div>
     </section>
 
-    <section class="section" id="tableSection">
+    <section class="section">
       <div class="section-head">
         <div>
           <h2>Kontaktliste som tabel</h2>
@@ -783,18 +818,18 @@
       </div>
     </section>
 
-    <section class="section" id="timelineSection">
+    <section class="section">
       <div class="section-head">
         <div>
           <h2>Ugeplan</h2>
-          <p class="lead">Foreløbig ugeplan baseret på det seneste dokument. PR arbejde er nu lagt ind.</p>
+          <p class="lead">Foreløbig ugeplan baseret på det seneste dokument. PR arbejde er med.</p>
         </div>
       </div>
 
       <div class="timeline" id="timeline"></div>
     </section>
 
-    <section class="section" id="structureSection">
+    <section class="section">
       <div class="section-head">
         <div>
           <h2>Produktionsstruktur</h2>
@@ -841,7 +876,7 @@
       </div>
     </section>
 
-    <div class="footer-note" id="footerNote">
+    <div class="footer-note">
       <strong>Notat:</strong> For personer under 18 år er forælder eller værge også ført på listen. HOME og klik på HOYDALAR øverst til venstre nulstiller valgt navn.
     </div>
   </main>
@@ -861,6 +896,7 @@
         email: "per.zachariassen@gmail.com",
         phone: "+4540941939",
         note: "Udvikling af HOYDALAR konceptet. Overordnet kreativ retning. Medansvar for økonomisk risiko.",
+        nextMeeting: "Hele ugen. Overordnet ledelse og kreative beslutninger",
         schedule: [
           "Hele ugen. Overordnet ledelse og kreative beslutninger.",
           "Lørdag 4. april. Til stede før koncertstart og under afvikling."
@@ -875,6 +911,7 @@
         email: "rd@rd.fo",
         phone: "+298505550",
         note: "Formel koncertarrangør. Markedsføring. Praktisk afvikling. Medansvar for økonomisk risiko.",
+        nextMeeting: "Torsdag 12. marts. PR arbejde ved Tjarnir",
         schedule: [
           "Torsdag 12. marts. PR arbejde ved Tjarnir med Spírar og team.",
           "Hele ugen. Praktisk koordinering og marketing.",
@@ -890,6 +927,7 @@
         email: "mariawintherolsen@gmail.com",
         phone: "+298258447",
         note: "Programindhold. Grafisk materiale. Assistance til den kunstneriske ledelse.",
+        nextMeeting: "Lørdag 4. april. Til stede efter nærmere aftale",
         schedule: [
           "Hele ugen. Program og grafik opdateres ved behov.",
           "Lørdag 4. april. Til stede efter nærmere aftale."
@@ -904,6 +942,7 @@
         email: "mk@fixer.fo",
         phone: "+298591011",
         note: "Koordinering mellem alle parter. Aftaler og kontrakter. Sponsor dialog. Produktionsplan. Call sheets.",
+        nextMeeting: "Torsdag 12. marts. PR arbejde og koordinering ved Tjarnir",
         schedule: [
           "Torsdag 12. marts. PR arbejde og koordinering ved Tjarnir.",
           "Hele ugen. Koordinerer produktion, kontrakter og portal.",
@@ -919,6 +958,7 @@
         email: "rwd@tjarnir.fo",
         phone: "+298596061",
         note: "Koordinering med venue. Adgang til faciliteter. Praktiske forhold omkring koncertstedet.",
+        nextMeeting: "Torsdag 12. marts. Venue omkring PR arbejde ved Tjarnir",
         schedule: [
           "Torsdag 12. marts. Venue omkring PR arbejde ved Tjarnir.",
           "Mandag 30. marts. Aftaler rehearsal tider med Kim Hansen.",
@@ -935,6 +975,7 @@
         email: "kimhansen72@gmail.com",
         phone: "+298226000",
         note: "Musikalsk ledelse. Koordinering af orkester. Musikalsk gennemførelse af koncerten.",
+        nextMeeting: "Mandag 30. marts. Rehearsal med orkester við Tjarnir",
         schedule: [
           "Mandag 30. marts. Rehearsal med orkester við Tjarnir.",
           "Onsdag 1. april. Rehearsal med orkester við Tjarnir.",
@@ -950,6 +991,7 @@
         email: "hjalmar@lt.fo",
         phone: "565501",
         note: "Overordnet ansvar for lyd og lys.",
+        nextMeeting: "Før koncertugen. Teknisk planlægning",
         schedule: [
           "Før koncertugen. Teknisk planlægning.",
           "Lørdag 4. april. Lyd og lys afvikling."
@@ -964,6 +1006,7 @@
         email: "var.midberg@gmail.com",
         phone: "+298218753",
         note: "Musiker.",
+        nextMeeting: "Mandag 30. marts. Rehearsal við Tjarnir",
         schedule: [
           "Mandag 30. marts. Rehearsal við Tjarnir.",
           "Onsdag 1. april. Rehearsal við Tjarnir.",
@@ -979,6 +1022,7 @@
         email: "pauli_poulsen@hotmail.com",
         phone: "+298280523",
         note: "Musiker.",
+        nextMeeting: "Mandag 30. marts. Rehearsal við Tjarnir",
         schedule: [
           "Mandag 30. marts. Rehearsal við Tjarnir.",
           "Onsdag 1. april. Rehearsal við Tjarnir.",
@@ -994,6 +1038,7 @@
         email: "jarjoensen@yahoo.com",
         phone: "+4531249375 / +298270080",
         note: "Musiker.",
+        nextMeeting: "Mandag 30. marts. Rehearsal við Tjarnir",
         schedule: [
           "Mandag 30. marts. Rehearsal við Tjarnir.",
           "Onsdag 1. april. Rehearsal við Tjarnir.",
@@ -1009,8 +1054,9 @@
         email: "virgar_trondesen@hotmail.com",
         phone: "+298287766",
         note: "Under 18 år. Værge: Virgar. Tlf. +298251766.",
+        nextMeeting: "Torsdag 12. marts kl. 14:45 ved Tjarnir. Senest kl. 15:00",
         schedule: [
-          "Torsdag 12. marts. Mød ved Tjarnir senest kl. 15:00. Anbefalet mødetid 14:45. PR arbejde og foto/film.",
+          "Torsdag 12. marts. Mød ved Tjarnir kl. 14:45. Senest kl. 15:00. PR arbejde og foto/film.",
           "Lørdag 4. april. Mødetid til lydprøve følger.",
           "Lørdag 4. april kl. 18:30 til 19:00. NEMA arrangement og autografer.",
           "Lørdag 4. april kl. 19:30. Koncertstart."
@@ -1025,6 +1071,7 @@
         email: "annalovisam@gmail.com",
         phone: "+298277103",
         note: "Talent.",
+        nextMeeting: "Torsdag 12. marts kl. 14:30 ved Tjarnir",
         schedule: [
           "Torsdag 12. marts. Mød ved Tjarnir kl. 14:30. Fællesbillede kl. 15:00 sharp. PR arbejde og foto/film.",
           "Lørdag 4. april. Mødetid til lydprøve følger.",
@@ -1041,8 +1088,9 @@
         email: "filipasmid@gmail.com",
         phone: "+298523738",
         note: "Talent.",
+        nextMeeting: "Torsdag 12. marts kl. 14:45 ved Tjarnir. Senest kl. 15:00",
         schedule: [
-          "Torsdag 12. marts. Mød ved Tjarnir senest kl. 15:00. Anbefalet mødetid 14:45. PR arbejde og foto/film.",
+          "Torsdag 12. marts. Mød ved Tjarnir kl. 14:45. Senest kl. 15:00. PR arbejde og foto/film.",
           "Lørdag 4. april. Mødetid til lydprøve følger.",
           "Lørdag 4. april kl. 18:30 til 19:00. NEMA arrangement og autografer.",
           "Lørdag 4. april kl. 19:30. Koncertstart."
@@ -1057,8 +1105,9 @@
         email: "johanna190307@gmail.com",
         phone: "+298508668",
         note: "Talent.",
+        nextMeeting: "Torsdag 12. marts kl. 14:30 ved Tjarnir. Går igen kl. 15:15",
         schedule: [
-          "Torsdag 12. marts. Mød ved Tjarnir kl. 14:30. Skal forlade stedet kl. 15:15 på grund af skole. PR arbejde og foto/film.",
+          "Torsdag 12. marts. Mød ved Tjarnir kl. 14:30. Forlader stedet kl. 15:15 på grund af skole. PR arbejde og foto/film.",
           "Lørdag 4. april. Mødetid til lydprøve følger.",
           "Lørdag 4. april kl. 18:30 til 19:00. NEMA arrangement og autografer.",
           "Lørdag 4. april kl. 19:30. Koncertstart."
@@ -1073,8 +1122,9 @@
         email: "karinhh88@gmail.com",
         phone: "+298278816",
         note: "Under 18 år. Mor: Karin Højgaard. Mail: karinhh88@gmail.com. Tlf. 258886.",
+        nextMeeting: "Torsdag 12. marts kl. 14:45 ved Tjarnir. Senest kl. 15:00",
         schedule: [
-          "Torsdag 12. marts. Mød ved Tjarnir senest kl. 15:00. Anbefalet mødetid 14:45. PR arbejde og foto/film.",
+          "Torsdag 12. marts. Mød ved Tjarnir kl. 14:45. Senest kl. 15:00. PR arbejde og foto/film.",
           "Lørdag 4. april. Mødetid til lydprøve følger.",
           "Lørdag 4. april kl. 18:30 til 19:00. NEMA arrangement og autografer.",
           "Lørdag 4. april kl. 19:30. Koncertstart."
@@ -1089,8 +1139,9 @@
         email: "mukisasophilia@gmail.com",
         phone: "+298277595",
         note: "Talent.",
+        nextMeeting: "Torsdag 12. marts kl. 14:45 ved Tjarnir. Senest kl. 15:00",
         schedule: [
-          "Torsdag 12. marts. Mød ved Tjarnir senest kl. 15:00. Anbefalet mødetid 14:45. PR arbejde og foto/film.",
+          "Torsdag 12. marts. Mød ved Tjarnir kl. 14:45. Senest kl. 15:00. PR arbejde og foto/film.",
           "Lørdag 4. april. Mødetid til lydprøve følger.",
           "Lørdag 4. april kl. 18:30 til 19:00. NEMA arrangement og autografer.",
           "Lørdag 4. april kl. 19:30. Koncertstart."
@@ -1105,6 +1156,7 @@
         email: "eydunnolsoe@hotmail.com",
         phone: "+298582501",
         note: "Gæstesanger.",
+        nextMeeting: "Lørdag 4. april. Mødetid og lydprøve følger",
         schedule: [
           "Lørdag 4. april. Mødetid og lydprøve følger.",
           "Lørdag 4. april. Koncert."
@@ -1119,6 +1171,7 @@
         email: "",
         phone: "",
         note: "Kontaktoplysninger mangler lige nu.",
+        nextMeeting: "Lørdag 4. april. Mødetid følger",
         schedule: [
           "Lørdag 4. april. Mødetid og lydprøve følger.",
           "Lørdag 4. april. Koncert."
@@ -1133,6 +1186,7 @@
         email: "",
         phone: "",
         note: "Kontaktoplysninger mangler lige nu.",
+        nextMeeting: "Lørdag 4. april. Mødetid følger",
         schedule: [
           "Lørdag 4. april. Mødetid følger.",
           "Lørdag 4. april. Vært under koncerten."
@@ -1207,6 +1261,7 @@
     const myViewSection = document.getElementById("myViewSection");
     const myViewName = document.getElementById("myViewName");
     const myViewRole = document.getElementById("myViewRole");
+    const nextMeetingTime = document.getElementById("nextMeetingTime");
     const mySchedule = document.getElementById("mySchedule");
     const myContacts = document.getElementById("myContacts");
     const myImportantNote = document.getElementById("myImportantNote");
@@ -1419,6 +1474,7 @@
       myViewSection.classList.remove("hidden");
       myViewName.textContent = person.name;
       myViewRole.textContent = `${person.role} • ${person.group}`;
+      nextMeetingTime.textContent = person.nextMeeting || "Ingen mødetid endnu";
 
       mySchedule.innerHTML = `
         <ul class="bullet-list">

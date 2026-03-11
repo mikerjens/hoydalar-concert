@@ -7,16 +7,15 @@
   <style>
     :root {
       --bg: #0f172a;
-      --bg-soft: #111827;
       --card: #ffffff;
       --muted: #64748b;
       --text: #0f172a;
       --line: #e2e8f0;
       --accent: #0f766e;
-      --accent-2: #14b8a6;
+      --accent-soft: #ecfeff;
+      --my-bg: #f0fdfa;
+      --my-border: #99f6e4;
       --gold: #f59e0b;
-      --danger: #dc2626;
-      --ok: #16a34a;
       --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
       --radius: 18px;
       --max: 1300px;
@@ -122,11 +121,20 @@
       border: 1px solid rgba(226, 232, 240, 0.9);
     }
 
-    .hero-card {
+    .hero-card,
+    .sales-card,
+    .person-card,
+    .timeline-item,
+    .role-card,
+    .selector-card,
+    .my-view-card {
       padding: 22px;
     }
 
-    .hero-card h2 {
+    .hero-card h2,
+    .sales-card h2,
+    .selector-card h2,
+    .my-view-card h2 {
       margin: 0 0 14px;
       font-size: 24px;
     }
@@ -158,17 +166,11 @@
       font-weight: 700;
     }
 
-    .owner-list {
+    .owner-list,
+    .bullet-list {
       margin: 0;
       padding-left: 18px;
       line-height: 1.7;
-    }
-
-    .sales-card {
-      padding: 22px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
     }
 
     .sales-number {
@@ -267,7 +269,7 @@
       border: 1px solid var(--line);
       background: #fff;
       font-size: 15px;
-      min-height: 46px;
+      min-height: 48px;
     }
 
     .filters input {
@@ -275,7 +277,80 @@
     }
 
     .filters select {
-      flex: 0 0 220px;
+      flex: 1 1 320px;
+    }
+
+    .selector-card {
+      background: linear-gradient(180deg, #ffffff, #f8fafc);
+    }
+
+    .selector-note {
+      color: var(--muted);
+      line-height: 1.6;
+      margin-top: 8px;
+    }
+
+    .my-view-card {
+      margin-top: 16px;
+      border: 2px solid var(--my-border);
+      background: var(--my-bg);
+    }
+
+    .my-badge {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: #ccfbf1;
+      color: #115e59;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .my-view-title {
+      font-size: 30px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin: 0 0 6px;
+    }
+
+    .my-view-sub {
+      color: var(--accent);
+      font-weight: 800;
+      margin-bottom: 16px;
+      font-size: 16px;
+    }
+
+    .my-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .my-box {
+      background: white;
+      border: 1px solid #ccfbf1;
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .my-box h3 {
+      margin: 0 0 12px;
+      font-size: 18px;
+    }
+
+    .my-alert {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: #fff7ed;
+      border: 1px solid #fdba74;
+      color: #9a3412;
+      font-weight: 700;
+      line-height: 1.5;
     }
 
     .people-grid {
@@ -286,7 +361,6 @@
     }
 
     .person-card {
-      padding: 18px;
       display: flex;
       flex-direction: column;
       gap: 12px;
@@ -428,26 +502,10 @@
       margin-top: 16px;
     }
 
-    .timeline-item {
-      padding: 18px;
-    }
-
     .timeline-date {
       font-size: 18px;
       font-weight: 800;
       margin-bottom: 10px;
-    }
-
-    .timeline-note {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .bullet-list {
-      margin: 10px 0 0;
-      padding-left: 18px;
-      line-height: 1.7;
     }
 
     .role-grid {
@@ -455,10 +513,6 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 16px;
       margin-top: 16px;
-    }
-
-    .role-card {
-      padding: 18px;
     }
 
     .role-card h3 {
@@ -483,53 +537,6 @@
 
     .hidden {
       display: none !important;
-    }
-
-    .my-view-card {
-      padding: 22px;
-      margin-top: 28px;
-      border: 2px solid #99f6e4;
-      background: #f0fdfa;
-    }
-
-    .my-view-title {
-      font-size: 28px;
-      font-weight: 800;
-      margin: 0 0 8px;
-    }
-
-    .my-view-sub {
-      color: #0f766e;
-      font-weight: 700;
-      margin-bottom: 18px;
-    }
-
-    .my-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-
-    .my-box {
-      background: white;
-      border: 1px solid #ccfbf1;
-      border-radius: 14px;
-      padding: 16px;
-    }
-
-    .my-box h3 {
-      margin: 0 0 12px;
-      font-size: 18px;
-    }
-
-    .callout {
-      margin-top: 16px;
-      padding: 14px 16px;
-      border-radius: 12px;
-      background: #fff7ed;
-      border: 1px solid #fdba74;
-      color: #9a3412;
-      font-weight: 700;
     }
 
     @media (max-width: 1080px) {
@@ -563,6 +570,10 @@
 
       .person-top {
         flex-direction: column;
+      }
+
+      .my-view-title {
+        font-size: 24px;
       }
     }
 
@@ -604,7 +615,7 @@
       </div>
 
       <div class="subhead">
-        Portal til produktion, kontakter, ugeplan og billetsalg. Vælg dit navn og se kun det, du skal bruge.
+        Portal til produktion, kontakter, ugeplan og billetsalg. Vælg dit navn og se tydeligt din egen plan med det samme.
       </div>
     </div>
   </header>
@@ -672,27 +683,6 @@
       </div>
     </section>
 
-    <section class="card my-view-card hidden" id="myViewSection">
-      <div class="my-view-title" id="myViewName">Mit overblik</div>
-      <div class="my-view-sub" id="myViewRole">Rolle</div>
-
-      <div class="my-grid">
-        <div class="my-box">
-          <h3>Hvornår skal jeg møde</h3>
-          <div id="mySchedule"></div>
-        </div>
-
-        <div class="my-box">
-          <h3>Mine kontaktpersoner</h3>
-          <div id="myContacts"></div>
-        </div>
-      </div>
-
-      <div class="callout" id="myImportantNote">
-        Vælg et navn for at se personligt overblik.
-      </div>
-    </section>
-
     <section class="stats-row" id="statsSection">
       <div class="card stat">
         <div class="label">Samlet antal personer</div>
@@ -713,17 +703,39 @@
     </section>
 
     <section class="section">
-      <div class="section-head">
-        <div>
-          <h2>Vælg navn</h2>
-          <p class="lead">Når du vælger dit navn, ser du kun dit eget arbejds overblik øverst.</p>
-        </div>
-      </div>
+      <div class="card selector-card">
+        <h2>Vælg dit navn</h2>
+        <p class="selector-note">
+          Når du vælger dit navn her, kommer din egen plan lige nedenunder. Resten af portalen bliver stadig liggende længere nede, så alle stadig kan se ugeplan og kontakter.
+        </p>
 
-      <div class="filters">
-        <select id="personSelect">
-          <option value="">Vælg dit navn</option>
-        </select>
+        <div class="filters">
+          <select id="personSelect">
+            <option value="">Vælg dit navn</option>
+          </select>
+        </div>
+
+        <section class="card my-view-card hidden" id="myViewSection">
+          <div class="my-badge">Du ser nu din egen plan</div>
+          <div class="my-view-title" id="myViewName">Mit overblik</div>
+          <div class="my-view-sub" id="myViewRole">Rolle</div>
+
+          <div class="my-grid">
+            <div class="my-box">
+              <h3>Hvornår skal jeg møde</h3>
+              <div id="mySchedule"></div>
+            </div>
+
+            <div class="my-box">
+              <h3>Mine vigtigste kontaktpersoner</h3>
+              <div id="myContacts"></div>
+            </div>
+          </div>
+
+          <div class="my-alert" id="myImportantNote">
+            HOME eller klik på HOYDALAR øverst til venstre nulstiller valgt navn og viser hele portalen som normalt.
+          </div>
+        </section>
       </div>
     </section>
 
@@ -775,7 +787,7 @@
       <div class="section-head">
         <div>
           <h2>Ugeplan</h2>
-          <p class="lead">Foreløbig ugeplan baseret på dokumentet. Kan løbende opdateres.</p>
+          <p class="lead">Foreløbig ugeplan baseret på det seneste dokument. PR arbejde er nu lagt ind.</p>
         </div>
       </div>
 
@@ -830,7 +842,7 @@
     </section>
 
     <div class="footer-note" id="footerNote">
-      <strong>Notat:</strong> For personer under 18 år er forælder eller værge også ført på listen. Når du trykker på HOME eller HOYDALAR øverst til venstre, nulstilles valgt navn.
+      <strong>Notat:</strong> For personer under 18 år er forælder eller værge også ført på listen. HOME og klik på HOYDALAR øverst til venstre nulstiller valgt navn.
     </div>
   </main>
 
@@ -864,6 +876,7 @@
         phone: "+298505550",
         note: "Formel koncertarrangør. Markedsføring. Praktisk afvikling. Medansvar for økonomisk risiko.",
         schedule: [
+          "Torsdag 12. marts. PR arbejde ved Tjarnir med Spírar og team.",
           "Hele ugen. Praktisk koordinering og marketing.",
           "Lørdag 4. april. Til stede hele dagen og under koncerten."
         ],
@@ -892,6 +905,7 @@
         phone: "+298591011",
         note: "Koordinering mellem alle parter. Aftaler og kontrakter. Sponsor dialog. Produktionsplan. Call sheets.",
         schedule: [
+          "Torsdag 12. marts. PR arbejde og koordinering ved Tjarnir.",
           "Hele ugen. Koordinerer produktion, kontrakter og portal.",
           "Lørdag 4. april. Til stede hele dagen."
         ],
@@ -906,6 +920,7 @@
         phone: "+298596061",
         note: "Koordinering med venue. Adgang til faciliteter. Praktiske forhold omkring koncertstedet.",
         schedule: [
+          "Torsdag 12. marts. Venue omkring PR arbejde ved Tjarnir.",
           "Mandag 30. marts. Aftaler rehearsal tider med Kim Hansen.",
           "Onsdag 1. april. Aftaler rehearsal tider med Kim Hansen.",
           "Lørdag 4. april. Til stede efter venue plan."
@@ -917,8 +932,8 @@
         role: "Kapelmester",
         group: "Musikalsk ledelse",
         organization: "HOYDALAR",
-        email: "",
-        phone: "",
+        email: "kimhansen72@gmail.com",
+        phone: "+298226000",
         note: "Musikalsk ledelse. Koordinering af orkester. Musikalsk gennemførelse af koncerten.",
         schedule: [
           "Mandag 30. marts. Rehearsal med orkester við Tjarnir.",
@@ -995,6 +1010,7 @@
         phone: "+298287766",
         note: "Under 18 år. Værge: Virgar. Tlf. +298251766.",
         schedule: [
+          "Torsdag 12. marts. Mød ved Tjarnir senest kl. 15:00. Anbefalet mødetid 14:45. PR arbejde og foto/film.",
           "Lørdag 4. april. Mødetid til lydprøve følger.",
           "Lørdag 4. april kl. 18:30 til 19:00. NEMA arrangement og autografer.",
           "Lørdag 4. april kl. 19:30. Koncertstart."
@@ -1010,6 +1026,7 @@
         phone: "+298277103",
         note: "Talent.",
         schedule: [
+          "Torsdag 12. marts. Mød ved Tjarnir kl. 14:30. Fællesbillede kl. 15:00 sharp. PR arbejde og foto/film.",
           "Lørdag 4. april. Mødetid til lydprøve følger.",
           "Lørdag 4. april kl. 18:30 til 19:00. NEMA arrangement og autografer.",
           "Lørdag 4. april kl. 19:30. Koncertstart."
@@ -1025,6 +1042,7 @@
         phone: "+298523738",
         note: "Talent.",
         schedule: [
+          "Torsdag 12. marts. Mød ved Tjarnir senest kl. 15:00. Anbefalet mødetid 14:45. PR arbejde og foto/film.",
           "Lørdag 4. april. Mødetid til lydprøve følger.",
           "Lørdag 4. april kl. 18:30 til 19:00. NEMA arrangement og autografer.",
           "Lørdag 4. april kl. 19:30. Koncertstart."
@@ -1040,6 +1058,7 @@
         phone: "+298508668",
         note: "Talent.",
         schedule: [
+          "Torsdag 12. marts. Mød ved Tjarnir kl. 14:30. Skal forlade stedet kl. 15:15 på grund af skole. PR arbejde og foto/film.",
           "Lørdag 4. april. Mødetid til lydprøve følger.",
           "Lørdag 4. april kl. 18:30 til 19:00. NEMA arrangement og autografer.",
           "Lørdag 4. april kl. 19:30. Koncertstart."
@@ -1055,6 +1074,7 @@
         phone: "+298278816",
         note: "Under 18 år. Mor: Karin Højgaard. Mail: karinhh88@gmail.com. Tlf. 258886.",
         schedule: [
+          "Torsdag 12. marts. Mød ved Tjarnir senest kl. 15:00. Anbefalet mødetid 14:45. PR arbejde og foto/film.",
           "Lørdag 4. april. Mødetid til lydprøve følger.",
           "Lørdag 4. april kl. 18:30 til 19:00. NEMA arrangement og autografer.",
           "Lørdag 4. april kl. 19:30. Koncertstart."
@@ -1070,6 +1090,7 @@
         phone: "+298277595",
         note: "Talent.",
         schedule: [
+          "Torsdag 12. marts. Mød ved Tjarnir senest kl. 15:00. Anbefalet mødetid 14:45. PR arbejde og foto/film.",
           "Lørdag 4. april. Mødetid til lydprøve følger.",
           "Lørdag 4. april kl. 18:30 til 19:00. NEMA arrangement og autografer.",
           "Lørdag 4. april kl. 19:30. Koncertstart."
@@ -1122,10 +1143,20 @@
 
     const weekPlan = [
       {
+        date: "Torsdag 12. marts",
+        items: [
+          "PR arbejde ved Tjarnir. Et team fra Rúni Djurhuus filmer og tager billeder.",
+          "Sophilia, Filip, Emma og Bjarki møder kl. 14:45 og senest kl. 15:00 ved Tjarnir.",
+          "Jóhanna møder kl. 14:30 og forlader stedet kl. 15:15 på grund af skole.",
+          "Anna Lovisa møder kl. 14:30.",
+          "Fællesbillede kl. 15:00 sharp."
+        ]
+      },
+      {
         date: "Mandag 30. marts",
         items: [
           "Orkester samles til rehearsal við Tjarnir.",
-          "Kim Hansen aftaler nærmere tidspunkt med Regin Dalsgaard."
+          "Kim Hansen aftaler nærmere tidspunkt med venue, Regin Dalsgaard."
         ]
       },
       {
@@ -1138,7 +1169,7 @@
         date: "Onsdag 1. april",
         items: [
           "Orkester samles til rehearsal við Tjarnir.",
-          "Kim Hansen aftaler nærmere tidspunkt med Regin Dalsgaard.",
+          "Kim Hansen aftaler nærmere tidspunkt med venue, Regin Dalsgaard.",
           "Muligvis lydprøve allerede denne dag."
         ]
       },
@@ -1157,8 +1188,8 @@
       {
         date: "Lørdag 4. april",
         items: [
-          "Alle i produktionen arbejder denne dag på forskellige tidspunkter.",
-          "Endeligt program forventes klart 14 dage inden koncerten.",
+          "Alle i produktionen arbejder denne dag på forskellige tidspunkter afhængigt af endeligt program.",
+          "Det forventes at have alt klart 14 dage inden koncerten.",
           "Lydprøve med orkester og Spírar. Nærmere mødetider følger.",
           "Kl. 18:30 til 19:00 møder Spírar til særligt NEMA arrangement i separat lokale i Tjarnir til autografer med mere.",
           "Kl. 19:30 begynder koncerten.",
@@ -1420,8 +1451,8 @@
           }).join("")
         : `<div class="small">Ingen kontaktpersoner lagt ind endnu.</div>`;
 
-      myImportantNote.textContent = "HOME nulstiller valgt navn og viser hele portalen igen.";
-      myViewSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      myImportantNote.textContent = "Du ser nu din egen plan. HOME eller klik på HOYDALAR øverst til venstre nulstiller valgt navn.";
+      myViewSection.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
 
     function resetHome() {

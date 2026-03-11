@@ -17,6 +17,9 @@
       --next-bg: #fff7ed;
       --next-border: #fdba74;
       --gold: #f59e0b;
+      --danger: #b91c1c;
+      --danger-2: #ef4444;
+      --danger-3: #fee2e2;
       --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
       --radius: 18px;
       --max: 1300px;
@@ -110,7 +113,7 @@
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-columns: 1.15fr 0.85fr;
       gap: 20px;
       margin-top: -26px;
     }
@@ -175,7 +178,7 @@
     }
 
     .sales-number {
-      font-size: 48px;
+      font-size: 54px;
       font-weight: 800;
       line-height: 1;
       margin: 8px 0 6px;
@@ -213,16 +216,32 @@
     }
 
     .countdown-box {
-      margin-top: 18px;
-      padding-top: 18px;
-      border-top: 1px solid #e2e8f0;
+      margin-top: 20px;
+      padding: 18px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--danger), var(--danger-2));
+      color: white;
+      box-shadow: 0 14px 30px rgba(185, 28, 28, 0.22);
+    }
+
+    .countdown-box .meta-label {
+      color: rgba(255,255,255,0.82);
+      margin-bottom: 10px;
     }
 
     .countdown-time {
-      font-size: 28px;
-      font-weight: 800;
-      line-height: 1.2;
+      font-size: 34px;
+      font-weight: 900;
+      line-height: 1.05;
       margin-top: 8px;
+      letter-spacing: 0.02em;
+    }
+
+    .countdown-sub {
+      margin-top: 10px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.45;
     }
 
     .stats-row {
@@ -785,7 +804,7 @@
         <div class="countdown-box">
           <div class="meta-label">Countdown</div>
           <div class="countdown-time" id="countdownBox">--</div>
-          <div class="small" id="countdownLabel" style="margin-top:8px;">
+          <div class="countdown-sub" id="countdownLabel">
             Til torsdag 12. marts 2026 kl. 12:00 GMT
           </div>
         </div>
@@ -851,7 +870,7 @@
             </div>
           </div>
 
-          <div class="my-alert" id="myImportantNote">
+          <div class="my-alert">
             HOME eller klik på HOYDALAR øverst til venstre nulstiller valgt navn og viser hele portalen som normalt.
           </div>
         </section>
@@ -906,7 +925,7 @@
       <div class="section-head">
         <div>
           <h2>Ugeplan</h2>
-          <p class="lead">Foreløbig ugeplan baseret på dokumentet.</p>
+          <p class="lead">Foreløbig ugeplan baseret på det opdaterede dokument.</p>
         </div>
       </div>
 
@@ -995,9 +1014,9 @@
         email: "rd@rd.fo",
         phone: "+298505550",
         note: "Formel koncertarrangør. Markedsføring. Praktisk afvikling. Medansvar for økonomisk risiko.",
-        nextMeeting: "Torsdag 12. marts. PR arbejde ved Tjarnir",
+        nextMeeting: "Torsdag 12. marts kl. 14:30 ved Tjarnir. Slut kl. 15:30",
         schedule: [
-          "Torsdag 12. marts. PR arbejde ved Tjarnir med Spírar og team.",
+          "Torsdag 12. marts. Møder senest kl. 14:30 ved Tjarnir. Slut kl. 15:30. Skal have et team med som kan filme og tage billeder af Spírar.",
           "Hele ugen. Praktisk koordinering og marketing.",
           "Lørdag 4. april. Til stede hele dagen og under koncerten."
         ],
@@ -1026,9 +1045,9 @@
         email: "mk@fixer.fo",
         phone: "+298591011",
         note: "Koordinering mellem alle parter. Aftaler og kontrakter. Sponsor dialog. Produktionsplan. Call sheets.",
-        nextMeeting: "Torsdag 12. marts. PR arbejde og koordinering ved Tjarnir",
+        nextMeeting: "Torsdag 12. marts kl. 14:30 ved Tjarnir",
         schedule: [
-          "Torsdag 12. marts. PR arbejde og koordinering ved Tjarnir.",
+          "Torsdag 12. marts. Møder kl. 14:30 ved Tjarnir til PR arbejde og koordinering.",
           "Hele ugen. Koordinerer produktion, kontrakter og portal.",
           "Lørdag 4. april. Til stede hele dagen."
         ],
@@ -1042,9 +1061,9 @@
         email: "rwd@tjarnir.fo",
         phone: "+298596061",
         note: "Koordinering med venue. Adgang til faciliteter. Praktiske forhold omkring koncertstedet.",
-        nextMeeting: "Torsdag 12. marts. Venue omkring PR arbejde ved Tjarnir",
+        nextMeeting: "Torsdag 12. marts kl. 14:30 ved Tjarnir",
         schedule: [
-          "Torsdag 12. marts. Venue omkring PR arbejde ved Tjarnir.",
+          "Torsdag 12. marts. Møder kl. 14:30 ved Tjarnir.",
           "Mandag 30. marts. Aftaler rehearsal tider med Kim Hansen.",
           "Onsdag 1. april. Aftaler rehearsal tider med Kim Hansen.",
           "Lørdag 4. april. Til stede efter venue plan."
@@ -1157,7 +1176,7 @@
         note: "Talent.",
         nextMeeting: "Torsdag 12. marts kl. 14:30 ved Tjarnir",
         schedule: [
-          "Torsdag 12. marts. Mød ved Tjarnir kl. 14:30. Fællesbillede kl. 15:00 sharp. PR arbejde og foto/film.",
+          "Torsdag 12. marts. Møder kl. 14:30 ved Tjarnir. Fællesbillede kl. 15:00 sharp. PR arbejde og foto/film.",
           "Lørdag 4. april. Mødetid til lydprøve følger.",
           "Lørdag 4. april kl. 18:30 til 19:00. NEMA arrangement og autografer.",
           "Lørdag 4. april kl. 19:30. Koncertstart."
@@ -1191,7 +1210,7 @@
         note: "Talent.",
         nextMeeting: "Torsdag 12. marts kl. 14:30 ved Tjarnir. Går igen kl. 15:15",
         schedule: [
-          "Torsdag 12. marts. Mød ved Tjarnir kl. 14:30. Forlader stedet kl. 15:15 på grund af skole. PR arbejde og foto/film.",
+          "Torsdag 12. marts. Møder kl. 14:30 ved Tjarnir. Forlader stedet kl. 15:15 på grund af skole. PR arbejde og foto/film.",
           "Lørdag 4. april. Mødetid til lydprøve følger.",
           "Lørdag 4. april kl. 18:30 til 19:00. NEMA arrangement og autografer.",
           "Lørdag 4. april kl. 19:30. Koncertstart."
@@ -1284,6 +1303,9 @@
         date: "Torsdag 12. marts",
         items: [
           "PR arbejde ved Tjarnir. Et team fra Rúni Djurhuus filmer og tager billeder.",
+          "Rúni Djurhuus møder senest kl. 14:30 og slutter kl. 15:30.",
+          "Regin Dalsgaard møder kl. 14:30.",
+          "Michael Koba møder kl. 14:30.",
           "Sophilia, Filip, Emma og Bjarki møder kl. 14:45 og senest kl. 15:00 ved Tjarnir.",
           "Jóhanna møder kl. 14:30 og forlader stedet kl. 15:15 på grund af skole.",
           "Anna Lovisa møder kl. 14:30.",
@@ -1293,7 +1315,7 @@
       {
         date: "Mandag 30. marts",
         items: [
-          "Orkester samles til rehearsal við Tjarnir.",
+          "Orkester samles til rehearsal ved Tjarnir.",
           "Kim Hansen aftaler nærmere tidspunkt med venue, Regin Dalsgaard."
         ]
       },
@@ -1306,7 +1328,7 @@
       {
         date: "Onsdag 1. april",
         items: [
-          "Orkester samles til rehearsal við Tjarnir.",
+          "Orkester samles til rehearsal ved Tjarnir.",
           "Kim Hansen aftaler nærmere tidspunkt med venue, Regin Dalsgaard.",
           "Muligvis lydprøve allerede denne dag."
         ]
@@ -1329,7 +1351,7 @@
           "Alle i produktionen arbejder denne dag på forskellige tidspunkter afhængigt af det endelige program.",
           "Det forventes at have alt klart 14 dage inden koncerten.",
           "Lydprøve med orkester og Spírar. Nærmere mødetider følger.",
-          "Kl. 18:30 til 19:00 møder Spírar til særligt NEMA arrangement i et separat lokale i Tjarnir til autografer med mere.",
+          "Kl. 18:30 til 19:00 møder Spírar til et særligt NEMA arrangement i et separat lokale i Tjarnir til autografer med mere.",
           "Kl. 19:30 begynder koncerten.",
           "Kl. 21:00 er koncerten slut."
         ]
@@ -1384,7 +1406,7 @@
       const target = new Date("2026-03-12T12:00:00Z").getTime();
 
       function updateCountdown() {
-        const now = new Date().getTime();
+        const now = Date.now();
         const diff = target - now;
         const box = document.getElementById("countdownBox");
         const label = document.getElementById("countdownLabel");
@@ -1395,10 +1417,11 @@
           return;
         }
 
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((diff / (1000 * 60)) % 60);
-        const seconds = Math.floor((diff / 1000) % 60);
+        const days = Math.floor(diff / 86400000);
+        const hours = Math.floor((diff % 86400000) / 3600000);
+        const minutes = Math.floor((diff % 3600000) / 60000);
+        const seconds = Math.floor((diff % 60000) / 1000);
+        const centiseconds = Math.floor((diff % 1000) / 10);
 
         let parts = [];
 
@@ -1409,13 +1432,14 @@
         parts.push(String(hours).padStart(2, "0") + "t");
         parts.push(String(minutes).padStart(2, "0") + "m");
         parts.push(String(seconds).padStart(2, "0") + "s");
+        parts.push(String(centiseconds).padStart(2, "0"));
 
-        box.textContent = parts.join(" ");
+        box.textContent = parts.join(" : ");
         label.textContent = "Til torsdag 12. marts 2026 kl. 12:00 GMT";
       }
 
       updateCountdown();
-      setInterval(updateCountdown, 1000);
+      setInterval(updateCountdown, 50);
     }
 
     function renderStats() {
@@ -1439,7 +1463,7 @@
     }
 
     function populateGroups() {
-      const groups = [...new Set(people.map(p => p.group))].sort((a, b) => a.localeCompare(b.name));
+      const groups = [...new Set(people.map(p => p.group))].sort((a, b) => a.localeCompare(b));
       groups.forEach(group => {
         const option = document.createElement("option");
         option.value = group;

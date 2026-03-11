@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fo">
+<html lang="da">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -295,19 +295,81 @@
     }
 
     .selector-card {
-      background: linear-gradient(180deg, #ffffff, #f8fafc);
+      background: linear-gradient(135deg, #0f766e, #14b8a6);
+      color: white;
+      border: none;
+    }
+
+    .selector-card h2 {
+      color: white;
+      margin-bottom: 8px;
     }
 
     .selector-note {
-      color: var(--muted);
+      color: rgba(255,255,255,0.92);
       line-height: 1.6;
-      margin-top: 8px;
+      margin-top: 0;
+      margin-bottom: 14px;
+      font-size: 16px;
+    }
+
+    .selector-highlight {
+      display: inline-block;
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }
+
+    .name-picker-wrap {
+      margin-top: 10px;
+    }
+
+    .name-picker-label {
+      display: block;
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 10px;
+      color: white;
+    }
+
+    .name-picker-select {
+      width: 100%;
+      min-height: 58px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 3px solid #f59e0b;
+      background: #ffffff;
+      color: #0f172a;
+      font-size: 17px;
+      font-weight: 700;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.18);
+    }
+
+    .name-picker-select:focus {
+      outline: none;
+      border-color: #fde68a;
+      box-shadow: 0 0 0 4px rgba(253, 230, 138, 0.35);
+    }
+
+    .name-picker-help {
+      margin-top: 10px;
+      color: rgba(255,255,255,0.92);
+      font-size: 14px;
+      line-height: 1.5;
     }
 
     .my-view-card {
       margin-top: 16px;
       border: 2px solid var(--my-border);
       background: var(--my-bg);
+      color: var(--text);
     }
 
     .my-badge {
@@ -751,15 +813,20 @@
 
     <section class="section">
       <div class="card selector-card">
+        <div class="selector-highlight">Tryk her</div>
         <h2>Vælg dit navn</h2>
         <p class="selector-note">
-          Når du vælger dit navn her, kommer din egen plan lige nedenunder. Resten af portalen bliver liggende længere nede, så alle stadig kan se ugeplan og kontakter.
+          Vælg dit navn her for straks at se din egen plan, næste mødetid og dine vigtigste kontaktpersoner.
         </p>
 
-        <div class="filters">
-          <select id="personSelect">
+        <div class="name-picker-wrap">
+          <label for="personSelect" class="name-picker-label">👇 Vælg dit navn her</label>
+          <select id="personSelect" class="name-picker-select">
             <option value="">Vælg dit navn</option>
           </select>
+          <div class="name-picker-help">
+            Når du vælger dit navn, ser du straks din egen plan lige nedenunder.
+          </div>
         </div>
 
         <section class="card my-view-card hidden" id="myViewSection">
@@ -1372,7 +1439,7 @@
     }
 
     function populateGroups() {
-      const groups = [...new Set(people.map(p => p.group))].sort((a, b) => a.localeCompare(b));
+      const groups = [...new Set(people.map(p => p.group))].sort((a, b) => a.localeCompare(b.name));
       groups.forEach(group => {
         const option = document.createElement("option");
         option.value = group;

@@ -12,7 +12,6 @@
       --text: #0f172a;
       --line: #e2e8f0;
       --accent: #0f766e;
-      --accent-soft: #ecfeff;
       --my-bg: #f0fdfa;
       --my-border: #99f6e4;
       --next-bg: #fff7ed;
@@ -211,6 +210,19 @@
       gap: 10px;
       font-size: 14px;
       color: var(--muted);
+    }
+
+    .countdown-box {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .countdown-time {
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-top: 8px;
     }
 
     .stats-row {
@@ -602,7 +614,8 @@
         font-size: 24px;
       }
 
-      .next-meeting-time {
+      .next-meeting-time,
+      .countdown-time {
         font-size: 22px;
       }
     }
@@ -694,7 +707,7 @@
       <div class="card sales-card">
         <div>
           <div class="meta-label">Billetsalg</div>
-          <div class="sales-number" id="ticketsSold">1988</div>
+          <div class="sales-number" id="ticketsSold">0</div>
           <div class="sales-sub">solgte billetter lige nu</div>
 
           <div class="progress-wrap" aria-label="Billetsalg status">
@@ -707,8 +720,12 @@
           </div>
         </div>
 
-        <div class="small" style="margin-top:16px;">
-          Målkapacitet kan ændres direkte i koden under CONFIG.
+        <div class="countdown-box">
+          <div class="meta-label">Countdown</div>
+          <div class="countdown-time" id="countdownBox">--</div>
+          <div class="small" id="countdownLabel" style="margin-top:8px;">
+            Til torsdag 12. marts 2026 kl. 12:00 GMT
+          </div>
         </div>
       </div>
     </section>
@@ -774,7 +791,7 @@
       </div>
     </section>
 
-    <section class="section" id="contactsSection">
+    <section class="section">
       <div class="section-head">
         <div>
           <h2>Kontaktoversigt</h2>
@@ -822,7 +839,7 @@
       <div class="section-head">
         <div>
           <h2>Ugeplan</h2>
-          <p class="lead">Foreløbig ugeplan baseret på det seneste dokument. PR arbejde er med.</p>
+          <p class="lead">Foreløbig ugeplan baseret på dokumentet.</p>
         </div>
       </div>
 
@@ -883,7 +900,7 @@
 
   <script>
     const CONFIG = {
-      ticketsSold: 1988,
+      ticketsSold: 0,
       ticketGoal: 4000
     };
 
@@ -968,6 +985,21 @@
         contacts: ["Michael Koba", "Rúni Djurhuus", "Kim Hansen", "Hjalmar Hvítklett"]
       },
       {
+        name: "Hjalmar Hvítklett",
+        role: "Direktør",
+        group: "Teknik",
+        organization: "Ljóð & Tøkni",
+        email: "hjalmar@lt.fo",
+        phone: "565501",
+        note: "Overordnet ansvar for lyd og lys.",
+        nextMeeting: "Før koncertugen. Teknisk planlægning",
+        schedule: [
+          "Før koncertugen. Teknisk planlægning.",
+          "Lørdag 4. april. Lyd og lys afvikling."
+        ],
+        contacts: ["Michael Koba", "Rúni Djurhuus", "Regin Dalsgaard"]
+      },
+      {
         name: "Kim Hansen",
         role: "Kapelmester",
         group: "Musikalsk ledelse",
@@ -982,21 +1014,6 @@
           "Lørdag 4. april. Lydprøve og koncert."
         ],
         contacts: ["Michael Koba", "Regin Dalsgaard", "Vár Miðberg", "Pauli Reinert Poulsen", "Jóhannus á Rógvi Joensen"]
-      },
-      {
-        name: "Hjalmar Hvítklett",
-        role: "Direktør",
-        group: "Teknik",
-        organization: "Ljóð & Tøkni",
-        email: "hjalmar@lt.fo",
-        phone: "565501",
-        note: "Overordnet ansvar for lyd og lys.",
-        nextMeeting: "Før koncertugen. Teknisk planlægning",
-        schedule: [
-          "Før koncertugen. Teknisk planlægning.",
-          "Lørdag 4. april. Lyd og lys afvikling."
-        ],
-        contacts: ["Michael Koba", "Rúni Djurhuus", "Regin Dalsgaard"]
       },
       {
         name: "Vár Miðberg",
@@ -1216,7 +1233,7 @@
       {
         date: "Tirsdag 31. marts",
         items: [
-          "Ingen aktivitet planlagt."
+          "Ingenting."
         ]
       },
       {
@@ -1242,12 +1259,12 @@
       {
         date: "Lørdag 4. april",
         items: [
-          "Alle i produktionen arbejder denne dag på forskellige tidspunkter afhængigt af endeligt program.",
+          "Alle i produktionen arbejder denne dag på forskellige tidspunkter afhængigt af det endelige program.",
           "Det forventes at have alt klart 14 dage inden koncerten.",
           "Lydprøve med orkester og Spírar. Nærmere mødetider følger.",
-          "Kl. 18:30 til 19:00 møder Spírar til særligt NEMA arrangement i separat lokale i Tjarnir til autografer med mere.",
+          "Kl. 18:30 til 19:00 møder Spírar til særligt NEMA arrangement i et separat lokale i Tjarnir til autografer med mere.",
           "Kl. 19:30 begynder koncerten.",
-          "Kl. 21:00 slutter koncerten cirka."
+          "Kl. 21:00 er koncerten slut."
         ]
       }
     ];
@@ -1264,7 +1281,6 @@
     const nextMeetingTime = document.getElementById("nextMeetingTime");
     const mySchedule = document.getElementById("mySchedule");
     const myContacts = document.getElementById("myContacts");
-    const myImportantNote = document.getElementById("myImportantNote");
     const brandHome = document.getElementById("brandHome");
     const homeButton = document.getElementById("homeButton");
 
@@ -1295,6 +1311,44 @@
       document.getElementById("progressBar").style.width = percent + "%";
       document.getElementById("progressText").textContent = `${percent.toFixed(1)}% af mål`;
       document.getElementById("capacityText").textContent = `Mål: ${goal.toLocaleString("da-DK")}`;
+    }
+
+    function renderCountdown() {
+      const target = new Date("2026-03-12T12:00:00Z").getTime();
+
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const diff = target - now;
+        const box = document.getElementById("countdownBox");
+        const label = document.getElementById("countdownLabel");
+
+        if (diff <= 0) {
+          box.textContent = "Tiden er gået";
+          label.textContent = "Deadline nået. 12. marts 2026 kl. 12:00 GMT";
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        let parts = [];
+
+        if (days > 0) {
+          parts.push(days + "d");
+        }
+
+        parts.push(String(hours).padStart(2, "0") + "t");
+        parts.push(String(minutes).padStart(2, "0") + "m");
+        parts.push(String(seconds).padStart(2, "0") + "s");
+
+        box.textContent = parts.join(" ");
+        label.textContent = "Til torsdag 12. marts 2026 kl. 12:00 GMT";
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
     }
 
     function renderStats() {
@@ -1507,7 +1561,6 @@
           }).join("")
         : `<div class="small">Ingen kontaktpersoner lagt ind endnu.</div>`;
 
-      myImportantNote.textContent = "Du ser nu din egen plan. HOME eller klik på HOYDALAR øverst til venstre nulstiller valgt navn.";
       myViewSection.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
 
@@ -1536,6 +1589,7 @@
     homeButton.addEventListener("click", resetHome);
 
     renderSales();
+    renderCountdown();
     renderStats();
     populateGroups();
     populateNames();

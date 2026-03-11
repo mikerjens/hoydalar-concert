@@ -3,568 +3,1457 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HOYDALAR Portalur</title>
+  <title>HOYDALAR Portal</title>
   <style>
+    :root {
+      --bg: #0f172a;
+      --bg-soft: #111827;
+      --card: #ffffff;
+      --muted: #64748b;
+      --text: #0f172a;
+      --line: #e2e8f0;
+      --accent: #0f766e;
+      --accent-2: #14b8a6;
+      --gold: #f59e0b;
+      --danger: #dc2626;
+      --ok: #16a34a;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+      --max: 1300px;
+    }
+
     * {
       box-sizing: border-box;
     }
 
     body {
-      font-family: Arial, sans-serif;
-      background: #f4f6f8;
-      color: #1f2937;
       margin: 0;
-      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: #f8fafc;
     }
 
-    header {
-      background: #111827;
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .topbar {
+      background: linear-gradient(135deg, #0f172a, #134e4a);
       color: white;
-      padding: 30px 20px;
+      padding: 22px 20px 34px;
     }
 
-    header .wrap,
-    main {
-      max-width: 1100px;
+    .topbar-inner {
+      max-width: var(--max);
       margin: 0 auto;
     }
 
-    .home-button {
-      background: none;
-      border: none;
-      color: white;
-      font-size: 34px;
-      font-weight: bold;
-      padding: 0;
-      margin: 0 0 10px 0;
+    .brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .brand-link {
+      display: inline-block;
       cursor: pointer;
-      text-align: left;
     }
 
-    .sub {
-      color: #d1d5db;
+    .eyebrow {
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 38px;
+      line-height: 1.05;
+    }
+
+    .subhead {
+      margin-top: 12px;
+      max-width: 920px;
       font-size: 16px;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.9);
     }
 
-    main {
-      padding: 24px 20px 50px 20px;
+    .home-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.08);
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
     }
 
-    .grid {
+    .home-btn:hover {
+      background: rgba(255,255,255,0.14);
+    }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 24px 20px 60px;
+    }
+
+    .hero-grid {
       display: grid;
-      grid-template-columns: 320px 1fr;
+      grid-template-columns: 1.2fr 0.8fr;
       gap: 20px;
-      align-items: start;
+      margin-top: -26px;
     }
 
     .card {
-      background: white;
-      border-radius: 14px;
-      padding: 20px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-      margin-bottom: 20px;
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(226, 232, 240, 0.9);
     }
 
-    h2 {
-      margin-top: 0;
+    .hero-card {
+      padding: 22px;
+    }
+
+    .hero-card h2 {
+      margin: 0 0 14px;
       font-size: 24px;
     }
 
-    h3 {
-      margin-top: 0;
-      font-size: 20px;
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
     }
 
-    label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 8px;
+    .meta-box {
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
     }
 
-    select {
+    .meta-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .meta-value {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .owner-list {
+      margin: 0;
+      padding-left: 18px;
+      line-height: 1.7;
+    }
+
+    .sales-card {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .sales-number {
+      font-size: 48px;
+      font-weight: 800;
+      line-height: 1;
+      margin: 8px 0 6px;
+    }
+
+    .sales-sub {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    .progress-wrap {
       width: 100%;
-      padding: 12px;
-      font-size: 16px;
-      border: 1px solid #d1d5db;
-      border-radius: 10px;
-      margin-bottom: 15px;
-      background: white;
+      height: 18px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 14px 0 8px;
     }
 
-    .person-box,
-    .home-box {
-      background: #f9fafb;
-      border: 1px solid #e5e7eb;
+    .progress-bar {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--gold), #f97316);
+      border-radius: 999px;
+      transition: width 0.6s ease;
+    }
+
+    .progress-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .stat {
+      padding: 18px;
+    }
+
+    .stat .label {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+
+    .stat .value {
+      font-size: 28px;
+      font-weight: 800;
+    }
+
+    .section {
+      margin-top: 28px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .section h2 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    .section p.lead {
+      margin: 6px 0 0;
+      color: var(--muted);
+    }
+
+    .filters {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .filters input,
+    .filters select {
+      padding: 12px 14px;
       border-radius: 12px;
-      padding: 16px;
+      border: 1px solid var(--line);
+      background: #fff;
+      font-size: 15px;
+      min-height: 46px;
     }
 
-    .person-box {
-      display: none;
+    .filters input {
+      flex: 1 1 280px;
+    }
+
+    .filters select {
+      flex: 0 0 220px;
+    }
+
+    .people-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .person-card {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .person-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: start;
     }
 
     .person-name {
-      font-size: 24px;
-      margin: 0 0 6px 0;
+      font-size: 21px;
+      font-weight: 800;
+      line-height: 1.15;
     }
 
-    .row {
-      margin-bottom: 8px;
-      line-height: 1.5;
-    }
-
-    .label-inline {
-      font-weight: bold;
-    }
-
-    .days-nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 18px;
-    }
-
-    .day-btn {
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid #d1d5db;
-      background: white;
-      cursor: pointer;
+    .person-role {
+      color: var(--accent);
+      font-weight: 700;
       font-size: 14px;
-    }
-
-    .day-btn.active {
-      background: #111827;
-      color: white;
-      border-color: #111827;
-    }
-
-    .call-item {
-      border: 1px solid #e5e7eb;
-      border-radius: 12px;
-      padding: 14px;
-      margin-bottom: 12px;
-      background: #fafafa;
-    }
-
-    .call-time {
-      font-size: 22px;
-      font-weight: bold;
-      margin-bottom: 4px;
-    }
-
-    .call-title {
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 6px;
+      margin-top: 5px;
     }
 
     .tag {
-      display: inline-block;
+      white-space: nowrap;
       font-size: 12px;
-      padding: 4px 8px;
+      font-weight: 700;
+      padding: 8px 10px;
       border-radius: 999px;
-      background: #e5e7eb;
-      margin-right: 6px;
-      margin-top: 6px;
+      background: #ecfeff;
+      color: #0f766e;
+      border: 1px solid #bae6fd;
     }
 
-    .section-title {
-      margin: 24px 0 10px 0;
-      font-size: 18px;
-      font-weight: bold;
+    .person-org {
+      font-size: 14px;
+      color: var(--muted);
     }
 
-    .overview-list {
+    .person-notes {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #334155;
+      min-height: 42px;
+    }
+
+    .contact-list {
       display: grid;
-      gap: 10px;
+      gap: 8px;
+      font-size: 14px;
     }
 
-    .overview-day {
-      border: 1px solid #e5e7eb;
-      border-radius: 12px;
-      padding: 14px;
-      background: #fafafa;
+    .contact-item {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      color: #334155;
+      word-break: break-word;
     }
 
-    .overview-day strong {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 17px;
+    .contact-label {
+      font-weight: 700;
+      min-width: 62px;
+      color: var(--muted);
+    }
+
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 14px;
+      border: 1px solid var(--line);
+      background: white;
+      cursor: pointer;
+    }
+
+    .btn.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+
+    .btn:hover {
+      opacity: 0.92;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 16px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line);
+    }
+
+    th, td {
+      padding: 14px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    th {
+      background: #f8fafc;
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .timeline-item {
+      padding: 18px;
+    }
+
+    .timeline-date {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .timeline-note {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .bullet-list {
+      margin: 10px 0 0;
+      padding-left: 18px;
+      line-height: 1.7;
+    }
+
+    .role-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .role-card {
+      padding: 18px;
+    }
+
+    .role-card h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
     }
 
     .footer-note {
-      color: #6b7280;
-      font-size: 13px;
-      margin-top: 10px;
+      margin-top: 28px;
+      padding: 18px;
+      border-radius: 16px;
+      background: #ecfeff;
+      border: 1px solid #bae6fd;
+      color: #0f172a;
+      line-height: 1.6;
     }
 
-    @media (max-width: 900px) {
-      .grid {
+    .small {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .my-view-card {
+      padding: 22px;
+      margin-top: 28px;
+      border: 2px solid #99f6e4;
+      background: #f0fdfa;
+    }
+
+    .my-view-title {
+      font-size: 28px;
+      font-weight: 800;
+      margin: 0 0 8px;
+    }
+
+    .my-view-sub {
+      color: #0f766e;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .my-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .my-box {
+      background: white;
+      border: 1px solid #ccfbf1;
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .my-box h3 {
+      margin: 0 0 12px;
+      font-size: 18px;
+    }
+
+    .callout {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: #fff7ed;
+      border: 1px solid #fdba74;
+      color: #9a3412;
+      font-weight: 700;
+    }
+
+    @media (max-width: 1080px) {
+      .hero-grid,
+      .people-grid,
+      .stats-row,
+      .role-grid,
+      .my-grid {
         grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      h1 {
+        font-size: 30px;
+      }
+
+      .section h2 {
+        font-size: 24px;
+      }
+
+      .filters {
+        flex-direction: column;
+      }
+
+      .filters select,
+      .filters input {
+        width: 100%;
+        flex: 1 1 auto;
+      }
+
+      .person-top {
+        flex-direction: column;
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      .topbar {
+        padding: 18px 0 24px;
+      }
+
+      .filters,
+      .contact-actions,
+      .home-btn {
+        display: none !important;
+      }
+
+      .card,
+      table {
+        box-shadow: none;
+      }
+
+      .wrap {
+        padding: 0;
       }
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="wrap">
-      <button id="homeLink" class="home-button" type="button">HOYDALAR Portalur</button>
-      <div class="sub">
-        Demo til produktion, call sheets og mødetider
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand-row">
+        <div class="brand-link" id="brandHome">
+          <div class="eyebrow">Produktion portal</div>
+          <h1>HOYDALAR 4. april 2026</h1>
+        </div>
+        <button class="home-btn" id="homeButton">HOME</button>
+      </div>
+
+      <div class="subhead">
+        Portal til produktion, kontakter, ugeplan og billetsalg. Vælg dit navn og se kun det, du skal bruge.
       </div>
     </div>
   </header>
 
-  <main>
-    <div class="grid">
-      <div>
-        <div class="card">
-          <h3>Vel navn</h3>
-          <label for="personSelect">Persónur</label>
-          <select id="personSelect">
-            <option value="">Vel ein persón</option>
-          </select>
+  <main class="wrap">
+    <section class="hero-grid" id="heroSection">
+      <div class="card hero-card">
+        <h2>Projekt overblik</h2>
+        <p>
+          HOYDALAR konceptet er udviklet og ejes af <strong>Per Zachariassen</strong>. Den økonomiske risiko bæres af <strong>Per Zachariassen</strong> i samarbejde med <strong>Rúni Djurhuus</strong>, som formelt er koncertarrangør gennem <strong>Eventz</strong>.
+        </p>
 
-          <div id="homeBox" class="home-box">
-            Vel navn fyri at síggja tínar upplýsingar. Trýst á HOYDALAR Portalur ovast fyri at fara aftur til home.
+        <div class="meta-grid">
+          <div class="meta-box">
+            <div class="meta-label">Koncept ejer</div>
+            <div class="meta-value">Per Zachariassen</div>
           </div>
-
-          <div id="personCard" class="person-box">
-            <div class="person-name" id="personName"></div>
-            <div class="row"><span class="label-inline">Leiklutur:</span> <span id="personRole"></span></div>
-            <div class="row"><span class="label-inline">Bólkur:</span> <span id="personGroup"></span></div>
-            <div class="row"><span class="label-inline">Næsta møtitíð:</span> <span id="personNextCall"></span></div>
-            <div class="row"><span class="label-inline">Stað:</span> <span id="personPlace"></span></div>
-            <div class="row"><span class="label-inline">Boð:</span> <span id="personNote"></span></div>
+          <div class="meta-box">
+            <div class="meta-label">Koncertarrangør</div>
+            <div class="meta-value">Rúni Djurhuus / Eventz</div>
           </div>
-
-          <div class="footer-note">
-            Niðanfyri sært tú eisini øll call sheets fyri allar dagar.
+          <div class="meta-box">
+            <div class="meta-label">Produktion og koordinering</div>
+            <div class="meta-value">Michael Koba</div>
+          </div>
+          <div class="meta-box">
+            <div class="meta-label">Venue</div>
+            <div class="meta-value">Við Tjarnir</div>
           </div>
         </div>
 
-        <div class="card">
-          <h3>Stutt yvirlit</h3>
-          <div id="weekOverview" class="overview-list"></div>
+        <div style="margin-top:18px;">
+          <div class="meta-label">Overordnet ansvar</div>
+          <ul class="owner-list">
+            <li>Per Zachariassen. Koncept ejer og kunstnerisk leder</li>
+            <li>Rúni Djurhuus. Formel koncertarrangør og marketing</li>
+            <li>Maria Winther Olsen. Program og grafik</li>
+            <li>Michael Koba. Produktion og koordinering</li>
+            <li>Regin Dalsgaard. Venue ansvarlig</li>
+            <li>Kim Hansen. Kapelmester</li>
+            <li>Ljóð &amp; Tøkni. Lyd og lys</li>
+          </ul>
         </div>
       </div>
 
-      <div>
-        <div class="card">
-          <h2>Call sheets pr. dag</h2>
-          <div id="daysNav" class="days-nav"></div>
-          <div id="dayContent"></div>
+      <div class="card sales-card">
+        <div>
+          <div class="meta-label">Billetsalg</div>
+          <div class="sales-number" id="ticketsSold">1988</div>
+          <div class="sales-sub">solgte billetter lige nu</div>
+
+          <div class="progress-wrap" aria-label="Billetsalg status">
+            <div class="progress-bar" id="progressBar"></div>
+          </div>
+
+          <div class="progress-row">
+            <span id="progressText">0% af mål</span>
+            <span id="capacityText">Mål: 4000</span>
+          </div>
+        </div>
+
+        <div class="small" style="margin-top:16px;">
+          Målkapacitet kan ændres direkte i koden under CONFIG.
         </div>
       </div>
+    </section>
+
+    <section class="card my-view-card hidden" id="myViewSection">
+      <div class="my-view-title" id="myViewName">Mit overblik</div>
+      <div class="my-view-sub" id="myViewRole">Rolle</div>
+
+      <div class="my-grid">
+        <div class="my-box">
+          <h3>Hvornår skal jeg møde</h3>
+          <div id="mySchedule"></div>
+        </div>
+
+        <div class="my-box">
+          <h3>Mine kontaktpersoner</h3>
+          <div id="myContacts"></div>
+        </div>
+      </div>
+
+      <div class="callout" id="myImportantNote">
+        Vælg et navn for at se personligt overblik.
+      </div>
+    </section>
+
+    <section class="stats-row" id="statsSection">
+      <div class="card stat">
+        <div class="label">Samlet antal personer</div>
+        <div class="value" id="peopleCount">0</div>
+      </div>
+      <div class="card stat">
+        <div class="label">Kunstnere og talenter</div>
+        <div class="value" id="artistCount">0</div>
+      </div>
+      <div class="card stat">
+        <div class="label">Produktion og teknik</div>
+        <div class="value" id="crewCount">0</div>
+      </div>
+      <div class="card stat">
+        <div class="label">Venue og nøglefunktioner</div>
+        <div class="value" id="leadCount">0</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>Vælg navn</h2>
+          <p class="lead">Når du vælger dit navn, ser du kun dit eget arbejds overblik øverst.</p>
+        </div>
+      </div>
+
+      <div class="filters">
+        <select id="personSelect">
+          <option value="">Vælg dit navn</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="section" id="contactsSection">
+      <div class="section-head">
+        <div>
+          <h2>Kontaktoversigt</h2>
+          <p class="lead">Søg på navn, rolle eller afdeling. Alle kan kontakte alle.</p>
+        </div>
+      </div>
+
+      <div class="filters">
+        <input type="text" id="searchInput" placeholder="Søg efter navn, rolle, afdeling eller note" />
+        <select id="groupFilter">
+          <option value="all">Alle grupper</option>
+        </select>
+      </div>
+
+      <div class="people-grid" id="peopleGrid"></div>
+    </section>
+
+    <section class="section" id="tableSection">
+      <div class="section-head">
+        <div>
+          <h2>Kontaktliste som tabel</h2>
+          <p class="lead">God når man hurtigt vil scrolle eller printe.</p>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Navn</th>
+              <th>Rolle</th>
+              <th>Gruppe</th>
+              <th>Organisation</th>
+              <th>Telefon</th>
+              <th>Email</th>
+              <th>Note</th>
+            </tr>
+          </thead>
+          <tbody id="contactTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="timelineSection">
+      <div class="section-head">
+        <div>
+          <h2>Ugeplan</h2>
+          <p class="lead">Foreløbig ugeplan baseret på dokumentet. Kan løbende opdateres.</p>
+        </div>
+      </div>
+
+      <div class="timeline" id="timeline"></div>
+    </section>
+
+    <section class="section" id="structureSection">
+      <div class="section-head">
+        <div>
+          <h2>Produktionsstruktur</h2>
+          <p class="lead">Hvem har hvilke funktioner lige nu.</p>
+        </div>
+      </div>
+
+      <div class="role-grid">
+        <div class="card role-card">
+          <h3>Ejerskab og økonomi</h3>
+          <ul class="bullet-list">
+            <li>Per Zachariassen. Ejer af HOYDALAR konceptet</li>
+            <li>Per Zachariassen og Rúni Djurhuus. Deler økonomisk risiko</li>
+            <li>Rúni Djurhuus / Eventz. Formel koncertarrangør</li>
+          </ul>
+        </div>
+
+        <div class="card role-card">
+          <h3>Kreativ og program</h3>
+          <ul class="bullet-list">
+            <li>Per Zachariassen. Kunstnerisk leder</li>
+            <li>Maria Winther Olsen. Program og grafik</li>
+            <li>Kim Hansen. Musikalsk ledelse og kapelmester</li>
+          </ul>
+        </div>
+
+        <div class="card role-card">
+          <h3>Produktion</h3>
+          <ul class="bullet-list">
+            <li>Michael Koba. Produktion, koordinering, aftaler og call sheets</li>
+            <li>Regin Dalsgaard. Venue ansvarlig</li>
+            <li>Ljóð &amp; Tøkni. Teknisk produktion, lyd og lys</li>
+          </ul>
+        </div>
+
+        <div class="card role-card">
+          <h3>Kunstnere</h3>
+          <ul class="bullet-list">
+            <li>Orkester. Kim Hansen, Vár Miðberg, Pauli Reinert Poulsen, Jóhannus á Rógvi Joensen</li>
+            <li>Spírar. Bjarki Virgarsson Trondesen, Anna Lovisa Mýri, Filip á Smið, Jóhanna Sámalsdóttir, Emma Højaard, Sophilia Wraae Mukisa</li>
+            <li>Gæstesangere og værter. Eyðun Nolsøe, Martin Joensen, MC Restorff</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-note" id="footerNote">
+      <strong>Notat:</strong> For personer under 18 år er forælder eller værge også ført på listen. Når du trykker på HOME eller HOYDALAR øverst til venstre, nulstilles valgt navn.
     </div>
   </main>
 
   <script>
-    const productionData = {
-      people: [
-        { name: "Rúni Djurhuus", role: "Konsertfyriskipari", group: "Produktion", nextCall: "Leygardag 4. apríl kl. 10:00", place: "Tjarnir", note: "Juridisk ábyrgd, marknaðarføring og yvirskipað avvikling" },
-        { name: "Per Zachariassen", role: "Konsept / kreativa leiðsla", group: "Produktion", nextCall: "Leygardag 4. apríl kl. 12:00", place: "Tjarnir", note: "Konsertkonsept og kunstnerisk leiðsla" },
-        { name: "Maria Winther Olsen", role: "Program og grafik", group: "Produktion", nextCall: "Leygardag 4. apríl kl. 12:00", place: "Tjarnir", note: "Programinnihald, grafik og hjálp til Per" },
-        { name: "Michael Koba", role: "Aftalur / sponsorater / call sheets", group: "Produktion", nextCall: "Leygardag 4. apríl kl. 09:30", place: "Tjarnir", note: "Koordinering, avtalur, call sheets og praktiskt yvirlit" },
-
-        { name: "Kim Hansen", role: "Kapelmestari", group: "Orkestur", nextCall: "Mánadag 30. mars kl. 19:00", place: "Venjingarstað", note: "Leiðir orkestrið og fyrireikar arrangement" },
-        { name: "Vár", role: "Tónleikari", group: "Orkestur", nextCall: "Mánadag 30. mars kl. 19:00", place: "Venjingarstað", note: "Orkesturvenjing" },
-        { name: "Pauli", role: "Tónleikari", group: "Orkestur", nextCall: "Mánadag 30. mars kl. 19:00", place: "Venjingarstað", note: "Orkesturvenjing" },
-        { name: "Johannes", role: "Tónleikari", group: "Orkestur", nextCall: "Mánadag 30. mars kl. 19:00", place: "Venjingarstað", note: "Orkesturvenjing" },
-
-        { name: "Bjarki", role: "Spíri", group: "Spírar", nextCall: "Fríggjadag 3. apríl kl. 17:00", place: "Tjarnir", note: "Fyrsta felags ljóðroynd" },
-        { name: "Anna Lovisa", role: "Spíri", group: "Spírar", nextCall: "Fríggjadag 3. apríl kl. 17:00", place: "Tjarnir", note: "Fyrsta felags ljóðroynd" },
-        { name: "Filip", role: "Spíri", group: "Spírar", nextCall: "Fríggjadag 3. apríl kl. 17:00", place: "Tjarnir", note: "Fyrsta felags ljóðroynd" },
-        { name: "Jóhann", role: "Spíri", group: "Spírar", nextCall: "Fríggjadag 3. apríl kl. 17:00", place: "Tjarnir", note: "Fyrsta felags ljóðroynd" },
-        { name: "Emma", role: "Spíri", group: "Spírar", nextCall: "Fríggjadag 3. apríl kl. 17:00", place: "Tjarnir", note: "Fyrsta felags ljóðroynd" },
-        { name: "Sophilia", role: "Spíri", group: "Spírar", nextCall: "Fríggjadag 3. apríl kl. 17:00", place: "Tjarnir", note: "Fyrsta felags ljóðroynd" },
-
-        { name: "Eyðun Nolsøe", role: "Gestasangari", group: "Gestasangarar", nextCall: "Fríggjadag 3. apríl kl. 18:00", place: "Tjarnir", note: "Ljóðroynd og gjøgnumrenning" },
-        { name: "MC", role: "Gestasangari", group: "Gestasangarar", nextCall: "Fríggjadag 3. apríl kl. 18:30", place: "Tjarnir", note: "Ljóðroynd og gjøgnumrenning" },
-        { name: "Martin", role: "Gestasangari", group: "Gestasangarar", nextCall: "Fríggjadag 3. apríl kl. 18:30", place: "Tjarnir", note: "Ljóðroynd og gjøgnumrenning" },
-
-        { name: "Ljóð", role: "Ljóðtøkni", group: "Tøkni", nextCall: "Leygardag 4. apríl kl. 10:00", place: "Tjarnir", note: "Opseting av PA, monitorum, mikrofonum og soundcheck" },
-        { name: "Ljós", role: "Ljóstøkni", group: "Tøkni", nextCall: "Leygardag 4. apríl kl. 10:00", place: "Tjarnir", note: "Opseting av ljósum, fokus, cues og pallýsing" }
-      ],
-
-      days: [
-        {
-          key: "30mar",
-          label: "Mánadag 30. mars",
-          calls: [
-            {
-              time: "19:00",
-              title: "Orkesturvenjing internt",
-              location: "Venjingarstað",
-              notes: "Kim Hansen, Vár, Pauli og Johannes arbeiða við arrangementum uttan solistar.",
-              groups: ["Orkestur"]
-            }
-          ]
-        },
-        {
-          key: "1apr",
-          label: "Mikudagur 1. apríl",
-          calls: [
-            {
-              time: "19:00",
-              title: "Orkesturvenjing internt",
-              location: "Venjingarstað",
-              notes: "Finpussing av arrangementum, dur og skiftir fram móti felagsroynd.",
-              groups: ["Orkestur"]
-            }
-          ]
-        },
-        {
-          key: "3apr",
-          label: "Fríggjadagur 3. apríl",
-          calls: [
-            {
-              time: "15:00",
-              title: "Tøkni riggar til",
-              location: "Tjarnir",
-              notes: "Ljóð og ljós gera klárt til felagsroynd og møguligar setup tillagingar.",
-              groups: ["Tøkni"]
-            },
-            {
-              time: "17:00",
-              title: "Spírar møta til felags ljóðroynd",
-              location: "Tjarnir",
-              notes: "Allir Spírar møta til fyrstu felagsroynd við orkestri.",
-              groups: ["Spírar"]
-            },
-            {
-              time: "17:00",
-              title: "Orkestur møtir",
-              location: "Tjarnir",
-              notes: "Orkestrið er klárt til felagsroynd við Spírum.",
-              groups: ["Orkestur"]
-            },
-            {
-              time: "18:00",
-              title: "Gestasangarar møta",
-              location: "Tjarnir",
-              notes: "Eyðun og møguligir aðrir gestasangarar til ljóðroynd og gjøgnumrenning.",
-              groups: ["Gestasangarar"]
-            }
-          ]
-        },
-        {
-          key: "4apr",
-          label: "Leygardagur 4. apríl – Konsertdagur",
-          calls: [
-            {
-              time: "09:30",
-              title: "Produktion møtir",
-              location: "Tjarnir",
-              notes: "Michael Koba og EVENTZ fáa yvirlit yvir dagin og avviklingina.",
-              groups: ["Produktion"]
-            },
-            {
-              time: "10:00",
-              title: "Venue opnar / tøkni møtir",
-              location: "Tjarnir",
-              notes: "Ljóð og ljós seta útgerð upp. Rúni hevur yvirskipað ábyrgd á avvikling.",
-              groups: ["Tøkni", "Produktion"]
-            },
-            {
-              time: "12:00",
-              title: "Orkestur møtir",
-              location: "Pallur / Tjarnir",
-              notes: "Orkestrið setir upp og ger seg klárt til ljóðroynd.",
-              groups: ["Orkestur"]
-            },
-            {
-              time: "12:00",
-              title: "Per og Maria møta",
-              location: "Tjarnir",
-              notes: "Program, innihald og kreativ gjøgnumganga av konsertdegnum.",
-              groups: ["Produktion"]
-            },
-            {
-              time: "14:00",
-              title: "Spírar møta",
-              location: "Backstage / Tjarnir",
-              notes: "Spírar møta klárir til ljóðroynd og dagsins gjøgnumgongd.",
-              groups: ["Spírar"]
-            },
-            {
-              time: "15:00",
-              title: "Ljóðroynd",
-              location: "Tjarnir",
-              notes: "Orkestur, Spírar og gestasangarar. Gjøgnumgang av sniði og nøglum løtum.",
-              groups: ["Orkestur", "Spírar", "Gestasangarar", "Tøkni"]
-            },
-            {
-              time: "17:30",
-              title: "Møgulig eyka gjøgnumrenning",
-              location: "Tjarnir",
-              notes: "Bert um tørvur er á tí.",
-              groups: ["Orkestur", "Spírar", "Gestasangarar", "Produktion"]
-            },
-            {
-              time: "18:00",
-              title: "Matur / steðgur",
-              location: "Backstage",
-              notes: "Stuttur steðgur áðrenn konsert.",
-              groups: ["Orkestur", "Spírar", "Gestasangarar", "Produktion", "Tøkni"]
-            },
-            {
-              time: "19:00",
-              title: "Dyrnar lata upp",
-              location: "Tjarnir",
-              notes: "Publikum sleppur inn.",
-              groups: ["Produktion", "Tøkni"]
-            },
-            {
-              time: "19:15",
-              title: "Allir klárir backstage",
-              location: "Backstage",
-              notes: "Síðsta klárgering áðrenn showstart.",
-              groups: ["Spírar", "Gestasangarar", "Produktion"]
-            },
-            {
-              time: "19:30",
-              title: "HOYDALAR konsert byrjar",
-              location: "Tjarnir",
-              notes: "Showstart.",
-              groups: ["Øll"]
-            },
-            {
-              time: "21:30",
-              title: "Konsert liðug / niðurtøka byrjar",
-              location: "Tjarnir",
-              notes: "Tøkni og framleiðsla byrja niðurtøku eftir tørvi.",
-              groups: ["Tøkni", "Produktion"]
-            }
-          ]
-        },
-        {
-          key: "5apr",
-          label: "Sunnudagur 5. apríl",
-          calls: [
-            {
-              time: "10:00",
-              title: "Oprudding og niðurtøka",
-              location: "Tjarnir",
-              notes: "Uppfylging, niðurtøka av útgerð og praktisk avslutning.",
-              groups: ["Produktion", "Tøkni"]
-            }
-          ]
-        }
-      ]
+    const CONFIG = {
+      ticketsSold: 1988,
+      ticketGoal: 4000
     };
 
-    const select = document.getElementById("personSelect");
-    const personCard = document.getElementById("personCard");
-    const homeBox = document.getElementById("homeBox");
-    const personName = document.getElementById("personName");
-    const personRole = document.getElementById("personRole");
-    const personGroup = document.getElementById("personGroup");
-    const personNextCall = document.getElementById("personNextCall");
-    const personPlace = document.getElementById("personPlace");
-    const personNote = document.getElementById("personNote");
-    const daysNav = document.getElementById("daysNav");
-    const dayContent = document.getElementById("dayContent");
-    const weekOverview = document.getElementById("weekOverview");
-    const homeLink = document.getElementById("homeLink");
+    const people = [
+      {
+        name: "Per Zachariassen",
+        role: "Koncept ejer og kunstnerisk leder",
+        group: "Ledelse",
+        organization: "HOYDALAR",
+        email: "per.zachariassen@gmail.com",
+        phone: "+4540941939",
+        note: "Udvikling af HOYDALAR konceptet. Overordnet kreativ retning. Medansvar for økonomisk risiko.",
+        schedule: [
+          "Hele ugen. Overordnet ledelse og kreative beslutninger.",
+          "Lørdag 4. april. Til stede før koncertstart og under afvikling."
+        ],
+        contacts: ["Rúni Djurhuus", "Maria Winther Olsen", "Michael Koba", "Regin Dalsgaard"]
+      },
+      {
+        name: "Rúni Djurhuus",
+        role: "Koncertarrangør",
+        group: "Ledelse",
+        organization: "Eventz",
+        email: "rd@rd.fo",
+        phone: "+298505550",
+        note: "Formel koncertarrangør. Markedsføring. Praktisk afvikling. Medansvar for økonomisk risiko.",
+        schedule: [
+          "Hele ugen. Praktisk koordinering og marketing.",
+          "Lørdag 4. april. Til stede hele dagen og under koncerten."
+        ],
+        contacts: ["Per Zachariassen", "Michael Koba", "Regin Dalsgaard", "Hjalmar Hvítklett"]
+      },
+      {
+        name: "Maria Winther Olsen",
+        role: "Program og grafik",
+        group: "Ledelse",
+        organization: "HOYDALAR",
+        email: "mariawintherolsen@gmail.com",
+        phone: "+298258447",
+        note: "Programindhold. Grafisk materiale. Assistance til den kunstneriske ledelse.",
+        schedule: [
+          "Hele ugen. Program og grafik opdateres ved behov.",
+          "Lørdag 4. april. Til stede efter nærmere aftale."
+        ],
+        contacts: ["Per Zachariassen", "Michael Koba", "Rúni Djurhuus"]
+      },
+      {
+        name: "Michael Koba",
+        role: "Produktion og koordinering",
+        group: "Produktion",
+        organization: "HOYDALAR",
+        email: "mk@fixer.fo",
+        phone: "+298591011",
+        note: "Koordinering mellem alle parter. Aftaler og kontrakter. Sponsor dialog. Produktionsplan. Call sheets.",
+        schedule: [
+          "Hele ugen. Koordinerer produktion, kontrakter og portal.",
+          "Lørdag 4. april. Til stede hele dagen."
+        ],
+        contacts: ["Per Zachariassen", "Rúni Djurhuus", "Regin Dalsgaard", "Hjalmar Hvítklett", "Kim Hansen"]
+      },
+      {
+        name: "Regin Dalsgaard",
+        role: "Venue ansvarlig",
+        group: "Venue",
+        organization: "Við Tjarnir",
+        email: "rwd@tjarnir.fo",
+        phone: "+298596061",
+        note: "Koordinering med venue. Adgang til faciliteter. Praktiske forhold omkring koncertstedet.",
+        schedule: [
+          "Mandag 30. marts. Aftaler rehearsal tider med Kim Hansen.",
+          "Onsdag 1. april. Aftaler rehearsal tider med Kim Hansen.",
+          "Lørdag 4. april. Til stede efter venue plan."
+        ],
+        contacts: ["Michael Koba", "Rúni Djurhuus", "Kim Hansen", "Hjalmar Hvítklett"]
+      },
+      {
+        name: "Kim Hansen",
+        role: "Kapelmester",
+        group: "Musikalsk ledelse",
+        organization: "HOYDALAR",
+        email: "",
+        phone: "",
+        note: "Musikalsk ledelse. Koordinering af orkester. Musikalsk gennemførelse af koncerten.",
+        schedule: [
+          "Mandag 30. marts. Rehearsal med orkester við Tjarnir.",
+          "Onsdag 1. april. Rehearsal med orkester við Tjarnir.",
+          "Lørdag 4. april. Lydprøve og koncert."
+        ],
+        contacts: ["Michael Koba", "Regin Dalsgaard", "Vár Miðberg", "Pauli Reinert Poulsen", "Jóhannus á Rógvi Joensen"]
+      },
+      {
+        name: "Hjalmar Hvítklett",
+        role: "Direktør",
+        group: "Teknik",
+        organization: "Ljóð & Tøkni",
+        email: "hjalmar@lt.fo",
+        phone: "565501",
+        note: "Overordnet ansvar for lyd og lys.",
+        schedule: [
+          "Før koncertugen. Teknisk planlægning.",
+          "Lørdag 4. april. Lyd og lys afvikling."
+        ],
+        contacts: ["Michael Koba", "Rúni Djurhuus", "Regin Dalsgaard"]
+      },
+      {
+        name: "Vár Miðberg",
+        role: "Orkester",
+        group: "Orkester",
+        organization: "HOYDALAR",
+        email: "var.midberg@gmail.com",
+        phone: "+298218753",
+        note: "Musiker.",
+        schedule: [
+          "Mandag 30. marts. Rehearsal við Tjarnir.",
+          "Onsdag 1. april. Rehearsal við Tjarnir.",
+          "Lørdag 4. april. Lydprøve og koncert."
+        ],
+        contacts: ["Kim Hansen", "Michael Koba"]
+      },
+      {
+        name: "Pauli Reinert Poulsen",
+        role: "Orkester",
+        group: "Orkester",
+        organization: "HOYDALAR",
+        email: "pauli_poulsen@hotmail.com",
+        phone: "+298280523",
+        note: "Musiker.",
+        schedule: [
+          "Mandag 30. marts. Rehearsal við Tjarnir.",
+          "Onsdag 1. april. Rehearsal við Tjarnir.",
+          "Lørdag 4. april. Lydprøve og koncert."
+        ],
+        contacts: ["Kim Hansen", "Michael Koba"]
+      },
+      {
+        name: "Jóhannus á Rógvi Joensen",
+        role: "Orkester",
+        group: "Orkester",
+        organization: "HOYDALAR",
+        email: "jarjoensen@yahoo.com",
+        phone: "+4531249375 / +298270080",
+        note: "Musiker.",
+        schedule: [
+          "Mandag 30. marts. Rehearsal við Tjarnir.",
+          "Onsdag 1. april. Rehearsal við Tjarnir.",
+          "Lørdag 4. april. Lydprøve og koncert."
+        ],
+        contacts: ["Kim Hansen", "Michael Koba"]
+      },
+      {
+        name: "Bjarki Virgarsson Trondesen",
+        role: "Spírar",
+        group: "Spírar",
+        organization: "HOYDALAR",
+        email: "virgar_trondesen@hotmail.com",
+        phone: "+298287766",
+        note: "Under 18 år. Værge: Virgar. Tlf. +298251766.",
+        schedule: [
+          "Lørdag 4. april. Mødetid til lydprøve følger.",
+          "Lørdag 4. april kl. 18:30 til 19:00. NEMA arrangement og autografer.",
+          "Lørdag 4. april kl. 19:30. Koncertstart."
+        ],
+        contacts: ["Michael Koba", "Kim Hansen", "Rúni Djurhuus"]
+      },
+      {
+        name: "Anna Lovisa Mýri",
+        role: "Spírar",
+        group: "Spírar",
+        organization: "HOYDALAR",
+        email: "annalovisam@gmail.com",
+        phone: "+298277103",
+        note: "Talent.",
+        schedule: [
+          "Lørdag 4. april. Mødetid til lydprøve følger.",
+          "Lørdag 4. april kl. 18:30 til 19:00. NEMA arrangement og autografer.",
+          "Lørdag 4. april kl. 19:30. Koncertstart."
+        ],
+        contacts: ["Michael Koba", "Kim Hansen", "Rúni Djurhuus"]
+      },
+      {
+        name: "Filip á Smið",
+        role: "Spírar",
+        group: "Spírar",
+        organization: "HOYDALAR",
+        email: "filipasmid@gmail.com",
+        phone: "+298523738",
+        note: "Talent.",
+        schedule: [
+          "Lørdag 4. april. Mødetid til lydprøve følger.",
+          "Lørdag 4. april kl. 18:30 til 19:00. NEMA arrangement og autografer.",
+          "Lørdag 4. april kl. 19:30. Koncertstart."
+        ],
+        contacts: ["Michael Koba", "Kim Hansen", "Rúni Djurhuus"]
+      },
+      {
+        name: "Jóhanna Sámalsdóttir",
+        role: "Spírar",
+        group: "Spírar",
+        organization: "HOYDALAR",
+        email: "johanna190307@gmail.com",
+        phone: "+298508668",
+        note: "Talent.",
+        schedule: [
+          "Lørdag 4. april. Mødetid til lydprøve følger.",
+          "Lørdag 4. april kl. 18:30 til 19:00. NEMA arrangement og autografer.",
+          "Lørdag 4. april kl. 19:30. Koncertstart."
+        ],
+        contacts: ["Michael Koba", "Kim Hansen", "Rúni Djurhuus"]
+      },
+      {
+        name: "Emma Højaard",
+        role: "Spírar",
+        group: "Spírar",
+        organization: "HOYDALAR",
+        email: "karinhh88@gmail.com",
+        phone: "+298278816",
+        note: "Under 18 år. Mor: Karin Højgaard. Mail: karinhh88@gmail.com. Tlf. 258886.",
+        schedule: [
+          "Lørdag 4. april. Mødetid til lydprøve følger.",
+          "Lørdag 4. april kl. 18:30 til 19:00. NEMA arrangement og autografer.",
+          "Lørdag 4. april kl. 19:30. Koncertstart."
+        ],
+        contacts: ["Michael Koba", "Kim Hansen", "Rúni Djurhuus"]
+      },
+      {
+        name: "Sophilia Wraae Mukisa",
+        role: "Spírar",
+        group: "Spírar",
+        organization: "HOYDALAR",
+        email: "mukisasophilia@gmail.com",
+        phone: "+298277595",
+        note: "Talent.",
+        schedule: [
+          "Lørdag 4. april. Mødetid til lydprøve følger.",
+          "Lørdag 4. april kl. 18:30 til 19:00. NEMA arrangement og autografer.",
+          "Lørdag 4. april kl. 19:30. Koncertstart."
+        ],
+        contacts: ["Michael Koba", "Kim Hansen", "Rúni Djurhuus"]
+      },
+      {
+        name: "Eyðun Nolsøe",
+        role: "Gæstesanger",
+        group: "Gæstesangere",
+        organization: "HOYDALAR",
+        email: "eydunnolsoe@hotmail.com",
+        phone: "+298582501",
+        note: "Gæstesanger.",
+        schedule: [
+          "Lørdag 4. april. Mødetid og lydprøve følger.",
+          "Lørdag 4. april. Koncert."
+        ],
+        contacts: ["Michael Koba", "Kim Hansen"]
+      },
+      {
+        name: "Martin Joensen",
+        role: "Gæstesanger",
+        group: "Gæstesangere",
+        organization: "HOYDALAR",
+        email: "",
+        phone: "",
+        note: "Kontaktoplysninger mangler lige nu.",
+        schedule: [
+          "Lørdag 4. april. Mødetid og lydprøve følger.",
+          "Lørdag 4. april. Koncert."
+        ],
+        contacts: ["Michael Koba", "Kim Hansen"]
+      },
+      {
+        name: "MC Restorff",
+        role: "MC / vært",
+        group: "Gæstesangere",
+        organization: "HOYDALAR",
+        email: "",
+        phone: "",
+        note: "Kontaktoplysninger mangler lige nu.",
+        schedule: [
+          "Lørdag 4. april. Mødetid følger.",
+          "Lørdag 4. april. Vært under koncerten."
+        ],
+        contacts: ["Michael Koba", "Per Zachariassen", "Rúni Djurhuus"]
+      }
+    ];
 
-    let activeDay = productionData.days[0].key;
+    const weekPlan = [
+      {
+        date: "Mandag 30. marts",
+        items: [
+          "Orkester samles til rehearsal við Tjarnir.",
+          "Kim Hansen aftaler nærmere tidspunkt med Regin Dalsgaard."
+        ]
+      },
+      {
+        date: "Tirsdag 31. marts",
+        items: [
+          "Ingen aktivitet planlagt."
+        ]
+      },
+      {
+        date: "Onsdag 1. april",
+        items: [
+          "Orkester samles til rehearsal við Tjarnir.",
+          "Kim Hansen aftaler nærmere tidspunkt med Regin Dalsgaard.",
+          "Muligvis lydprøve allerede denne dag."
+        ]
+      },
+      {
+        date: "Skærtorsdag 2. april",
+        items: [
+          "Muligvis lydprøve allerede denne dag."
+        ]
+      },
+      {
+        date: "Langfredag 3. april",
+        items: [
+          "Muligvis lydprøve allerede denne dag."
+        ]
+      },
+      {
+        date: "Lørdag 4. april",
+        items: [
+          "Alle i produktionen arbejder denne dag på forskellige tidspunkter.",
+          "Endeligt program forventes klart 14 dage inden koncerten.",
+          "Lydprøve med orkester og Spírar. Nærmere mødetider følger.",
+          "Kl. 18:30 til 19:00 møder Spírar til særligt NEMA arrangement i separat lokale i Tjarnir til autografer med mere.",
+          "Kl. 19:30 begynder koncerten.",
+          "Kl. 21:00 slutter koncerten cirka."
+        ]
+      }
+    ];
 
-    function renderPeople() {
-      select.innerHTML = '<option value="">Vel ein persón</option>';
-      productionData.people.forEach(person => {
+    const peopleGrid = document.getElementById("peopleGrid");
+    const contactTableBody = document.getElementById("contactTableBody");
+    const searchInput = document.getElementById("searchInput");
+    const groupFilter = document.getElementById("groupFilter");
+    const timeline = document.getElementById("timeline");
+    const personSelect = document.getElementById("personSelect");
+    const myViewSection = document.getElementById("myViewSection");
+    const myViewName = document.getElementById("myViewName");
+    const myViewRole = document.getElementById("myViewRole");
+    const mySchedule = document.getElementById("mySchedule");
+    const myContacts = document.getElementById("myContacts");
+    const myImportantNote = document.getElementById("myImportantNote");
+    const brandHome = document.getElementById("brandHome");
+    const homeButton = document.getElementById("homeButton");
+
+    function escapeHtml(value) {
+      return (value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function mailLink(email) {
+      return email ? `mailto:${email}` : "";
+    }
+
+    function phoneLink(phone) {
+      if (!phone) return "";
+      const cleaned = phone.split("/")[0].trim().replace(/\s+/g, "");
+      return `tel:${cleaned}`;
+    }
+
+    function renderSales() {
+      const sold = CONFIG.ticketsSold;
+      const goal = CONFIG.ticketGoal;
+      const percent = Math.min((sold / goal) * 100, 100);
+
+      document.getElementById("ticketsSold").textContent = sold.toLocaleString("da-DK");
+      document.getElementById("progressBar").style.width = percent + "%";
+      document.getElementById("progressText").textContent = `${percent.toFixed(1)}% af mål`;
+      document.getElementById("capacityText").textContent = `Mål: ${goal.toLocaleString("da-DK")}`;
+    }
+
+    function renderStats() {
+      const total = people.length;
+      const artists = people.filter(p =>
+        ["Spírar", "Orkester", "Gæstesangere"].includes(p.group)
+      ).length;
+
+      const crew = people.filter(p =>
+        ["Produktion", "Teknik", "Musikalsk ledelse"].includes(p.group)
+      ).length;
+
+      const leads = people.filter(p =>
+        ["Ledelse", "Venue"].includes(p.group)
+      ).length;
+
+      document.getElementById("peopleCount").textContent = total;
+      document.getElementById("artistCount").textContent = artists;
+      document.getElementById("crewCount").textContent = crew;
+      document.getElementById("leadCount").textContent = leads;
+    }
+
+    function populateGroups() {
+      const groups = [...new Set(people.map(p => p.group))].sort((a, b) => a.localeCompare(b));
+      groups.forEach(group => {
+        const option = document.createElement("option");
+        option.value = group;
+        option.textContent = group;
+        groupFilter.appendChild(option);
+      });
+    }
+
+    function populateNames() {
+      const sorted = [...people].sort((a, b) => a.name.localeCompare(b.name));
+      sorted.forEach(person => {
         const option = document.createElement("option");
         option.value = person.name;
-        option.textContent = `${person.name} – ${person.role}`;
-        select.appendChild(option);
+        option.textContent = `${person.name} • ${person.role}`;
+        personSelect.appendChild(option);
       });
     }
 
-    function renderSelectedPerson(name) {
-      const person = productionData.people.find(p => p.name === name);
+    function personCard(person) {
+      const emailHtml = person.email
+        ? `<a href="${mailLink(person.email)}">${escapeHtml(person.email)}</a>`
+        : `<span class="small">Mangler</span>`;
 
-      if (!person) {
-        personCard.style.display = "none";
-        homeBox.style.display = "block";
-        return;
-      }
+      const phoneHtml = person.phone
+        ? `<a href="${phoneLink(person.phone)}">${escapeHtml(person.phone)}</a>`
+        : `<span class="small">Mangler</span>`;
 
-      homeBox.style.display = "none";
-      personName.textContent = person.name;
-      personRole.textContent = person.role;
-      personGroup.textContent = person.group;
-      personNextCall.textContent = person.nextCall;
-      personPlace.textContent = person.place;
-      personNote.textContent = person.note;
-      personCard.style.display = "block";
-    }
+      const mailBtn = person.email
+        ? `<a class="btn primary" href="${mailLink(person.email)}">Send mail</a>`
+        : "";
 
-    function renderDaysNav() {
-      daysNav.innerHTML = "";
+      const callBtn = person.phone
+        ? `<a class="btn" href="${phoneLink(person.phone)}">Ring op</a>`
+        : "";
 
-      productionData.days.forEach(day => {
-        const btn = document.createElement("button");
-        btn.className = "day-btn" + (day.key === activeDay ? " active" : "");
-        btn.textContent = day.label;
-        btn.onclick = () => {
-          activeDay = day.key;
-          renderDaysNav();
-          renderDayContent();
-        };
-        daysNav.appendChild(btn);
-      });
-    }
+      return `
+        <article class="card person-card">
+          <div class="person-top">
+            <div>
+              <div class="person-name">${escapeHtml(person.name)}</div>
+              <div class="person-role">${escapeHtml(person.role)}</div>
+            </div>
+            <div class="tag">${escapeHtml(person.group)}</div>
+          </div>
 
-    function renderDayContent() {
-      const day = productionData.days.find(d => d.key === activeDay);
-      if (!day) return;
+          <div class="person-org">${escapeHtml(person.organization || "")}</div>
 
-      dayContent.innerHTML = `
-        <div class="section-title">${day.label}</div>
-        ${day.calls.map(call => `
-          <div class="call-item">
-            <div class="call-time">${call.time}</div>
-            <div class="call-title">${call.title}</div>
-            <div><strong>Stað:</strong> ${call.location}</div>
-            <div style="margin-top:6px;">${call.notes}</div>
-            <div style="margin-top:8px;">
-              ${call.groups.map(group => `<span class="tag">${group}</span>`).join("")}
+          <div class="person-notes">${escapeHtml(person.note || "")}</div>
+
+          <div class="contact-list">
+            <div class="contact-item">
+              <span class="contact-label">Telefon</span>
+              <span>${phoneHtml}</span>
+            </div>
+            <div class="contact-item">
+              <span class="contact-label">Email</span>
+              <span>${emailHtml}</span>
             </div>
           </div>
-        `).join("")}
+
+          <div class="contact-actions">
+            ${callBtn}
+            ${mailBtn}
+          </div>
+        </article>
       `;
     }
 
-    function renderWeekOverview() {
-      weekOverview.innerHTML = productionData.days.map(day => `
-        <div class="overview-day">
-          <strong>${day.label}</strong>
-          ${day.calls.map(call => `${call.time} – ${call.title}`).join("<br>")}
-        </div>
+    function tableRow(person) {
+      const phone = person.phone
+        ? `<a href="${phoneLink(person.phone)}">${escapeHtml(person.phone)}</a>`
+        : `<span class="small">Mangler</span>`;
+
+      const email = person.email
+        ? `<a href="${mailLink(person.email)}">${escapeHtml(person.email)}</a>`
+        : `<span class="small">Mangler</span>`;
+
+      return `
+        <tr>
+          <td><strong>${escapeHtml(person.name)}</strong></td>
+          <td>${escapeHtml(person.role)}</td>
+          <td>${escapeHtml(person.group)}</td>
+          <td>${escapeHtml(person.organization || "")}</td>
+          <td>${phone}</td>
+          <td>${email}</td>
+          <td>${escapeHtml(person.note || "")}</td>
+        </tr>
+      `;
+    }
+
+    function filterPeople() {
+      const q = searchInput.value.trim().toLowerCase();
+      const selectedGroup = groupFilter.value;
+
+      return people.filter(person => {
+        const haystack = [
+          person.name,
+          person.role,
+          person.group,
+          person.organization,
+          person.note,
+          person.email,
+          person.phone
+        ].join(" ").toLowerCase();
+
+        const matchSearch = q === "" || haystack.includes(q);
+        const matchGroup = selectedGroup === "all" || person.group === selectedGroup;
+
+        return matchSearch && matchGroup;
+      });
+    }
+
+    function renderPeople() {
+      const filtered = filterPeople();
+
+      peopleGrid.innerHTML = filtered.map(personCard).join("");
+      contactTableBody.innerHTML = filtered.map(tableRow).join("");
+
+      if (!filtered.length) {
+        peopleGrid.innerHTML = `
+          <div class="card person-card">
+            <div class="person-name">Ingen resultater</div>
+            <div class="person-notes">Prøv en anden søgning eller vælg en anden gruppe.</div>
+          </div>
+        `;
+        contactTableBody.innerHTML = "";
+      }
+    }
+
+    function renderTimeline() {
+      timeline.innerHTML = weekPlan.map(day => `
+        <article class="card timeline-item">
+          <div class="timeline-date">${escapeHtml(day.date)}</div>
+          <ul class="bullet-list">
+            ${day.items.map(item => `<li>${escapeHtml(item)}</li>`).join("")}
+          </ul>
+        </article>
       `).join("");
     }
 
-    function goHome() {
-      select.value = "";
-      renderSelectedPerson("");
-      activeDay = productionData.days[0].key;
-      renderDaysNav();
-      renderDayContent();
+    function getPersonByName(name) {
+      return people.find(p => p.name === name);
+    }
+
+    function renderMyView(name) {
+      const person = getPersonByName(name);
+
+      if (!person) {
+        myViewSection.classList.add("hidden");
+        return;
+      }
+
+      myViewSection.classList.remove("hidden");
+      myViewName.textContent = person.name;
+      myViewRole.textContent = `${person.role} • ${person.group}`;
+
+      mySchedule.innerHTML = `
+        <ul class="bullet-list">
+          ${(person.schedule || []).map(item => `<li>${escapeHtml(item)}</li>`).join("")}
+        </ul>
+      `;
+
+      const relatedContacts = (person.contacts || [])
+        .map(contactName => getPersonByName(contactName))
+        .filter(Boolean);
+
+      myContacts.innerHTML = relatedContacts.length
+        ? relatedContacts.map(contact => {
+            const phone = contact.phone
+              ? `<a href="${phoneLink(contact.phone)}">${escapeHtml(contact.phone)}</a>`
+              : `<span class="small">Mangler</span>`;
+
+            const email = contact.email
+              ? `<a href="${mailLink(contact.email)}">${escapeHtml(contact.email)}</a>`
+              : `<span class="small">Mangler</span>`;
+
+            return `
+              <div style="padding:10px 0; border-bottom:1px solid #e2e8f0;">
+                <div style="font-weight:700;">${escapeHtml(contact.name)}</div>
+                <div class="small" style="margin:4px 0 6px;">${escapeHtml(contact.role)}</div>
+                <div>Telefon: ${phone}</div>
+                <div>Email: ${email}</div>
+              </div>
+            `;
+          }).join("")
+        : `<div class="small">Ingen kontaktpersoner lagt ind endnu.</div>`;
+
+      myImportantNote.textContent = "HOME nulstiller valgt navn og viser hele portalen igen.";
+      myViewSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function resetHome() {
+      personSelect.value = "";
+      myViewSection.classList.add("hidden");
+      searchInput.value = "";
+      groupFilter.value = "all";
+      renderPeople();
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    select.addEventListener("change", function () {
-      renderSelectedPerson(this.value);
+    searchInput.addEventListener("input", renderPeople);
+    groupFilter.addEventListener("change", renderPeople);
+
+    personSelect.addEventListener("change", function () {
+      const selectedName = this.value;
+      if (!selectedName) {
+        myViewSection.classList.add("hidden");
+        return;
+      }
+      renderMyView(selectedName);
     });
 
-    homeLink.addEventListener("click", goHome);
+    brandHome.addEventListener("click", resetHome);
+    homeButton.addEventListener("click", resetHome);
 
+    renderSales();
+    renderStats();
+    populateGroups();
+    populateNames();
     renderPeople();
-    renderDaysNav();
-    renderDayContent();
-    renderWeekOverview();
-    renderSelectedPerson("");
+    renderTimeline();
   </script>
 </body>
 </html>

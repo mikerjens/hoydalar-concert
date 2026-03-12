@@ -19,7 +19,6 @@
       --gold: #f59e0b;
       --danger: #b91c1c;
       --danger-2: #ef4444;
-      --danger-3: #fee2e2;
       --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
       --radius: 18px;
       --max: 1300px;
@@ -177,71 +176,94 @@
       line-height: 1.7;
     }
 
-    .sales-number {
-      font-size: 54px;
-      font-weight: 800;
-      line-height: 1;
-      margin: 8px 0 6px;
-    }
-
-    .sales-sub {
-      color: var(--muted);
-      font-size: 14px;
-      margin-bottom: 16px;
-    }
-
-    .progress-wrap {
-      width: 100%;
-      height: 18px;
-      background: #e2e8f0;
-      border-radius: 999px;
-      overflow: hidden;
-      margin: 14px 0 8px;
-    }
-
-    .progress-bar {
-      height: 100%;
-      width: 0;
-      background: linear-gradient(90deg, var(--gold), #f97316);
-      border-radius: 999px;
-      transition: width 0.6s ease;
-    }
-
-    .progress-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      font-size: 14px;
-      color: var(--muted);
+    .countdown-shell {
+      margin-top: 10px;
     }
 
     .countdown-box {
-      margin-top: 20px;
-      padding: 18px;
+      padding: 20px;
       border-radius: 18px;
       background: linear-gradient(135deg, var(--danger), var(--danger-2));
       color: white;
       box-shadow: 0 14px 30px rgba(185, 28, 28, 0.22);
+      text-align: center;
     }
 
-    .countdown-box .meta-label {
-      color: rgba(255,255,255,0.82);
+    .countdown-box.live {
+      background: linear-gradient(135deg, #b45309, #f59e0b);
+      animation: pulseLive 1.15s infinite;
+      box-shadow: 0 18px 34px rgba(245, 158, 11, 0.34);
+    }
+
+    .countdown-title {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.84);
       margin-bottom: 10px;
     }
 
     .countdown-time {
-      font-size: 34px;
+      font-size: 36px;
       font-weight: 900;
       line-height: 1.05;
-      margin-top: 8px;
       letter-spacing: 0.02em;
     }
 
     .countdown-sub {
       margin-top: 10px;
       font-size: 13px;
-      color: rgba(255,255,255,0.88);
+      color: rgba(255,255,255,0.9);
       line-height: 1.45;
+    }
+
+    .ticketbar {
+      height: 18px;
+      background: rgba(255,255,255,0.28);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 18px;
+    }
+
+    .ticketbar-inner {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, #f59e0b, #fde68a, #f59e0b);
+      background-size: 220% 100%;
+    }
+
+    .ticketbar-inner.live {
+      animation: pulseBar 1.15s infinite, shimmer 1.8s linear infinite;
+    }
+
+    .ticketbar-inner.waiting {
+      animation: shimmer 2.4s linear infinite;
+    }
+
+    .ticket-status {
+      margin-top: 14px;
+      font-size: 18px;
+      font-weight: 800;
+      text-align: center;
+      color: white;
+    }
+
+    @keyframes pulseLive {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes pulseBar {
+      0% { transform: scaleX(0.97); opacity: 0.9; }
+      50% { transform: scaleX(1); opacity: 1; }
+      100% { transform: scaleX(0.97); opacity: 0.9; }
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 0% 0; }
+      100% { background-position: 220% 0; }
     }
 
     .stats-row {
@@ -786,26 +808,16 @@
       </div>
 
       <div class="card sales-card">
-        <div>
-          <div class="meta-label">Billetsalg</div>
-          <div class="sales-number" id="ticketsSold">0</div>
-          <div class="sales-sub">solgte billetter lige nu</div>
-
-          <div class="progress-wrap" aria-label="Billetsalg status">
-            <div class="progress-bar" id="progressBar"></div>
-          </div>
-
-          <div class="progress-row">
-            <span id="progressText">0% af mål</span>
-            <span id="capacityText">Mål: 4000</span>
-          </div>
-        </div>
-
-        <div class="countdown-box">
-          <div class="meta-label">Countdown</div>
-          <div class="countdown-time" id="countdownBox">--</div>
-          <div class="countdown-sub" id="countdownLabel">
-            Til torsdag 12. marts 2026 kl. 12:00 GMT
+        <h2>Billetsalg</h2>
+        <div class="countdown-shell">
+          <div class="countdown-box" id="countdownBoxShell">
+            <div class="countdown-title" id="countdownTitle">Countdown</div>
+            <div class="countdown-time" id="countdownBox">--</div>
+            <div class="countdown-sub" id="countdownLabel">Til torsdag 12. marts 2026 kl. 12:00 GMT</div>
+            <div class="ticketbar">
+              <div class="ticketbar-inner waiting" id="ticketBar"></div>
+            </div>
+            <div class="ticket-status" id="ticketStatus">Billetsalget åbner ved deadline</div>
           </div>
         </div>
       </div>
@@ -985,11 +997,6 @@
   </main>
 
   <script>
-    const CONFIG = {
-      ticketsSold: 0,
-      ticketGoal: 4000
-    };
-
     const people = [
       {
         name: "Per Zachariassen",
@@ -1093,10 +1100,10 @@
         email: "kimhansen72@gmail.com",
         phone: "+298226000",
         note: "Musikalsk ledelse. Koordinering af orkester. Musikalsk gennemførelse af koncerten.",
-        nextMeeting: "Mandag 30. marts. Rehearsal med orkester við Tjarnir",
+        nextMeeting: "Mandag 30. marts. Rehearsal med orkester ved Tjarnir",
         schedule: [
-          "Mandag 30. marts. Rehearsal med orkester við Tjarnir.",
-          "Onsdag 1. april. Rehearsal med orkester við Tjarnir.",
+          "Mandag 30. marts. Rehearsal med orkester ved Tjarnir.",
+          "Onsdag 1. april. Rehearsal med orkester ved Tjarnir.",
           "Lørdag 4. april. Lydprøve og koncert."
         ],
         contacts: ["Michael Koba", "Regin Dalsgaard", "Vár Miðberg", "Pauli Reinert Poulsen", "Jóhannus á Rógvi Joensen"]
@@ -1109,10 +1116,10 @@
         email: "var.midberg@gmail.com",
         phone: "+298218753",
         note: "Musiker.",
-        nextMeeting: "Mandag 30. marts. Rehearsal við Tjarnir",
+        nextMeeting: "Mandag 30. marts. Rehearsal ved Tjarnir",
         schedule: [
-          "Mandag 30. marts. Rehearsal við Tjarnir.",
-          "Onsdag 1. april. Rehearsal við Tjarnir.",
+          "Mandag 30. marts. Rehearsal ved Tjarnir.",
+          "Onsdag 1. april. Rehearsal ved Tjarnir.",
           "Lørdag 4. april. Lydprøve og koncert."
         ],
         contacts: ["Kim Hansen", "Michael Koba"]
@@ -1125,10 +1132,10 @@
         email: "pauli_poulsen@hotmail.com",
         phone: "+298280523",
         note: "Musiker.",
-        nextMeeting: "Mandag 30. marts. Rehearsal við Tjarnir",
+        nextMeeting: "Mandag 30. marts. Rehearsal ved Tjarnir",
         schedule: [
-          "Mandag 30. marts. Rehearsal við Tjarnir.",
-          "Onsdag 1. april. Rehearsal við Tjarnir.",
+          "Mandag 30. marts. Rehearsal ved Tjarnir.",
+          "Onsdag 1. april. Rehearsal ved Tjarnir.",
           "Lørdag 4. april. Lydprøve og koncert."
         ],
         contacts: ["Kim Hansen", "Michael Koba"]
@@ -1141,10 +1148,10 @@
         email: "jarjoensen@yahoo.com",
         phone: "+4531249375 / +298270080",
         note: "Musiker.",
-        nextMeeting: "Mandag 30. marts. Rehearsal við Tjarnir",
+        nextMeeting: "Mandag 30. marts. Rehearsal ved Tjarnir",
         schedule: [
-          "Mandag 30. marts. Rehearsal við Tjarnir.",
-          "Onsdag 1. april. Rehearsal við Tjarnir.",
+          "Mandag 30. marts. Rehearsal ved Tjarnir.",
+          "Onsdag 1. april. Rehearsal ved Tjarnir.",
           "Lørdag 4. april. Lydprøve og koncert."
         ],
         contacts: ["Kim Hansen", "Michael Koba"]
@@ -1159,7 +1166,7 @@
         note: "Under 18 år. Værge: Virgar. Tlf. +298251766.",
         nextMeeting: "Torsdag 12. marts kl. 14:45 ved Tjarnir. Senest kl. 15:00",
         schedule: [
-          "Torsdag 12. marts. Mød ved Tjarnir kl. 14:45. Senest kl. 15:00. PR arbejde og foto/film.",
+          "Torsdag 12. marts. Møder ved Tjarnir kl. 14:45. Senest kl. 15:00. PR arbejde og foto/film.",
           "Lørdag 4. april. Mødetid til lydprøve følger.",
           "Lørdag 4. april kl. 18:30 til 19:00. NEMA arrangement og autografer.",
           "Lørdag 4. april kl. 19:30. Koncertstart."
@@ -1193,7 +1200,7 @@
         note: "Talent.",
         nextMeeting: "Torsdag 12. marts kl. 14:45 ved Tjarnir. Senest kl. 15:00",
         schedule: [
-          "Torsdag 12. marts. Mød ved Tjarnir kl. 14:45. Senest kl. 15:00. PR arbejde og foto/film.",
+          "Torsdag 12. marts. Møder ved Tjarnir kl. 14:45. Senest kl. 15:00. PR arbejde og foto/film.",
           "Lørdag 4. april. Mødetid til lydprøve følger.",
           "Lørdag 4. april kl. 18:30 til 19:00. NEMA arrangement og autografer.",
           "Lørdag 4. april kl. 19:30. Koncertstart."
@@ -1227,7 +1234,7 @@
         note: "Under 18 år. Mor: Karin Højgaard. Mail: karinhh88@gmail.com. Tlf. 258886.",
         nextMeeting: "Torsdag 12. marts kl. 14:45 ved Tjarnir. Senest kl. 15:00",
         schedule: [
-          "Torsdag 12. marts. Mød ved Tjarnir kl. 14:45. Senest kl. 15:00. PR arbejde og foto/film.",
+          "Torsdag 12. marts. Møder ved Tjarnir kl. 14:45. Senest kl. 15:00. PR arbejde og foto/film.",
           "Lørdag 4. april. Mødetid til lydprøve følger.",
           "Lørdag 4. april kl. 18:30 til 19:00. NEMA arrangement og autografer.",
           "Lørdag 4. april kl. 19:30. Koncertstart."
@@ -1244,7 +1251,7 @@
         note: "Talent.",
         nextMeeting: "Torsdag 12. marts kl. 14:45 ved Tjarnir. Senest kl. 15:00",
         schedule: [
-          "Torsdag 12. marts. Mød ved Tjarnir kl. 14:45. Senest kl. 15:00. PR arbejde og foto/film.",
+          "Torsdag 12. marts. Møder ved Tjarnir kl. 14:45. Senest kl. 15:00. PR arbejde og foto/film.",
           "Lørdag 4. april. Mødetid til lydprøve følger.",
           "Lørdag 4. april kl. 18:30 til 19:00. NEMA arrangement og autografer.",
           "Lørdag 4. april kl. 19:30. Koncertstart."
@@ -1372,6 +1379,12 @@
     const myContacts = document.getElementById("myContacts");
     const brandHome = document.getElementById("brandHome");
     const homeButton = document.getElementById("homeButton");
+    const countdownBox = document.getElementById("countdownBox");
+    const countdownLabel = document.getElementById("countdownLabel");
+    const countdownTitle = document.getElementById("countdownTitle");
+    const countdownShell = document.getElementById("countdownBoxShell");
+    const ticketBar = document.getElementById("ticketBar");
+    const ticketStatus = document.getElementById("ticketStatus");
 
     function escapeHtml(value) {
       return (value || "")
@@ -1389,57 +1402,6 @@
       if (!phone) return "";
       const cleaned = phone.split("/")[0].trim().replace(/\s+/g, "");
       return `tel:${cleaned}`;
-    }
-
-    function renderSales() {
-      const sold = CONFIG.ticketsSold;
-      const goal = CONFIG.ticketGoal;
-      const percent = Math.min((sold / goal) * 100, 100);
-
-      document.getElementById("ticketsSold").textContent = sold.toLocaleString("da-DK");
-      document.getElementById("progressBar").style.width = percent + "%";
-      document.getElementById("progressText").textContent = `${percent.toFixed(1)}% af mål`;
-      document.getElementById("capacityText").textContent = `Mål: ${goal.toLocaleString("da-DK")}`;
-    }
-
-    function renderCountdown() {
-      const target = new Date("2026-03-12T12:00:00Z").getTime();
-
-      function updateCountdown() {
-        const now = Date.now();
-        const diff = target - now;
-        const box = document.getElementById("countdownBox");
-        const label = document.getElementById("countdownLabel");
-
-        if (diff <= 0) {
-          box.textContent = "Tiden er gået";
-          label.textContent = "Deadline nået. 12. marts 2026 kl. 12:00 GMT";
-          return;
-        }
-
-        const days = Math.floor(diff / 86400000);
-        const hours = Math.floor((diff % 86400000) / 3600000);
-        const minutes = Math.floor((diff % 3600000) / 60000);
-        const seconds = Math.floor((diff % 60000) / 1000);
-        const centiseconds = Math.floor((diff % 1000) / 10);
-
-        let parts = [];
-
-        if (days > 0) {
-          parts.push(days + "d");
-        }
-
-        parts.push(String(hours).padStart(2, "0") + "t");
-        parts.push(String(minutes).padStart(2, "0") + "m");
-        parts.push(String(seconds).padStart(2, "0") + "s");
-        parts.push(String(centiseconds).padStart(2, "0"));
-
-        box.textContent = parts.join(" : ");
-        label.textContent = "Til torsdag 12. marts 2026 kl. 12:00 GMT";
-      }
-
-      updateCountdown();
-      setInterval(updateCountdown, 50);
     }
 
     function renderStats() {
@@ -1460,6 +1422,50 @@
       document.getElementById("artistCount").textContent = artists;
       document.getElementById("crewCount").textContent = crew;
       document.getElementById("leadCount").textContent = leads;
+    }
+
+    function renderCountdown() {
+      const target = new Date("2026-03-12T12:00:00Z").getTime();
+
+      function updateCountdown() {
+        const now = Date.now();
+        const diff = target - now;
+
+        if (diff <= 0) {
+          countdownShell.classList.add("live");
+          countdownTitle.textContent = "Nu";
+          countdownBox.textContent = "🎟 BILLETSALGET ER STARTET";
+          countdownLabel.textContent = "Ticket sales are LIVE";
+          ticketStatus.textContent = "Billetsalget er åbent nu";
+          ticketBar.classList.remove("waiting");
+          ticketBar.classList.add("live");
+          return;
+        }
+
+        const days = Math.floor(diff / 86400000);
+        const hours = Math.floor((diff % 86400000) / 3600000);
+        const minutes = Math.floor((diff % 3600000) / 60000);
+        const seconds = Math.floor((diff % 60000) / 1000);
+        const centiseconds = Math.floor((diff % 1000) / 10);
+
+        let parts = [];
+
+        if (days > 0) {
+          parts.push(days + "d");
+        }
+
+        parts.push(String(hours).padStart(2, "0") + "t");
+        parts.push(String(minutes).padStart(2, "0") + "m");
+        parts.push(String(seconds).padStart(2, "0") + "s");
+        parts.push(String(centiseconds).padStart(2, "0"));
+
+        countdownBox.textContent = parts.join(" : ");
+        countdownLabel.textContent = "Til torsdag 12. marts 2026 kl. 12:00 GMT";
+        ticketStatus.textContent = "Billetsalget åbner ved deadline";
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 50);
     }
 
     function populateGroups() {
@@ -1679,7 +1685,6 @@
     brandHome.addEventListener("click", resetHome);
     homeButton.addEventListener("click", resetHome);
 
-    renderSales();
     renderCountdown();
     renderStats();
     populateGroups();

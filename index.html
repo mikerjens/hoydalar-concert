@@ -17,11 +17,9 @@
       --my-border: #99f6e4;
       --next-bg: #fff7ed;
       --next-border: #fdba74;
-      --gold: #f59e0b;
-      --danger: #b91c1c;
-      --danger-2: #ef4444;
-      --live-1: #b45309;
-      --live-2: #f59e0b;
+      --msg-bg: #eff6ff;
+      --msg-border: #93c5fd;
+      --msg-text: #1e3a8a;
       --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
       --radius: 18px;
       --max: 1320px;
@@ -128,8 +126,8 @@
     }
 
     .hero-card,
-    .countdown-card,
     .selector-card,
+    .messages-card,
     .my-view-card,
     .person-card,
     .timeline-item,
@@ -139,8 +137,8 @@
     }
 
     .hero-card h2,
-    .countdown-card h2,
     .selector-card h2,
+    .messages-card h2,
     .my-view-card h2 {
       margin: 0 0 14px;
       font-size: 24px;
@@ -178,93 +176,6 @@
       margin: 0;
       padding-left: 18px;
       line-height: 1.7;
-    }
-
-    .countdown-shell {
-      padding: 20px;
-      border-radius: 18px;
-      background: linear-gradient(135deg, var(--danger), var(--danger-2));
-      color: white;
-      box-shadow: 0 14px 30px rgba(185, 28, 28, 0.22);
-      text-align: center;
-      transition: transform 0.2s ease;
-    }
-
-    .countdown-shell.live {
-      background: linear-gradient(135deg, var(--live-1), var(--live-2));
-      animation: pulseLive 1.1s infinite;
-      box-shadow: 0 16px 34px rgba(245, 158, 11, 0.32);
-    }
-
-    .countdown-title {
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.84);
-      margin-bottom: 10px;
-    }
-
-    .countdown-time {
-      font-size: 36px;
-      font-weight: 900;
-      line-height: 1.05;
-      letter-spacing: 0.02em;
-    }
-
-    .countdown-sub {
-      margin-top: 10px;
-      font-size: 13px;
-      color: rgba(255,255,255,0.9);
-      line-height: 1.45;
-    }
-
-    .ticketbar {
-      height: 18px;
-      background: rgba(255,255,255,0.26);
-      border-radius: 999px;
-      overflow: hidden;
-      margin-top: 18px;
-    }
-
-    .ticketbar-inner {
-      height: 100%;
-      width: 100%;
-      background: linear-gradient(90deg, #f59e0b, #fde68a, #f59e0b);
-      background-size: 220% 100%;
-    }
-
-    .ticketbar-inner.waiting {
-      animation: shimmer 2.3s linear infinite;
-    }
-
-    .ticketbar-inner.live {
-      animation: shimmer 1.7s linear infinite, pulseBar 1.1s infinite;
-    }
-
-    .ticket-status {
-      margin-top: 14px;
-      font-size: 18px;
-      font-weight: 800;
-      text-align: center;
-      color: white;
-    }
-
-    @keyframes pulseLive {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.018); }
-      100% { transform: scale(1); }
-    }
-
-    @keyframes shimmer {
-      0% { background-position: 0% 0; }
-      100% { background-position: 220% 0; }
-    }
-
-    @keyframes pulseBar {
-      0% { transform: scaleX(0.97); opacity: 0.9; }
-      50% { transform: scaleX(1); opacity: 1; }
-      100% { transform: scaleX(0.97); opacity: 0.9; }
     }
 
     .stats-row {
@@ -401,6 +312,67 @@
       color: rgba(255,255,255,0.92);
       font-size: 14px;
       line-height: 1.5;
+    }
+
+    .messages-card {
+      background: linear-gradient(180deg, #ffffff, #f8fbff);
+    }
+
+    .message-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .message-item {
+      border: 1px solid var(--msg-border);
+      background: var(--msg-bg);
+      color: var(--msg-text);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .message-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .message-title {
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .message-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .msg-tag {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: white;
+      border: 1px solid #bfdbfe;
+      font-size: 12px;
+      font-weight: 700;
+      color: #1d4ed8;
+    }
+
+    .message-body {
+      line-height: 1.65;
+      font-size: 15px;
+      white-space: pre-line;
+    }
+
+    .message-meta {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #1e40af;
+      font-weight: 700;
     }
 
     .my-view-card {
@@ -706,7 +678,8 @@
         flex: 1 1 auto;
       }
 
-      .person-top {
+      .person-top,
+      .message-top {
         flex-direction: column;
       }
 
@@ -714,8 +687,7 @@
         font-size: 24px;
       }
 
-      .next-meeting-time,
-      .countdown-time {
+      .next-meeting-time {
         font-size: 22px;
       }
     }
@@ -733,7 +705,7 @@
       </div>
 
       <div class="subhead">
-        Portal til produktion, kontakter, ugeplan og billetsalg. Vælg dit navn og se tydeligt din egen plan med det samme.
+        Portal til produktion, kontakter, ugeplan, beskeder og personlige planer. Vælg dit navn og se tydeligt din egen plan med det samme.
       </div>
     </div>
   </header>
@@ -772,7 +744,7 @@
             <li>Rúni Djurhuus. Formel koncertarrangør og marketing</li>
             <li>Maria Winther Olsen. Program og grafik</li>
             <li>Michael Koba. Produktion og koordinering</li>
-            <li>Turið Thomasen. PR ansvarlig</li>
+            <li>Turið Thomsen. PR ansvarlig</li>
             <li>Regin Dalsgaard. Venue ansvarlig</li>
             <li>Kim Hansen. Kapelmester</li>
             <li>Pól Holm. Teknisk ansvarlig</li>
@@ -781,44 +753,6 @@
         </div>
       </div>
 
-      <div class="card countdown-card">
-        <h2>Billetsalg</h2>
-        <div class="countdown-shell" id="countdownShell">
-          <div class="countdown-title" id="countdownTitle">Countdown</div>
-          <div class="countdown-time" id="countdownBox">--</div>
-          <div class="countdown-sub" id="countdownLabel">Til kl. 12:00 GMT</div>
-
-          <div class="ticketbar">
-            <div class="ticketbar-inner waiting" id="ticketBar"></div>
-          </div>
-
-          <div class="ticket-status" id="ticketStatus">
-            Billetsalget åbner ved deadline
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="stats-row">
-      <div class="card stat">
-        <div class="label">Samlet antal personer</div>
-        <div class="value" id="peopleCount">0</div>
-      </div>
-      <div class="card stat">
-        <div class="label">Kunstnere og talenter</div>
-        <div class="value" id="artistCount">0</div>
-      </div>
-      <div class="card stat">
-        <div class="label">Produktion og teknik</div>
-        <div class="value" id="crewCount">0</div>
-      </div>
-      <div class="card stat">
-        <div class="label">Venue og nøglefunktioner</div>
-        <div class="value" id="leadCount">0</div>
-      </div>
-    </section>
-
-    <section class="section">
       <div class="card selector-card">
         <div class="selector-highlight">Tryk her</div>
         <h2>Vælg dit navn</h2>
@@ -865,6 +799,44 @@
       </div>
     </section>
 
+    <section class="stats-row">
+      <div class="card stat">
+        <div class="label">Samlet antal personer</div>
+        <div class="value" id="peopleCount">0</div>
+      </div>
+      <div class="card stat">
+        <div class="label">Kunstnere og talenter</div>
+        <div class="value" id="artistCount">0</div>
+      </div>
+      <div class="card stat">
+        <div class="label">Produktion og teknik</div>
+        <div class="value" id="crewCount">0</div>
+      </div>
+      <div class="card stat">
+        <div class="label">Venue og nøglefunktioner</div>
+        <div class="value" id="leadCount">0</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="card messages-card">
+        <h2>Beskeder</h2>
+        <p class="lead">Beskeder kan gælde bestemte grupper eller alle i produktionen.</p>
+        <div class="message-list" id="messageList"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>Ugeplan</h2>
+          <p class="lead">Overblik over produktionsugen.</p>
+        </div>
+      </div>
+
+      <div class="timeline" id="timeline"></div>
+    </section>
+
     <section class="section">
       <div class="section-head">
         <div>
@@ -881,43 +853,6 @@
       </div>
 
       <div class="people-grid" id="peopleGrid"></div>
-    </section>
-
-    <section class="section">
-      <div class="section-head">
-        <div>
-          <h2>Kontaktliste som tabel</h2>
-          <p class="lead">God når man hurtigt vil scrolle eller printe.</p>
-        </div>
-      </div>
-
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Navn</th>
-              <th>Rolle</th>
-              <th>Gruppe</th>
-              <th>Organisation</th>
-              <th>Telefon</th>
-              <th>Email</th>
-              <th>Note</th>
-            </tr>
-          </thead>
-          <tbody id="contactTableBody"></tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-head">
-        <div>
-          <h2>Ugeplan</h2>
-          <p class="lead">Overblik over produktionsugen.</p>
-        </div>
-      </div>
-
-      <div class="timeline" id="timeline"></div>
     </section>
 
     <section class="section">
@@ -943,7 +878,7 @@
           <ul class="bullet-list">
             <li>Per Zachariassen. Kunstnerisk leder</li>
             <li>Maria Winther Olsen. Program og grafik</li>
-            <li>Turið Thomasen. PR ansvarlig</li>
+            <li>Turið Thomsen. PR ansvarlig</li>
             <li>Michael Koba. Produktion og koordinering</li>
           </ul>
         </div>
@@ -971,14 +906,38 @@
       </div>
     </section>
 
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>Kontaktliste som tabel</h2>
+          <p class="lead">Den fulde kontaktliste ligger nederst i portalen.</p>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Navn</th>
+              <th>Rolle</th>
+              <th>Gruppe</th>
+              <th>Organisation</th>
+              <th>Telefon</th>
+              <th>Email</th>
+              <th>Note</th>
+            </tr>
+          </thead>
+          <tbody id="contactTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
     <div class="footer-note">
-      <strong>Notat:</strong> Onsdag 1. april kl. 08:00 til 16:00 er teknik på. Torsdag 2. april er kun teknisk opsætning, og dokumentet angiver ikke præcise klokkeslæt endnu. Ingen medlemmer af orkester eller kunstnere møder disse tekniske dage.
+      <strong>Notat:</strong> Torsdag 2. april er kun teknisk opsætning. Ingen medlemmer af orkester eller kunstnere møder denne dag. Den store kontaktliste er bevidst flyttet nederst, så ugeplan og beskeder kommer længere op.
     </div>
   </main>
 
   <script>
-    const COUNTDOWN_TARGET = "2026-03-12T12:00:00Z";
-
     const people = [
       {
         name: "Per Zachariassen",
@@ -1010,7 +969,7 @@
           "Fredag 3. april kl. 13:00 til 16:00. Lydprøver og gennemgang.",
           "Lørdag 4. april. Koncertdag og praktisk afvikling."
         ],
-        contacts: ["Per Zachariassen", "Michael Koba", "Turið Thomasen", "Regin Dalsgaard", "Pól Holm"]
+        contacts: ["Per Zachariassen", "Michael Koba", "Turið Thomsen", "Regin Dalsgaard", "Pól Holm"]
       },
       {
         name: "Maria Winther Olsen",
@@ -1042,7 +1001,7 @@
           "Fredag 3. april kl. 13:00 til 16:00. Lydprøver og gennemgang.",
           "Lørdag 4. april. Koncertdag."
         ],
-        contacts: ["Rúni Djurhuus", "Regin Dalsgaard", "Turið Thomasen", "Pól Holm", "Kim Hansen"]
+        contacts: ["Rúni Djurhuus", "Regin Dalsgaard", "Turið Thomsen", "Pól Holm", "Kim Hansen"]
       },
       {
         name: "Regin Dalsgaard",
@@ -1064,7 +1023,7 @@
         contacts: ["Michael Koba", "Rúni Djurhuus", "Kim Hansen", "Pól Holm"]
       },
       {
-        name: "Turið Thomasen",
+        name: "Turið Thomsen",
         role: "PR ansvarlig",
         group: "PR",
         organization: "Eventz",
@@ -1237,7 +1196,7 @@
           "Lørdag 4. april kl. 18:30 til 19:00. NEMA arrangement.",
           "Lørdag 4. april kl. 19:30. Koncertstart."
         ],
-        contacts: ["Michael Koba", "Kim Hansen", "Rúni Djurhuus"]
+        contacts: ["Michael Koba", "Kim Hansen", "Rúni Djurhuus", "Turið Thomsen"]
       },
       {
         name: "Anna Lovisa Mýri",
@@ -1254,7 +1213,7 @@
           "Lørdag 4. april kl. 18:30 til 19:00. NEMA arrangement.",
           "Lørdag 4. april kl. 19:30. Koncertstart."
         ],
-        contacts: ["Michael Koba", "Kim Hansen", "Rúni Djurhuus"]
+        contacts: ["Michael Koba", "Kim Hansen", "Rúni Djurhuus", "Turið Thomsen"]
       },
       {
         name: "Filip á Smið",
@@ -1271,7 +1230,7 @@
           "Lørdag 4. april kl. 18:30 til 19:00. NEMA arrangement.",
           "Lørdag 4. april kl. 19:30. Koncertstart."
         ],
-        contacts: ["Michael Koba", "Kim Hansen", "Rúni Djurhuus"]
+        contacts: ["Michael Koba", "Kim Hansen", "Rúni Djurhuus", "Turið Thomsen"]
       },
       {
         name: "Jóhanna Sámalsdóttir",
@@ -1288,7 +1247,7 @@
           "Lørdag 4. april kl. 18:30 til 19:00. NEMA arrangement.",
           "Lørdag 4. april kl. 19:30. Koncertstart."
         ],
-        contacts: ["Michael Koba", "Kim Hansen", "Rúni Djurhuus"]
+        contacts: ["Michael Koba", "Kim Hansen", "Rúni Djurhuus", "Turið Thomsen"]
       },
       {
         name: "Emma Højaard",
@@ -1305,7 +1264,7 @@
           "Lørdag 4. april kl. 18:30 til 19:00. NEMA arrangement.",
           "Lørdag 4. april kl. 19:30. Koncertstart."
         ],
-        contacts: ["Michael Koba", "Kim Hansen", "Rúni Djurhuus"]
+        contacts: ["Michael Koba", "Kim Hansen", "Rúni Djurhuus", "Turið Thomsen"]
       },
       {
         name: "Sophilia Wraae Mukisa",
@@ -1322,7 +1281,7 @@
           "Lørdag 4. april kl. 18:30 til 19:00. NEMA arrangement.",
           "Lørdag 4. april kl. 19:30. Koncertstart."
         ],
-        contacts: ["Michael Koba", "Kim Hansen", "Rúni Djurhuus"]
+        contacts: ["Michael Koba", "Kim Hansen", "Rúni Djurhuus", "Turið Thomsen"]
       },
       {
         name: "Eyðun Nolsøe",
@@ -1371,6 +1330,15 @@
       }
     ];
 
+    const messages = [
+      {
+        title: "Besked til Spírar",
+        groups: ["Spírar"],
+        date: "Aktuel besked",
+        body: "Hey Spírar, det ville være så fedt hvis I larmede lidt på jeres sociale profiler så billetsalget kommer i gang, så det viser at I er spændte til den store HOYDALAR koncert.\n\nTurið Thomsen fra Rúnis team sender nogle klip til jer de kommende dage i næste uge, som I kan dele på sociale medier.\n\nMan må gerne dele hinandens videoer, men KUN hvis I har lyst at hjælpe os med at få fyldt op til koncerten."
+      }
+    ];
+
     const weekPlan = [
       {
         date: "Mandag 30. marts",
@@ -1398,8 +1366,7 @@
         items: [
           "Teknisk opsætning fortsætter.",
           "Kun det tekniske team arbejder denne dag.",
-          "Ingen medlemmer af orkester eller kunstnere møder denne dag.",
-          "Præcist klokkeslæt er ikke angivet i dokumentet endnu."
+          "Ingen medlemmer af orkester eller kunstnere møder denne dag."
         ]
       },
       {
@@ -1407,7 +1374,7 @@
         items: [
           "Kl. 13:00 til 16:00. Lydprøver og gennemgang.",
           "Følgende deltager: orkester, Spírar, teknisk hold og produktion.",
-          "Her deltager hele orkestret, hele det tekniske crew og alle Spírar."
+          "Her deltager hele orkestret, alle i det tekniske crew og Spírar."
         ]
       },
       {
@@ -1435,14 +1402,9 @@
     const nextMeetingTime = document.getElementById("nextMeetingTime");
     const mySchedule = document.getElementById("mySchedule");
     const myContacts = document.getElementById("myContacts");
+    const messageList = document.getElementById("messageList");
     const brandHome = document.getElementById("brandHome");
     const homeButton = document.getElementById("homeButton");
-    const countdownShell = document.getElementById("countdownShell");
-    const countdownTitle = document.getElementById("countdownTitle");
-    const countdownBox = document.getElementById("countdownBox");
-    const countdownLabel = document.getElementById("countdownLabel");
-    const ticketBar = document.getElementById("ticketBar");
-    const ticketStatus = document.getElementById("ticketStatus");
 
     function escapeHtml(value) {
       return (value || "")
@@ -1460,46 +1422,6 @@
       if (!phone) return "";
       const cleaned = phone.split("/")[0].trim().replace(/\s+/g, "");
       return `tel:${cleaned}`;
-    }
-
-    function renderCountdown() {
-      const target = new Date(COUNTDOWN_TARGET).getTime();
-
-      function updateCountdown() {
-        const now = Date.now();
-        const diff = target - now;
-
-        if (diff <= 0) {
-          countdownShell.classList.add("live");
-          countdownTitle.textContent = "Nu";
-          countdownBox.textContent = "🎟 BILLETSALGET ER STARTET";
-          countdownLabel.textContent = "Ticket sales are LIVE";
-          ticketStatus.textContent = "Billetsalget er åbent nu";
-          ticketBar.classList.remove("waiting");
-          ticketBar.classList.add("live");
-          return;
-        }
-
-        const days = Math.floor(diff / 86400000);
-        const hours = Math.floor((diff % 86400000) / 3600000);
-        const minutes = Math.floor((diff % 3600000) / 60000);
-        const seconds = Math.floor((diff % 60000) / 1000);
-        const centiseconds = Math.floor((diff % 1000) / 10);
-
-        const parts = [];
-        if (days > 0) parts.push(days + "d");
-        parts.push(String(hours).padStart(2, "0") + "t");
-        parts.push(String(minutes).padStart(2, "0") + "m");
-        parts.push(String(seconds).padStart(2, "0") + "s");
-        parts.push(String(centiseconds).padStart(2, "0"));
-
-        countdownBox.textContent = parts.join(" : ");
-        countdownLabel.textContent = "Til kl. 12:00 GMT";
-        ticketStatus.textContent = "Billetsalget åbner ved deadline";
-      }
-
-      updateCountdown();
-      setInterval(updateCountdown, 50);
     }
 
     function renderStats() {
@@ -1538,6 +1460,40 @@
         option.textContent = `${person.name} • ${person.role}`;
         personSelect.appendChild(option);
       });
+    }
+
+    function renderMessages(selectedPersonName = "") {
+      let selectedPerson = null;
+      if (selectedPersonName) {
+        selectedPerson = people.find(p => p.name === selectedPersonName) || null;
+      }
+
+      const filteredMessages = messages.filter(message => {
+        if (!selectedPerson) return true;
+        return message.groups.includes("Alle") || message.groups.includes(selectedPerson.group);
+      });
+
+      messageList.innerHTML = filteredMessages.map(message => `
+        <article class="message-item">
+          <div class="message-top">
+            <div class="message-title">${escapeHtml(message.title)}</div>
+            <div class="message-tags">
+              ${message.groups.map(group => `<span class="msg-tag">${escapeHtml(group)}</span>`).join("")}
+            </div>
+          </div>
+          <div class="message-body">${escapeHtml(message.body)}</div>
+          <div class="message-meta">${escapeHtml(message.date)}</div>
+        </article>
+      `).join("");
+
+      if (!filteredMessages.length) {
+        messageList.innerHTML = `
+          <article class="message-item">
+            <div class="message-title">Ingen beskeder</div>
+            <div class="message-body">Der er ingen aktuelle beskeder til denne gruppe lige nu.</div>
+          </article>
+        `;
+      }
     }
 
     function personCard(person) {
@@ -1670,6 +1626,7 @@
 
       if (!person) {
         myViewSection.classList.add("hidden");
+        renderMessages("");
         return;
       }
 
@@ -1709,6 +1666,7 @@
           }).join("")
         : `<div class="small">Ingen kontaktpersoner lagt ind endnu.</div>`;
 
+      renderMessages(person.name);
       myViewSection.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
 
@@ -1718,6 +1676,7 @@
       searchInput.value = "";
       groupFilter.value = "all";
       renderPeople();
+      renderMessages("");
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
@@ -1728,6 +1687,7 @@
       const selectedName = this.value;
       if (!selectedName) {
         myViewSection.classList.add("hidden");
+        renderMessages("");
         return;
       }
       renderMyView(selectedName);
@@ -1736,10 +1696,10 @@
     brandHome.addEventListener("click", resetHome);
     homeButton.addEventListener("click", resetHome);
 
-    renderCountdown();
     renderStats();
     populateGroups();
     populateNames();
+    renderMessages("");
     renderPeople();
     renderTimeline();
   </script>

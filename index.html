@@ -88,16 +88,18 @@
     .message-body{font-size:14px;line-height:1.7;color:var(--text-mid);white-space:pre-line;}
     .message-date{margin-top:10px;font-size:11px;color:var(--text-muted);font-weight:600;letter-spacing:.04em;text-transform:uppercase;}
 
-    /* TIMELINE */
-    .timeline{display:grid;gap:12px;}
-    .timeline-day{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);}
-    .timeline-day-header{background:var(--card2);border-bottom:1px solid var(--border);padding:12px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px;}
-    .timeline-day-name{font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--bronze-dark);}
-    .day-badge{font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--gold-pale);color:var(--bronze-dark);border:1px solid var(--gold-light);white-space:nowrap;}
-    .timeline-day-body{padding:14px 18px;}
-    .timeline-items{list-style:none;display:grid;gap:8px;}
-    .timeline-item{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.5;color:var(--text-mid);}
-    .timeline-item::before{content:'◆';font-size:8px;color:var(--gold-light);margin-top:5px;flex-shrink:0;}
+    /* DAY CARD */
+    .day-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);margin-bottom:16px;}
+    .day-card-header{background:var(--bronze-dark);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+    .day-card-title{font-family:var(--font-display);font-size:22px;font-weight:700;color:#f5f0e8;}
+    .day-card-badge{font-size:11px;font-weight:700;padding:4px 12px;border-radius:999px;background:var(--gold-pale);color:var(--bronze-dark);border:1px solid var(--gold-light);white-space:nowrap;}
+    .day-card-body{padding:0;}
+    .time-block{display:flex;gap:0;border-bottom:1px solid var(--border);}
+    .time-block:last-child{border-bottom:none;}
+    .time-col{min-width:80px;padding:14px 16px;background:var(--card2);border-right:1px solid var(--border);font-family:var(--font-display);font-size:16px;font-weight:700;color:var(--bronze-dark);flex-shrink:0;}
+    .time-content{padding:14px 18px;font-size:14px;color:var(--text-mid);line-height:1.6;}
+    .time-content strong{color:var(--text);display:block;font-family:var(--font-display);font-size:16px;margin-bottom:2px;}
+    .time-note{font-size:12px;color:var(--text-muted);margin-top:4px;font-style:italic;}
 
     /* SETLIST */
     .setlist-section{margin-top:28px;}
@@ -105,13 +107,12 @@
     .setlist-blok-header{background:var(--bronze-dark);padding:14px 20px;display:flex;align-items:baseline;gap:14px;}
     .setlist-blok-title{font-family:var(--font-display);font-size:22px;font-weight:700;color:#f5f0e8;letter-spacing:.04em;}
     .setlist-blok-sub{font-size:11px;color:var(--gold-light);font-weight:600;letter-spacing:.1em;text-transform:uppercase;}
-    .setlist-row{display:grid;grid-template-columns:52px 1fr auto;align-items:center;border-bottom:1px solid var(--border);transition:background .15s;}
+    .setlist-row{display:grid;grid-template-columns:52px 1fr;align-items:center;border-bottom:1px solid var(--border);transition:background .15s;}
     .setlist-row:last-child{border-bottom:none;}
     .setlist-row:hover{background:var(--bg2);}
     .setlist-num{font-family:var(--font-display);font-size:15px;font-weight:700;color:var(--gold-light);padding:14px 0 14px 18px;}
-    .setlist-song{padding:14px 12px;font-size:14px;color:var(--text-mid);line-height:1.4;}
+    .setlist-song{padding:14px 18px 14px 12px;font-size:14px;color:var(--text-mid);line-height:1.4;}
     .setlist-song strong{font-family:var(--font-display);font-size:16px;font-weight:700;color:var(--text);display:block;margin-bottom:2px;}
-    .setlist-tag{padding:14px 18px 14px 0;font-size:11px;font-weight:700;color:var(--bronze);white-space:nowrap;}
 
     /* PEOPLE */
     .stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:24px;}
@@ -206,43 +207,96 @@
 
   <!-- TAB: MØDEPLAN -->
   <div class="tab-panel active" id="tab-modeplan">
-    <div class="section-label" style="margin-bottom:16px;"><h2>Mødeplan</h2></div>
-    <div class="timeline" id="timeline"></div>
+    <div class="section-label" style="margin-bottom:16px;"><h2>Lørdag 4. april — Koncertdag</h2></div>
 
+    <div class="day-card">
+      <div class="day-card-header">
+        <div class="day-card-title">Lørdag 4. april 2026</div>
+        <div class="day-card-badge">KONCERTDAG</div>
+      </div>
+      <div class="day-card-body">
+        <div class="time-block">
+          <div class="time-col">13:00</div>
+          <div class="time-content">
+            <strong>Gennemgang med Per Zachariassen</strong>
+            Alle i produktionen møder her. Den første time er gennemgang med Per Zachariassen, derefter generalprøve.
+            <div class="time-note">Forventes afsluttet kl. 16:00 eller 16:30</div>
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-col">16:00</div>
+          <div class="time-content">
+            <strong>Fri til at hvile sig</strong>
+            Fra kl. 16:00 eller 16:30 har alle fri indtil de skal møde igen.
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-col">18:30</div>
+          <div class="time-content">
+            <strong>NEMA arrangement — kun Spírar</strong>
+            Spírar deltager i NEMA arrangement i separat lokale i Tjarnir.
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-col">19:00</div>
+          <div class="time-content">
+            <strong>Alle møder — ½ time inden koncertstart</strong>
+            Alle andre end Spírar møder kl. 19:00.
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-col">19:30</div>
+          <div class="time-content">
+            <strong>KONCERTSTART</strong>
+          </div>
+        </div>
+        <div class="time-block">
+          <div class="time-col">Ca. 21:00</div>
+          <div class="time-content">
+            <strong>Koncert slut</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SANGPLAN -->
     <div class="setlist-section">
       <div class="section-label" style="margin-bottom:16px;">
         <h2>Sangplan</h2>
-        <span style="display:inline-block;padding:3px 10px;border-radius:999px;background:var(--gold-pale);color:var(--bronze-dark);border:1px solid var(--gold-light);font-size:11px;font-weight:700;">Lørdag 4. april · Foreløbig</span>
+        <span style="display:inline-block;padding:3px 10px;border-radius:999px;background:var(--gold-pale);color:var(--bronze-dark);border:1px solid var(--gold-light);font-size:11px;font-weight:700;">4. april 2026</span>
       </div>
       <div class="setlist-card">
+
         <div class="setlist-blok-header">
           <div class="setlist-blok-title">BLOK 1</div>
           <div class="setlist-blok-sub">Solo</div>
         </div>
-        <div class="setlist-row"><div class="setlist-num">1.1</div><div class="setlist-song"><strong>Bjarki</strong>Spor í sandi</div><div class="setlist-tag">Spírar</div></div>
-        <div class="setlist-row"><div class="setlist-num">1.2</div><div class="setlist-song"><strong>Bjarki</strong>Hugsi bert um teg</div><div class="setlist-tag">Spírar</div></div>
-        <div class="setlist-row"><div class="setlist-num">2.1</div><div class="setlist-song"><strong>Emma</strong>Morgun</div><div class="setlist-tag">Spírar</div></div>
-        <div class="setlist-row"><div class="setlist-num">2.2</div><div class="setlist-song"><strong>Emma</strong>Aldan</div><div class="setlist-tag">Spírar</div></div>
-        <div class="setlist-row"><div class="setlist-num">3.1</div><div class="setlist-song"><strong>Filip</strong>Elisabeth &amp; Elinborg</div><div class="setlist-tag">Spírar</div></div>
-        <div class="setlist-row"><div class="setlist-num">3.2</div><div class="setlist-song"><strong>Filip</strong>Í dans</div><div class="setlist-tag">Spírar</div></div>
-        <div class="setlist-row"><div class="setlist-num">4.1</div><div class="setlist-song"><strong>Jóhanna</strong>Ró</div><div class="setlist-tag">Spírar</div></div>
-        <div class="setlist-row"><div class="setlist-num">4.2</div><div class="setlist-song"><strong>Jóhanna</strong>Tey dansa eins og skuggar</div><div class="setlist-tag">Spírar</div></div>
-        <div class="setlist-row"><div class="setlist-num">5.1</div><div class="setlist-song"><strong>Anna Lovisa</strong>Røttu skógvarnar</div><div class="setlist-tag">Spírar</div></div>
-        <div class="setlist-row"><div class="setlist-num">5.2</div><div class="setlist-song"><strong>Anna Lovisa</strong>Summarið við tær</div><div class="setlist-tag">Spírar</div></div>
-        <div class="setlist-row"><div class="setlist-num">6.1</div><div class="setlist-song"><strong>Sophilia</strong>Wall of silence</div><div class="setlist-tag">Spírar</div></div>
-        <div class="setlist-row"><div class="setlist-num">6.2</div><div class="setlist-song"><strong>Sophilia</strong>15 ár</div><div class="setlist-tag">Spírar</div></div>
+        <div class="setlist-row"><div class="setlist-num">1</div><div class="setlist-song"><strong>Bjarki</strong>Spor í sandi</div></div>
+        <div class="setlist-row"><div class="setlist-num">2</div><div class="setlist-song"><strong>Bjarki</strong>Hugsi bert um teg</div></div>
+        <div class="setlist-row"><div class="setlist-num">3</div><div class="setlist-song"><strong>Emma</strong>Morgun</div></div>
+        <div class="setlist-row"><div class="setlist-num">4</div><div class="setlist-song"><strong>Emma</strong>Aldan</div></div>
+        <div class="setlist-row"><div class="setlist-num">5</div><div class="setlist-song"><strong>Filip</strong>Elisabeth &amp; Elinborg</div></div>
+        <div class="setlist-row"><div class="setlist-num">6</div><div class="setlist-song"><strong>Filip</strong>Í dans</div></div>
+        <div class="setlist-row"><div class="setlist-num">7</div><div class="setlist-song"><strong>Jóhanna</strong>Ró</div></div>
+        <div class="setlist-row"><div class="setlist-num">8</div><div class="setlist-song"><strong>Jóhanna</strong>Trúgv</div></div>
+        <div class="setlist-row"><div class="setlist-num">9</div><div class="setlist-song"><strong>Anna Lovisa</strong>Røttu skógvarnar</div></div>
+        <div class="setlist-row"><div class="setlist-num">10</div><div class="setlist-song"><strong>Anna Lovisa</strong>Summarið við tær</div></div>
+        <div class="setlist-row"><div class="setlist-num">11</div><div class="setlist-song"><strong>Sophilia</strong>Wall of silence</div></div>
+        <div class="setlist-row"><div class="setlist-num">12</div><div class="setlist-song"><strong>Sophilia</strong>15 ár</div></div>
+
         <div class="setlist-blok-header">
           <div class="setlist-blok-title">BLOK 2</div>
           <div class="setlist-blok-sub">Duetter og ensembler</div>
         </div>
-        <div class="setlist-row"><div class="setlist-num">7.1</div><div class="setlist-song"><strong>Anna Lovisa &amp; Jóhanna</strong>Hvíta flykrur</div><div class="setlist-tag">Spírar</div></div>
-        <div class="setlist-row"><div class="setlist-num">8.1</div><div class="setlist-song"><strong>Anna Lovisa, Jóhanna &amp; MC</strong>Trúgv</div><div class="setlist-tag">Spírar + Gæst</div></div>
-        <div class="setlist-row"><div class="setlist-num">9.1</div><div class="setlist-song"><strong>Filip &amp; Martin</strong>60'ini</div><div class="setlist-tag">Spírar + Gæst</div></div>
-        <div class="setlist-row"><div class="setlist-num">10.1</div><div class="setlist-song"><strong>Sophilia &amp; Martin</strong>Motormani</div><div class="setlist-tag">Spírar + Gæst</div></div>
-        <div class="setlist-row"><div class="setlist-num">11.1</div><div class="setlist-song"><strong>Sophilia &amp; Eyðun</strong>Á, um vit</div><div class="setlist-tag">Spírar + Gæst</div></div>
-        <div class="setlist-row"><div class="setlist-num">12.1</div><div class="setlist-song"><strong>Bjarki &amp; Eyðun</strong>So nógvar røddir</div><div class="setlist-tag">Spírar + Gæst</div></div>
-        <div class="setlist-row"><div class="setlist-num">13.1</div><div class="setlist-song"><strong>Eyðun &amp; Spírar</strong>Tað er løtan (Originalurin)</div><div class="setlist-tag">Gæst + Spírar</div></div>
-        <div class="setlist-row"><div class="setlist-num">14.1</div><div class="setlist-song"><strong>Emma, Spírar &amp; Stjørnur</strong>Mitt land</div><div class="setlist-tag">Ensemble</div></div>
+        <div class="setlist-row"><div class="setlist-num">13</div><div class="setlist-song"><strong>Bjarki &amp; Filip</strong>Summar</div></div>
+        <div class="setlist-row"><div class="setlist-num">14</div><div class="setlist-song"><strong>Anna Lovisa, Emma, Jóhanna &amp; Sophilia</strong>Hvíta flykrur</div></div>
+        <div class="setlist-row"><div class="setlist-num">15</div><div class="setlist-song"><strong>Filip, Emma &amp; Martin</strong>60'ini</div></div>
+        <div class="setlist-row"><div class="setlist-num">16</div><div class="setlist-song"><strong>Filip, Sophilia &amp; Martin</strong>Motormani</div></div>
+        <div class="setlist-row"><div class="setlist-num">17</div><div class="setlist-song"><strong>Sophilia, Jóhanna &amp; Eyðun</strong>Á, um vit</div></div>
+        <div class="setlist-row"><div class="setlist-num">18</div><div class="setlist-song"><strong>Bjarki, Anna Lovisa &amp; Eyðun</strong>So nógvar røddir</div></div>
+        <div class="setlist-row"><div class="setlist-num">19</div><div class="setlist-song"><strong>Eyðun &amp; Spírar</strong>Tað er løtan (Originalurin)</div></div>
+        <div class="setlist-row"><div class="setlist-num">20</div><div class="setlist-song"><strong>Spírar og stjørnur</strong>Mítt land</div></div>
+
       </div>
     </div>
   </div>
@@ -336,7 +390,6 @@
       <div class="role-card"><h4>Gæstesangere</h4><ul class="role-list">
         <li class="role-item"><span><strong>Eyðun Nolsøe</strong></span></li>
         <li class="role-item"><span><strong>Martin Joensen</strong></span></li>
-        <li class="role-item"><span><strong>MC Restorff</strong></span></li>
       </ul></div>
     </div>
   </div>
@@ -365,162 +418,137 @@
 </main>
 
 <script>
-  const FULL_SETLIST = [
-    {num:"BLOK 1",song:"Solo",header:true},
-    {num:"1.1",artist:"Bjarki",song:"Spor í sandi"},
-    {num:"1.2",artist:"Bjarki",song:"Hugsi bert um teg"},
-    {num:"2.1",artist:"Emma",song:"Morgun"},
-    {num:"2.2",artist:"Emma",song:"Aldan"},
-    {num:"3.1",artist:"Filip",song:"Elisabeth & Elinborg"},
-    {num:"3.2",artist:"Filip",song:"Í dans"},
-    {num:"4.1",artist:"Jóhanna",song:"Ró"},
-    {num:"4.2",artist:"Jóhanna",song:"Tey dansa eins og skuggar"},
-    {num:"5.1",artist:"Anna Lovisa",song:"Røttu skógvarnar"},
-    {num:"5.2",artist:"Anna Lovisa",song:"Summarið við tær"},
-    {num:"6.1",artist:"Sophilia",song:"Wall of silence"},
-    {num:"6.2",artist:"Sophilia",song:"15 ár"},
-    {num:"BLOK 2",song:"Duetter og ensembler",header:true},
-    {num:"7.1",artist:"Anna Lovisa & Jóhanna",song:"Hvíta flykrur"},
-    {num:"8.1",artist:"Anna Lovisa, Jóhanna & MC",song:"Trúgv"},
-    {num:"9.1",artist:"Filip & Martin",song:"60'ini"},
-    {num:"10.1",artist:"Sophilia & Martin",song:"Motormani"},
-    {num:"11.1",artist:"Sophilia & Eyðun",song:"Á, um vit"},
-    {num:"12.1",artist:"Bjarki & Eyðun",song:"So nógvar røddir"},
-    {num:"13.1",artist:"Eyðun & Spírar",song:"Tað er løtan (Originalurin)"},
-    {num:"14.1",artist:"Emma, Spírar & Stjørnur",song:"Mitt land"}
-  ];
-
+  // Individuelle setlister baseret på PDF
   const SETLISTS = {
     "Bjarki Virgarsson Trondesen": [
       {num:"BLOK 1",song:"Solo",header:true},
-      {num:"1.1",artist:"Bjarki",song:"Spor í sandi"},
-      {num:"1.2",artist:"Bjarki",song:"Hugsi bert um teg"},
-      {num:"BLOK 2",song:"Duet",header:true},
-      {num:"12.1",artist:"Bjarki & Eyðun",song:"So nógvar røddir"}
+      {num:"1",song:"Spor í sandi"},
+      {num:"2",song:"Hugsi bert um teg"},
+      {num:"BLOK 2",song:"Duetter",header:true},
+      {num:"13",artist:"Bjarki & Filip",song:"Summar"},
+      {num:"18",artist:"Bjarki, Anna Lovisa & Eyðun",song:"So nógvar røddir"},
+      {num:"19",artist:"Eyðun & Spírar",song:"Tað er løtan (Originalurin)"},
+      {num:"20",artist:"Spírar og stjørnur",song:"Mítt land"}
     ],
     "Anna Lovisa Mýri": [
       {num:"BLOK 1",song:"Solo",header:true},
-      {num:"5.1",artist:"Anna Lovisa",song:"Røttu skógvarnar"},
-      {num:"5.2",artist:"Anna Lovisa",song:"Summarið við tær"},
-      {num:"BLOK 2",song:"Duetter",header:true},
-      {num:"7.1",artist:"Anna Lovisa & Jóhanna",song:"Hvíta flykrur"},
-      {num:"8.1",artist:"Anna Lovisa, Jóhanna & MC",song:"Trúgv"}
+      {num:"9",song:"Røttu skógvarnar"},
+      {num:"10",song:"Summarið við tær"},
+      {num:"BLOK 2",song:"Duetter og ensembler",header:true},
+      {num:"14",artist:"Anna Lovisa, Emma, Jóhanna & Sophilia",song:"Hvíta flykrur"},
+      {num:"18",artist:"Bjarki, Anna Lovisa & Eyðun",song:"So nógvar røddir"},
+      {num:"19",artist:"Eyðun & Spírar",song:"Tað er løtan (Originalurin)"},
+      {num:"20",artist:"Spírar og stjørnur",song:"Mítt land"}
     ],
     "Filip á Smið": [
       {num:"BLOK 1",song:"Solo",header:true},
-      {num:"3.1",artist:"Filip",song:"Elisabeth & Elinborg"},
-      {num:"3.2",artist:"Filip",song:"Í dans"},
-      {num:"BLOK 2",song:"Duet",header:true},
-      {num:"9.1",artist:"Filip & Martin",song:"60'ini"}
+      {num:"5",song:"Elisabeth & Elinborg"},
+      {num:"6",song:"Í dans"},
+      {num:"BLOK 2",song:"Duetter",header:true},
+      {num:"13",artist:"Bjarki & Filip",song:"Summar"},
+      {num:"15",artist:"Filip, Emma & Martin",song:"60'ini"},
+      {num:"16",artist:"Filip, Sophilia & Martin",song:"Motormani"},
+      {num:"19",artist:"Eyðun & Spírar",song:"Tað er løtan (Originalurin)"},
+      {num:"20",artist:"Spírar og stjørnur",song:"Mítt land"}
     ],
     "Jóhanna Sámalsdóttir": [
       {num:"BLOK 1",song:"Solo",header:true},
-      {num:"4.1",artist:"Jóhanna",song:"Ró"},
-      {num:"4.2",artist:"Jóhanna",song:"Tey dansa eins og skuggar"},
-      {num:"BLOK 2",song:"Duetter",header:true},
-      {num:"7.1",artist:"Anna Lovisa & Jóhanna",song:"Hvíta flykrur"},
-      {num:"8.1",artist:"Anna Lovisa, Jóhanna & MC",song:"Trúgv"}
+      {num:"7",song:"Ró"},
+      {num:"8",song:"Trúgv"},
+      {num:"BLOK 2",song:"Duetter og ensembler",header:true},
+      {num:"14",artist:"Anna Lovisa, Emma, Jóhanna & Sophilia",song:"Hvíta flykrur"},
+      {num:"17",artist:"Sophilia, Jóhanna & Eyðun",song:"Á, um vit"},
+      {num:"19",artist:"Eyðun & Spírar",song:"Tað er løtan (Originalurin)"},
+      {num:"20",artist:"Spírar og stjørnur",song:"Mítt land"}
     ],
     "Emma Højaard": [
       {num:"BLOK 1",song:"Solo",header:true},
-      {num:"2.1",artist:"Emma",song:"Morgun"},
-      {num:"2.2",artist:"Emma",song:"Aldan"},
-      {num:"BLOK 2",song:"Ensemble",header:true},
-      {num:"14.1",artist:"Emma, Spírar & Stjørnur",song:"Mitt land"}
+      {num:"3",song:"Morgun"},
+      {num:"4",song:"Aldan"},
+      {num:"BLOK 2",song:"Duetter og ensembler",header:true},
+      {num:"14",artist:"Anna Lovisa, Emma, Jóhanna & Sophilia",song:"Hvíta flykrur"},
+      {num:"15",artist:"Filip, Emma & Martin",song:"60'ini"},
+      {num:"19",artist:"Eyðun & Spírar",song:"Tað er løtan (Originalurin)"},
+      {num:"20",artist:"Spírar og stjørnur",song:"Mítt land"}
     ],
     "Sophilia Wraae Mukisa": [
       {num:"BLOK 1",song:"Solo",header:true},
-      {num:"6.1",artist:"Sophilia",song:"Wall of silence"},
-      {num:"6.2",artist:"Sophilia",song:"15 ár"},
+      {num:"11",song:"Wall of silence"},
+      {num:"12",song:"15 ár"},
       {num:"BLOK 2",song:"Duetter",header:true},
-      {num:"10.1",artist:"Sophilia & Martin",song:"Motormani"},
-      {num:"11.1",artist:"Sophilia & Eyðun",song:"Á, um vit"}
+      {num:"14",artist:"Anna Lovisa, Emma, Jóhanna & Sophilia",song:"Hvíta flykrur"},
+      {num:"16",artist:"Filip, Sophilia & Martin",song:"Motormani"},
+      {num:"17",artist:"Sophilia, Jóhanna & Eyðun",song:"Á, um vit"},
+      {num:"19",artist:"Eyðun & Spírar",song:"Tað er løtan (Originalurin)"},
+      {num:"20",artist:"Spírar og stjørnur",song:"Mítt land"}
     ],
     "Eyðun Nolsøe": [
-      {num:"11.1",artist:"Sophilia & Eyðun",song:"Á, um vit"},
-      {num:"12.1",artist:"Bjarki & Eyðun",song:"So nógvar røddir"},
-      {num:"13.1",artist:"Eyðun & Spírar",song:"Tað er løtan (Originalurin)"}
+      {num:"17",artist:"Sophilia, Jóhanna & Eyðun",song:"Á, um vit"},
+      {num:"18",artist:"Bjarki, Anna Lovisa & Eyðun",song:"So nógvar røddir"},
+      {num:"19",artist:"Eyðun & Spírar",song:"Tað er løtan (Originalurin)"}
     ],
     "Martin Joensen": [
-      {num:"9.1",artist:"Filip & Martin",song:"60'ini"},
-      {num:"10.1",artist:"Sophilia & Martin",song:"Motormani"}
-    ],
-    "MC Restorff": [
-      {num:"8.1",artist:"Anna Lovisa, Jóhanna & MC",song:"Trúgv"}
+      {num:"15",artist:"Filip, Emma & Martin",song:"60'ini"},
+      {num:"16",artist:"Filip, Sophilia & Martin",song:"Motormani"}
     ]
   };
+
+  const FULL_SETLIST = [
+    {num:"BLOK 1",song:"Solo",header:true},
+    {num:"1",artist:"Bjarki",song:"Spor í sandi"},
+    {num:"2",artist:"Bjarki",song:"Hugsi bert um teg"},
+    {num:"3",artist:"Emma",song:"Morgun"},
+    {num:"4",artist:"Emma",song:"Aldan"},
+    {num:"5",artist:"Filip",song:"Elisabeth & Elinborg"},
+    {num:"6",artist:"Filip",song:"Í dans"},
+    {num:"7",artist:"Jóhanna",song:"Ró"},
+    {num:"8",artist:"Jóhanna",song:"Trúgv"},
+    {num:"9",artist:"Anna Lovisa",song:"Røttu skógvarnar"},
+    {num:"10",artist:"Anna Lovisa",song:"Summarið við tær"},
+    {num:"11",artist:"Sophilia",song:"Wall of silence"},
+    {num:"12",artist:"Sophilia",song:"15 ár"},
+    {num:"BLOK 2",song:"Duetter og ensembler",header:true},
+    {num:"13",artist:"Bjarki & Filip",song:"Summar"},
+    {num:"14",artist:"Anna Lovisa, Emma, Jóhanna & Sophilia",song:"Hvíta flykrur"},
+    {num:"15",artist:"Filip, Emma & Martin",song:"60'ini"},
+    {num:"16",artist:"Filip, Sophilia & Martin",song:"Motormani"},
+    {num:"17",artist:"Sophilia, Jóhanna & Eyðun",song:"Á, um vit"},
+    {num:"18",artist:"Bjarki, Anna Lovisa & Eyðun",song:"So nógvar røddir"},
+    {num:"19",artist:"Eyðun & Spírar",song:"Tað er løtan (Originalurin)"},
+    {num:"20",artist:"Spírar og stjørnur",song:"Mítt land"}
+  ];
 
   const messages = [
     { title:"Besked til hele holdet", groups:["Alle"], date:"Aktuel besked", body:"Billetsalget går ekstremt godt og hele teamet glæder sig til koncerten 🎉" }
   ];
 
-  const weekPlan = [
-    { date:"Mandag 30. marts", badge:"Orkestertræning", items:[
-      "10:00–16:00 Orkester træner i et separat lokale i Tjarnir.",
-      "Kapelmester Kim Hansen aftaler lokale med venue ansvarlig Regin Dalsgaard."
-    ]},
-    { date:"Tirsdag 31. marts", badge:"Orkestertræning", items:[
-      "10:00–16:00 Orkester træner i et separat lokale i Tjarnir.",
-      "Kapelmester Kim Hansen aftaler lokale med venue ansvarlig Regin Dalsgaard."
-    ]},
-    { date:"Onsdag 1. april", badge:"Teknisk indrykning", items:[
-      "08:00–16:00 Opsætning af kroge under loftet.",
-      "Team Ljóð & Tøkni rykker ind og påbegynder teknisk arbejde.",
-      "Ingen orkestermedlemmer eller kunstnere denne dag."
-    ]},
-    { date:"Torsdag 2. april", badge:"Kun teknik", items:[
-      "08:00–16:00 Team Ljóð & Tøkni opsætning og teknisk arbejde fortsætter.",
-      "Ingen orkestermedlemmer eller kunstnere denne dag."
-    ]},
-    { date:"Fredag 3. april", badge:"Lydprøver", items:[
-      "13:00 Orkester starter lydprøver og gennemgang. Teknisk hold er på arbejde hele dagen.",
-      "14:00 Spírar (talenter) møder.",
-      "15:00 Spírar og orkester på scenen — lydprøver.",
-      "16:00 Gæstesangere MC Restorff, Martin Joensen og Eyðun Nolsøe på scenen med Spírar og orkester.",
-      "17:00 Spírar fortsætter lydprøver på scenen uden gæstesangere.",
-      "19:00 Prøver forventes afsluttet."
-    ]},
-    { date:"Lørdag 4. april", badge:"KONCERTDAG", items:[
-      "13:00–16:00 Lydprøve med orkester og Spírar.",
-      "18:30–19:00 Spírar deltager i NEMA arrangement i separat lokale i Tjarnir.",
-      "19:30 KONCERTSTART.",
-      "Ca. 21:00 Koncert slut."
-    ]}
-  ];
+  // Fælles plan for lørdag
+  const SAT_ALL    = ["Lør 4. april 13:00 · Gennemgang med Per Zachariassen — alle møder","Lør 4. april 16:00–16:30 · Fri til at hvile sig","Lør 4. april 19:00 · Alle møder ½ time inden koncertstart","Lør 4. april 19:30 · KONCERTSTART","Lør 4. april ca. 21:00 · Koncert slut"];
+  const SAT_SPIRAR = ["Lør 4. april 13:00 · Gennemgang med Per Zachariassen — alle møder","Lør 4. april 16:00–16:30 · Fri til at hvile sig","Lør 4. april 18:30–19:00 · NEMA arrangement i Tjarnir","Lør 4. april 19:30 · KONCERTSTART","Lør 4. april ca. 21:00 · Koncert slut"];
 
   const people = [
-    // LEDELSE
-    { name:"Per Zachariassen", role:"Koncept ejer og kunstnerisk leder", group:"Ledelse", organization:"HOYDALAR", email:"per.zachariassen@gmail.com", phone:"+45 40941939", note:"Udvikling af HOYDALAR konceptet. Overordnet kreativ retning. Medansvar for økonomisk risiko.", nextMeeting:"Fre 3. april 13:00 · Lydprøver", schedule:["Fre 3. april 13:00–19:00 · Lydprøver og gennemgang","Lør 4. april 13:00–16:00 · Lydprøve","Lør 4. april 19:30 · Koncertstart","Lør 4. april ca. 21:00 · Koncert slut"], contacts:["Rúni Djurhuus","Maria Winther Olsen","Michael Koba","Regin Dalsgaard"] },
-    { name:"Rúni Djurhuus", role:"Koncertarrangør", group:"Ledelse", organization:"Eventz", email:"rd@rd.fo", phone:"+298 505550", note:"Formel koncertarrangør. Markedsføring. Praktisk afvikling. Medansvar for økonomisk risiko.", nextMeeting:"Fre 3. april 13:00 · Lydprøver", schedule:["Fre 3. april 13:00–19:00 · Lydprøver og gennemgang","Lør 4. april · Koncertdag og praktisk afvikling"], contacts:["Per Zachariassen","Michael Koba","Turið Thomsen","Regin Dalsgaard","Pól Holm"] },
-    { name:"Maria Winther Olsen", role:"Program og grafik", group:"Ledelse", organization:"HOYDALAR", email:"mariawintherolsen@gmail.com", phone:"+298 258447", note:"Program og grafik.", nextMeeting:"Fre 3. april 13:00 · Produktionsgennemgang", schedule:["Fre 3. april 13:00–19:00 · Produktionsgennemgang","Lør 4. april · Til stede efter nærmere aftale"], contacts:["Per Zachariassen","Michael Koba","Rúni Djurhuus"] },
-    // PRODUKTION
-    { name:"Michael Koba", role:"Produktion og koordinering", group:"Produktion", organization:"HOYDALAR", email:"mk@fixer.fo", phone:"+298 591011", note:"Koordinering mellem alle parter. Aftaler og kontrakter. Produktionsplan. Call sheets.", nextMeeting:"Ons 1. april 08:00 · Team Ljóð & Tøkni rykker ind", schedule:["Ons 1. april 08:00–16:00 · Opsætning · Team Ljóð & Tøkni rykker ind","Tor 2. april 08:00–16:00 · Teknisk opsætning fortsætter","Fre 3. april 13:00–19:00 · Lydprøver og gennemgang","Lør 4. april · Koncertdag"], contacts:["Rúni Djurhuus","Regin Dalsgaard","Turið Thomsen","Pól Holm","Kim Hansen"] },
-    // VENUE
-    { name:"Regin Dalsgaard", role:"Venue ansvarlig", group:"Venue", organization:"Tjarnir", email:"rwd@tjarnir.fo", phone:"+298 596061", note:"Venue ansvarlig.", nextMeeting:"Man 30. marts 10:00 · Orkestertræning i Tjarnir", schedule:["Man 30. marts 10:00–16:00 · Orkester træner i Tjarnir","Tir 31. marts 10:00–16:00 · Orkester træner i Tjarnir","Ons 1. april 08:00–16:00 · Teknisk arbejde","Tor 2. april 08:00–16:00 · Teknisk arbejde fortsætter","Fre 3. april 13:00–19:00 · Lydprøver og gennemgang","Lør 4. april · Koncertdag"], contacts:["Michael Koba","Rúni Djurhuus","Kim Hansen","Pól Holm"] },
-    // PR
-    { name:"Turið Thomsen", role:"PR ansvarlig", group:"PR", organization:"Eventz", email:"tt@rd.fo", phone:"+298 235511", note:"PR ansvarlig.", nextMeeting:"Fre 3. april 13:00 · Produktionsgennemgang", schedule:["Fre 3. april 13:00–19:00 · Produktionsgennemgang","Lør 4. april · Koncertdag"], contacts:["Rúni Djurhuus","Michael Koba","Maria Winther Olsen"] },
-    // TEKNIK
-    { name:"Pól Holm", role:"Teknisk ansvarlig", group:"Teknik", organization:"Ljóð & Tøkni", email:"ph@lt.fo", phone:"+298 565500", note:"Teknisk ansvarlig.", nextMeeting:"Ons 1. april 08:00 · Teknisk indrykning", schedule:["Ons 1. april 08:00–16:00 · Teknisk indrykning","Tor 2. april 08:00–16:00 · Opsætning fortsætter","Fre 3. april 13:00–19:00 · Lydprøver · teknisk hold på arbejde hele dagen","Lør 4. april 13:00–16:00 · Lydprøve","Lør 4. april 19:30 · Koncert"], contacts:["Michael Koba","Regin Dalsgaard","Hans Poulsen","Villiam Soo","Pætur Høj"] },
-    { name:"Hans Poulsen", role:"PA lyd", group:"Teknik", organization:"Ljóð & Tøkni", email:"78hans@gmail.com", phone:"+298 595715", note:"PA lyd.", nextMeeting:"Ons 1. april 08:00 · Teknisk indrykning", schedule:["Ons 1. april 08:00–16:00 · Teknisk arbejde","Tor 2. april 08:00–16:00 · Teknisk arbejde fortsætter","Fre 3. april 13:00–19:00 · Lydprøver · teknisk hold på arbejde hele dagen","Lør 4. april 13:00–16:00 · Lydprøve","Lør 4. april 19:30 · Koncert"], contacts:["Pól Holm","Michael Koba"] },
-    { name:"Villiam Soo", role:"Visual designer / lys / grafik / LED / IMAG", group:"Teknik", organization:"Ljóð & Tøkni", email:"vizo@vizo.fo", phone:"+298 278293", note:"Visual designer, lys, grafik og LED/IMAG.", nextMeeting:"Ons 1. april 08:00 · Teknisk indrykning", schedule:["Ons 1. april 08:00–16:00 · Teknisk arbejde","Tor 2. april 08:00–16:00 · Teknisk arbejde fortsætter","Fre 3. april 13:00–19:00 · Lydprøver · teknisk hold på arbejde hele dagen","Lør 4. april 13:00–16:00 · Lydprøve","Lør 4. april 19:30 · Koncert"], contacts:["Pól Holm","Michael Koba","Pætur Høj"] },
-    // BROADCAST
-    { name:"Pætur Høj", role:"Broadcast ansvarlig", group:"Broadcast", organization:"Raclipp", email:"patur@raclip.com", phone:"+298 288007", note:"Broadcast ansvarlig.", nextMeeting:"Ons 1. april 08:00 · Broadcast forberedelse", schedule:["Ons 1. april 08:00–16:00 · Broadcast forberedelse og indrykning","Tor 2. april 08:00–16:00 · Opsætning fortsætter","Fre 3. april 13:00–19:00 · Lydprøver · teknisk hold på arbejde hele dagen","Lør 4. april 13:00–16:00 · Lydprøve","Lør 4. april 19:30 · Koncert"], contacts:["Pól Holm","Villiam Soo","Michael Koba"] },
-    // ORKESTER
-    { name:"Kim Hansen", role:"Kapelmester", group:"Orkester", organization:"HOYDALAR", email:"kimhansen72@gmail.com", phone:"+298 226000", note:"Kapelmester.", nextMeeting:"Man 30. marts 10:00 · Orkestertræning", schedule:["Man 30. marts 10:00–16:00 · Orkester træner i Tjarnir","Tir 31. marts 10:00–16:00 · Orkester træner i Tjarnir","Fre 3. april 13:00 · Orkester starter lydprøver","Fre 3. april 15:00 · Spírar og orkester på scenen","Fre 3. april 16:00 · Gæstesangere på scenen med Spírar og orkester","Lør 4. april 13:00–16:00 · Lydprøve med orkester og Spírar","Lør 4. april 19:30 · Koncertstart"], contacts:["Michael Koba","Regin Dalsgaard","Vár Miðberg","Pauli Reinert Poulsen","Jóhannus á Rógvi Joensen"], setlist:FULL_SETLIST },
-    { name:"Vár Miðberg", role:"Orkester", group:"Orkester", organization:"HOYDALAR", email:"var.midberg@gmail.com", phone:"+298 218753", note:"Orkester.", nextMeeting:"Man 30. marts 10:00 · Orkestertræning", schedule:["Man 30. marts 10:00–16:00 · Orkester træning","Tir 31. marts 10:00–16:00 · Orkester træning","Fre 3. april 13:00 · Orkester starter lydprøver","Fre 3. april 15:00 · Spírar og orkester på scenen","Fre 3. april 16:00 · Gæstesangere på scenen","Lør 4. april 13:00–16:00 · Lydprøve","Lør 4. april 19:30 · Koncert"], contacts:["Kim Hansen","Michael Koba"], setlist:FULL_SETLIST },
-    { name:"Pauli Reinert Poulsen", role:"Orkester", group:"Orkester", organization:"HOYDALAR", email:"pauli_poulsen@hotmail.com", phone:"+298 280523", note:"Orkester.", nextMeeting:"Man 30. marts 10:00 · Orkestertræning", schedule:["Man 30. marts 10:00–16:00 · Orkester træning","Tir 31. marts 10:00–16:00 · Orkester træning","Fre 3. april 13:00 · Orkester starter lydprøver","Fre 3. april 15:00 · Spírar og orkester på scenen","Fre 3. april 16:00 · Gæstesangere på scenen","Lør 4. april 13:00–16:00 · Lydprøve","Lør 4. april 19:30 · Koncert"], contacts:["Kim Hansen","Michael Koba"], setlist:FULL_SETLIST },
-    { name:"Jóhannus á Rógvi Joensen", role:"Orkester", group:"Orkester", organization:"HOYDALAR", email:"jarjoensen@yahoo.com", phone:"+45 31249375", note:"Orkester. Alternativt: +298 270080", nextMeeting:"Man 30. marts 10:00 · Orkestertræning", schedule:["Man 30. marts 10:00–16:00 · Orkester træning","Tir 31. marts 10:00–16:00 · Orkester træning","Fre 3. april 13:00 · Orkester starter lydprøver","Fre 3. april 15:00 · Spírar og orkester på scenen","Fre 3. april 16:00 · Gæstesangere på scenen","Lør 4. april 13:00–16:00 · Lydprøve","Lør 4. april 19:30 · Koncert"], contacts:["Kim Hansen","Michael Koba"], setlist:FULL_SETLIST },
-    // SPÍRAR
-    { name:"Bjarki Virgarsson Trondesen", role:"Spíri", group:"Spírar", organization:"HOYDALAR", email:"virgar_trondesen@hotmail.com", phone:"+298 287766", note:"Under 18 år. Værge: Virgar Trondesen, +298 282811.", nextMeeting:"Fre 3. april 14:00 · Spírar møder", schedule:["Fre 3. april 14:00 · Spírar møder","Fre 3. april 15:00 · Spírar og orkester på scenen","Fre 3. april 16:00 · Gæstesangere på scenen med Spírar og orkester","Lør 4. april 13:00–16:00 · Lydprøve med orkester og Spírar","Lør 4. april 18:30–19:00 · NEMA arrangement","Lør 4. april 19:30 · Koncertstart"], contacts:["Michael Koba","Kim Hansen","Rúni Djurhuus","Turið Thomsen"], setlist:SETLISTS["Bjarki Virgarsson Trondesen"] },
-    { name:"Anna Lovisa Mýri", role:"Spíri", group:"Spírar", organization:"HOYDALAR", email:"annalovisam@gmail.com", phone:"+298 277103", note:"Talent.", nextMeeting:"Fre 3. april 14:00 · Spírar møder", schedule:["Fre 3. april 14:00 · Spírar møder","Fre 3. april 15:00 · Spírar og orkester på scenen","Fre 3. april 16:00 · Gæstesangere på scenen med Spírar og orkester","Lør 4. april 13:00–16:00 · Lydprøve","Lør 4. april 18:30–19:00 · NEMA arrangement","Lør 4. april 19:30 · Koncert"], contacts:["Michael Koba","Kim Hansen","Rúni Djurhuus","Turið Thomsen"], setlist:SETLISTS["Anna Lovisa Mýri"] },
-    { name:"Filip á Smið", role:"Spíri", group:"Spírar", organization:"HOYDALAR", email:"filipasmid@gmail.com", phone:"+298 523738", note:"Talent.", nextMeeting:"Fre 3. april 14:00 · Spírar møder", schedule:["Fre 3. april 14:00 · Spírar møder","Fre 3. april 15:00 · Spírar og orkester på scenen","Fre 3. april 16:00 · Gæstesangere på scenen med Spírar og orkester","Lør 4. april 13:00–16:00 · Lydprøve","Lør 4. april 18:30–19:00 · NEMA arrangement","Lør 4. april 19:30 · Koncert"], contacts:["Michael Koba","Kim Hansen","Rúni Djurhuus","Turið Thomsen"], setlist:SETLISTS["Filip á Smið"] },
-    { name:"Jóhanna Sámalsdóttir", role:"Spíri", group:"Spírar", organization:"HOYDALAR", email:"johanna190307@gmail.com", phone:"+298 508668", note:"Talent.", nextMeeting:"Fre 3. april 14:00 · Spírar møder", schedule:["Fre 3. april 14:00 · Spírar møder","Fre 3. april 15:00 · Spírar og orkester på scenen","Fre 3. april 16:00 · Gæstesangere på scenen med Spírar og orkester","Lør 4. april 13:00–16:00 · Lydprøve","Lør 4. april 18:30–19:00 · NEMA arrangement","Lør 4. april 19:30 · Koncert"], contacts:["Michael Koba","Kim Hansen","Rúni Djurhuus","Turið Thomsen"], setlist:SETLISTS["Jóhanna Sámalsdóttir"] },
-    { name:"Emma Højaard", role:"Spíri", group:"Spírar", organization:"HOYDALAR", email:"karinhh88@gmail.com", phone:"+298 278816", note:"Under 18 år. Værge: Karin Højgaard, +298 258886.", nextMeeting:"Fre 3. april 14:00 · Spírar møder", schedule:["Fre 3. april 14:00 · Spírar møder","Fre 3. april 15:00 · Spírar og orkester på scenen","Fre 3. april 16:00 · Gæstesangere på scenen med Spírar og orkester","Lør 4. april 13:00–16:00 · Lydprøve","Lør 4. april 18:30–19:00 · NEMA arrangement","Lør 4. april 19:30 · Koncert"], contacts:["Michael Koba","Kim Hansen","Rúni Djurhuus","Turið Thomsen"], setlist:SETLISTS["Emma Højaard"] },
-    { name:"Sophilia Wraae Mukisa", role:"Spíri", group:"Spírar", organization:"HOYDALAR", email:"mukisasophilia@gmail.com", phone:"+298 277595", note:"Talent.", nextMeeting:"Fre 3. april 14:00 · Spírar møder", schedule:["Fre 3. april 14:00 · Spírar møder","Fre 3. april 15:00 · Spírar og orkester på scenen","Fre 3. april 16:00 · Gæstesangere på scenen med Spírar og orkester","Lør 4. april 13:00–16:00 · Lydprøve","Lør 4. april 18:30–19:00 · NEMA arrangement","Lør 4. april 19:30 · Koncert"], contacts:["Michael Koba","Kim Hansen","Rúni Djurhuus","Turið Thomsen"], setlist:SETLISTS["Sophilia Wraae Mukisa"] },
-    // GÆSTESANGERE
-    { name:"Eyðun Nolsøe", role:"Gæstesanger", group:"Gæstesangere", organization:"HOYDALAR", email:"eydunnolsoe@hotmail.com", phone:"+298 582501", note:"Gæstesanger.", nextMeeting:"Fre 3. april 16:00 · På scenen med Spírar og orkester", schedule:["Fre 3. april 16:00 · På scenen med Spírar og orkester","Lør 4. april 19:30 · Koncert"], contacts:["Michael Koba","Kim Hansen"], setlist:SETLISTS["Eyðun Nolsøe"] },
-    { name:"Martin Joensen", role:"Gæstesanger", group:"Gæstesangere", organization:"HOYDALAR", email:"", phone:"", note:"Email og telefon er ukendte.", nextMeeting:"Fre 3. april 16:00 · På scenen med Spírar og orkester", schedule:["Fre 3. april 16:00 · På scenen med Spírar og orkester","Lør 4. april 19:30 · Koncert"], contacts:["Michael Koba","Kim Hansen"], setlist:SETLISTS["Martin Joensen"] },
-    { name:"MC Restorff", role:"Gæstesanger", group:"Gæstesangere", organization:"HOYDALAR", email:"", phone:"", note:"Email og telefon er ukendte.", nextMeeting:"Fre 3. april 16:00 · På scenen med Spírar og orkester", schedule:["Fre 3. april 16:00 · På scenen med Spírar og orkester","Lør 4. april 19:30 · Koncert"], contacts:["Michael Koba","Kim Hansen","Per Zachariassen"], setlist:SETLISTS["MC Restorff"] }
+    { name:"Per Zachariassen", role:"Koncept ejer og kunstnerisk leder", group:"Ledelse", organization:"HOYDALAR", email:"per.zachariassen@gmail.com", phone:"+45 40941939", note:"Udvikling af HOYDALAR konceptet. Overordnet kreativ retning. Medansvar for økonomisk risiko.", nextMeeting:"Lør 4. april 13:00 · Gennemgang", schedule:SAT_ALL, contacts:["Rúni Djurhuus","Maria Winther Olsen","Michael Koba","Regin Dalsgaard"] },
+    { name:"Rúni Djurhuus", role:"Koncertarrangør", group:"Ledelse", organization:"Eventz", email:"rd@rd.fo", phone:"+298 505550", note:"Formel koncertarrangør. Markedsføring. Praktisk afvikling. Medansvar for økonomisk risiko.", nextMeeting:"Lør 4. april 13:00 · Gennemgang", schedule:SAT_ALL, contacts:["Per Zachariassen","Michael Koba","Turið Thomsen","Regin Dalsgaard","Pól Holm"] },
+    { name:"Maria Winther Olsen", role:"Program og grafik", group:"Ledelse", organization:"HOYDALAR", email:"mariawintherolsen@gmail.com", phone:"+298 258447", note:"Program og grafik.", nextMeeting:"Lør 4. april 13:00 · Gennemgang", schedule:SAT_ALL, contacts:["Per Zachariassen","Michael Koba","Rúni Djurhuus"] },
+    { name:"Michael Koba", role:"Produktion og koordinering", group:"Produktion", organization:"HOYDALAR", email:"mk@fixer.fo", phone:"+298 591011", note:"Koordinering mellem alle parter. Aftaler og kontrakter. Produktionsplan. Call sheets.", nextMeeting:"Lør 4. april 13:00 · Gennemgang", schedule:SAT_ALL, contacts:["Rúni Djurhuus","Regin Dalsgaard","Turið Thomsen","Pól Holm","Kim Hansen"] },
+    { name:"Regin Dalsgaard", role:"Venue ansvarlig", group:"Venue", organization:"Tjarnir", email:"rwd@tjarnir.fo", phone:"+298 596061", note:"Venue ansvarlig.", nextMeeting:"Lør 4. april 13:00 · Gennemgang", schedule:SAT_ALL, contacts:["Michael Koba","Rúni Djurhuus","Kim Hansen","Pól Holm"] },
+    { name:"Turið Thomsen", role:"PR ansvarlig", group:"PR", organization:"Eventz", email:"tt@rd.fo", phone:"+298 235511", note:"PR ansvarlig.", nextMeeting:"Lør 4. april 13:00 · Gennemgang", schedule:SAT_ALL, contacts:["Rúni Djurhuus","Michael Koba","Maria Winther Olsen"] },
+    { name:"Pól Holm", role:"Teknisk ansvarlig", group:"Teknik", organization:"Ljóð & Tøkni", email:"ph@lt.fo", phone:"+298 565500", note:"Teknisk ansvarlig.", nextMeeting:"Lør 4. april 13:00 · Gennemgang", schedule:SAT_ALL, contacts:["Michael Koba","Regin Dalsgaard","Hans Poulsen","Villiam Soo","Pætur Høj"] },
+    { name:"Hans Poulsen", role:"PA lyd", group:"Teknik", organization:"Ljóð & Tøkni", email:"78hans@gmail.com", phone:"+298 595715", note:"PA lyd.", nextMeeting:"Lør 4. april 13:00 · Gennemgang", schedule:SAT_ALL, contacts:["Pól Holm","Michael Koba"] },
+    { name:"Villiam Soo", role:"Visual designer / lys / grafik / LED / IMAG", group:"Teknik", organization:"Ljóð & Tøkni", email:"vizo@vizo.fo", phone:"+298 278293", note:"Visual designer, lys, grafik og LED/IMAG.", nextMeeting:"Lør 4. april 13:00 · Gennemgang", schedule:SAT_ALL, contacts:["Pól Holm","Michael Koba","Pætur Høj"] },
+    { name:"Pætur Høj", role:"Broadcast ansvarlig", group:"Broadcast", organization:"Raclipp", email:"patur@raclip.com", phone:"+298 288007", note:"Broadcast ansvarlig.", nextMeeting:"Lør 4. april 13:00 · Gennemgang", schedule:SAT_ALL, contacts:["Pól Holm","Villiam Soo","Michael Koba"] },
+    { name:"Kim Hansen", role:"Kapelmester", group:"Orkester", organization:"HOYDALAR", email:"kimhansen72@gmail.com", phone:"+298 226000", note:"Kapelmester.", nextMeeting:"Lør 4. april 13:00 · Gennemgang", schedule:SAT_ALL, contacts:["Michael Koba","Regin Dalsgaard","Vár Miðberg","Pauli Reinert Poulsen","Jóhannus á Rógvi Joensen"], setlist:FULL_SETLIST },
+    { name:"Vár Miðberg", role:"Orkester", group:"Orkester", organization:"HOYDALAR", email:"var.midberg@gmail.com", phone:"+298 218753", note:"Orkester.", nextMeeting:"Lør 4. april 13:00 · Gennemgang", schedule:SAT_ALL, contacts:["Kim Hansen","Michael Koba"], setlist:FULL_SETLIST },
+    { name:"Pauli Reinert Poulsen", role:"Orkester", group:"Orkester", organization:"HOYDALAR", email:"pauli_poulsen@hotmail.com", phone:"+298 280523", note:"Orkester.", nextMeeting:"Lør 4. april 13:00 · Gennemgang", schedule:SAT_ALL, contacts:["Kim Hansen","Michael Koba"], setlist:FULL_SETLIST },
+    { name:"Jóhannus á Rógvi Joensen", role:"Orkester", group:"Orkester", organization:"HOYDALAR", email:"jarjoensen@yahoo.com", phone:"+45 31249375", note:"Orkester. Alternativt: +298 270080", nextMeeting:"Lør 4. april 13:00 · Gennemgang", schedule:SAT_ALL, contacts:["Kim Hansen","Michael Koba"], setlist:FULL_SETLIST },
+    { name:"Bjarki Virgarsson Trondesen", role:"Spíri", group:"Spírar", organization:"HOYDALAR", email:"virgar_trondesen@hotmail.com", phone:"+298 287766", note:"Under 18 år. Værge: Virgar Trondesen, +298 282811.", nextMeeting:"Lør 4. april 13:00 · Gennemgang med Per", schedule:SAT_SPIRAR, contacts:["Michael Koba","Kim Hansen","Rúni Djurhuus","Turið Thomsen"], setlist:SETLISTS["Bjarki Virgarsson Trondesen"] },
+    { name:"Anna Lovisa Mýri", role:"Spíri", group:"Spírar", organization:"HOYDALAR", email:"annalovisam@gmail.com", phone:"+298 277103", note:"Talent.", nextMeeting:"Lør 4. april 13:00 · Gennemgang med Per", schedule:SAT_SPIRAR, contacts:["Michael Koba","Kim Hansen","Rúni Djurhuus","Turið Thomsen"], setlist:SETLISTS["Anna Lovisa Mýri"] },
+    { name:"Filip á Smið", role:"Spíri", group:"Spírar", organization:"HOYDALAR", email:"filipasmid@gmail.com", phone:"+298 523738", note:"Talent.", nextMeeting:"Lør 4. april 13:00 · Gennemgang med Per", schedule:SAT_SPIRAR, contacts:["Michael Koba","Kim Hansen","Rúni Djurhuus","Turið Thomsen"], setlist:SETLISTS["Filip á Smið"] },
+    { name:"Jóhanna Sámalsdóttir", role:"Spíri", group:"Spírar", organization:"HOYDALAR", email:"johanna190307@gmail.com", phone:"+298 508668", note:"Talent.", nextMeeting:"Lør 4. april 13:00 · Gennemgang med Per", schedule:SAT_SPIRAR, contacts:["Michael Koba","Kim Hansen","Rúni Djurhuus","Turið Thomsen"], setlist:SETLISTS["Jóhanna Sámalsdóttir"] },
+    { name:"Emma Højaard", role:"Spíri", group:"Spírar", organization:"HOYDALAR", email:"karinhh88@gmail.com", phone:"+298 278816", note:"Under 18 år. Værge: Karin Højgaard, +298 258886.", nextMeeting:"Lør 4. april 13:00 · Gennemgang med Per", schedule:SAT_SPIRAR, contacts:["Michael Koba","Kim Hansen","Rúni Djurhuus","Turið Thomsen"], setlist:SETLISTS["Emma Højaard"] },
+    { name:"Sophilia Wraae Mukisa", role:"Spíri", group:"Spírar", organization:"HOYDALAR", email:"mukisasophilia@gmail.com", phone:"+298 277595", note:"Talent.", nextMeeting:"Lør 4. april 13:00 · Gennemgang med Per", schedule:SAT_SPIRAR, contacts:["Michael Koba","Kim Hansen","Rúni Djurhuus","Turið Thomsen"], setlist:SETLISTS["Sophilia Wraae Mukisa"] },
+    { name:"Eyðun Nolsøe", role:"Gæstesanger", group:"Gæstesangere", organization:"HOYDALAR", email:"eydunnolsoe@hotmail.com", phone:"+298 582501", note:"Gæstesanger.", nextMeeting:"Lør 4. april 13:00 · Gennemgang", schedule:SAT_ALL, contacts:["Michael Koba","Kim Hansen"], setlist:SETLISTS["Eyðun Nolsøe"] },
+    { name:"Martin Joensen", role:"Gæstesanger", group:"Gæstesangere", organization:"HOYDALAR", email:"", phone:"", note:"Email og telefon er ukendte.", nextMeeting:"Lør 4. april 13:00 · Gennemgang", schedule:SAT_ALL, contacts:["Michael Koba","Kim Hansen"], setlist:SETLISTS["Martin Joensen"] }
   ];
 
   // ── UTILS ──
@@ -541,34 +569,18 @@
   }
   tabBtns.forEach(btn=>btn.addEventListener('click',()=>switchTab(btn.dataset.tab)));
 
-  // ── TIMELINE ──
-  function renderTimeline(){
-    document.getElementById('timeline').innerHTML=weekPlan.map(day=>`
-      <div class="timeline-day">
-        <div class="timeline-day-header">
-          <div class="timeline-day-name">${esc(day.date)}</div>
-          <span class="day-badge">${esc(day.badge)}</span>
-        </div>
-        <div class="timeline-day-body">
-          <ul class="timeline-items">${day.items.map(i=>`<li class="timeline-item">${esc(i)}</li>`).join('')}</ul>
-        </div>
-      </div>`).join('');
-  }
-
   // ── MESSAGES ──
   function renderMessages(){
     document.getElementById('msgBadge').textContent=messages.length;
-    document.getElementById('messageList').innerHTML=messages.length
-      ?messages.map(m=>`
-        <div class="message-card">
-          <div class="message-header">
-            <div class="message-title">${esc(m.title)}</div>
-            <div class="msg-tags">${m.groups.map(g=>`<span class="msg-tag">${esc(g)}</span>`).join('')}</div>
-          </div>
-          <div class="message-body">${esc(m.body)}</div>
-          <div class="message-date">${esc(m.date)}</div>
-        </div>`).join('')
-      :`<div class="empty-state">Ingen aktuelle beskeder.</div>`;
+    document.getElementById('messageList').innerHTML=messages.map(m=>`
+      <div class="message-card">
+        <div class="message-header">
+          <div class="message-title">${esc(m.title)}</div>
+          <div class="msg-tags">${m.groups.map(g=>`<span class="msg-tag">${esc(g)}</span>`).join('')}</div>
+        </div>
+        <div class="message-body">${esc(m.body)}</div>
+        <div class="message-date">${esc(m.date)}</div>
+      </div>`).join('');
   }
 
   // ── STATS ──
@@ -680,7 +692,6 @@
     }
   }
 
-  // ── NAME SELECT ──
   document.getElementById('personSelect').addEventListener('change',function(){
     const person=this.value?getPerson(this.value):null;
     const tab=document.getElementById('minplanTab');
@@ -694,7 +705,6 @@
     }
   });
 
-  // ── RESET ──
   function resetHome(){
     document.getElementById('personSelect').value='';
     document.getElementById('minplanTab').classList.remove('show');
@@ -708,7 +718,6 @@
   document.getElementById('homeButton').addEventListener('click',resetHome);
 
   // ── INIT ──
-  renderTimeline();
   renderMessages();
   renderStats();
   populateGroups();

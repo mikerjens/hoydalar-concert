@@ -9,720 +9,101 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg:#f5f0e8; --bg2:#ede7d9; --card:#faf7f2; --card2:#f0ebe0;
-      --border:#d6ccb8; --border-dark:#b8aa92;
+      --bg:#f5f0e8;
+      --card:#faf7f2;
+      --border:#d6ccb8;
       --text:#1c1610; --text-mid:#4a3f2e; --text-muted:#8a7a62;
-      --gold-light:#c4a05a; --gold-pale:#f0e4c4;
-      --bronze:#7a5a28; --bronze-dark:#5a3e18; --accent:#8b6914;
+      --gold-light:#c4a05a;
+      --bronze-dark:#5a3e18;
       --msg-bg:#fdf6e3; --msg-border:#c8a840;
-      --shadow-sm:0 2px 8px rgba(28,22,16,.06);
-      --shadow:0 4px 20px rgba(28,22,16,.10);
-      --radius:16px; --radius-sm:10px;
+      --shadow-sm:0 2px 12px rgba(28,22,16,.07);
+      --radius:18px;
       --font-display:'Cormorant Garamond',Georgia,serif;
       --font-body:'DM Sans',system-ui,sans-serif;
     }
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    html{scroll-behavior:smooth;}
     body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-height:100vh;font-size:15px;line-height:1.6;}
-    a{color:inherit;text-decoration:none;}
 
-    .header{background:linear-gradient(135deg,#3a2a10 0%,#5a3e18 50%,#4a3018 100%);color:#f5f0e8;padding:20px 16px 0;position:sticky;top:0;z-index:100;box-shadow:0 2px 20px rgba(0,0,0,.3);}
-    .header-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px;flex-wrap:wrap;}
-    .brand{cursor:pointer;}
-    .brand-eye{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,240,232,.6);margin-bottom:2px;}
-    .brand-name{font-family:var(--font-display);font-size:34px;font-weight:700;letter-spacing:.04em;line-height:1;}
-    .brand-date{font-size:12px;color:var(--gold-light);letter-spacing:.06em;margin-top:3px;}
-    .header-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
-    .home-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:999px;border:1px solid rgba(245,240,232,.3);background:rgba(245,240,232,.1);color:#f5f0e8;font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;}
-    .home-btn:hover{background:rgba(245,240,232,.18);}
-    .name-picker-wrap{display:flex;align-items:center;gap:8px;background:rgba(245,240,232,.12);border:1px solid rgba(245,240,232,.2);border-radius:999px;padding:5px 6px 5px 12px;}
-    .name-picker-label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-light);white-space:nowrap;}
-    .name-picker-select{border:none;background:var(--bronze-dark);color:#f5f0e8;font-family:var(--font-body);font-size:13px;font-weight:500;padding:5px 8px;border-radius:999px;cursor:pointer;max-width:180px;}
-    .name-picker-select:focus{outline:none;}
-    .tabs-bar{display:flex;overflow-x:auto;scrollbar-width:none;border-top:1px solid rgba(245,240,232,.12);margin-top:4px;}
-    .tabs-bar::-webkit-scrollbar{display:none;}
-    .tab-btn{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 18px 12px;background:transparent;border:none;color:rgba(245,240,232,.55);font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;position:relative;transition:color .2s;white-space:nowrap;}
-    .tab-btn .tab-icon{font-size:15px;}
-    .tab-btn:hover{color:rgba(245,240,232,.85);}
-    .tab-btn.active{color:var(--gold-light);}
-    .tab-btn.active::after{content:'';position:absolute;bottom:0;left:12px;right:12px;height:2px;background:var(--gold-light);border-radius:2px 2px 0 0;}
-    #minplanTab{display:none;}
-    #minplanTab.show{display:flex;}
+    /* HEADER */
+    .header{background:linear-gradient(135deg,#3a2a10 0%,#5a3e18 55%,#4a3018 100%);color:#f5f0e8;padding:32px 24px 36px;text-align:center;}
+    .brand-eye{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,240,232,.55);margin-bottom:6px;}
+    .brand-name{font-family:var(--font-display);font-size:52px;font-weight:700;letter-spacing:.05em;line-height:1;}
+    .brand-date{font-size:12px;color:var(--gold-light);letter-spacing:.08em;margin-top:6px;}
 
-    .main{max-width:960px;margin:0 auto;padding:20px 14px 80px;}
-    .tab-panel{display:none;}
-    .tab-panel.active{display:block;}
+    /* MAIN */
+    .main{max-width:680px;margin:0 auto;padding:36px 20px 80px;}
 
-    /* MY BANNER */
-    .my-banner{background:linear-gradient(135deg,var(--bronze-dark),var(--bronze));color:#f5f0e8;border-radius:var(--radius);padding:20px;margin-bottom:20px;box-shadow:var(--shadow);}
-    .my-banner-eye{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-light);margin-bottom:4px;}
-    .my-banner-name{font-family:var(--font-display);font-size:28px;font-weight:700;line-height:1.1;margin-bottom:2px;}
-    .my-banner-role{font-size:13px;color:rgba(245,240,232,.7);margin-bottom:16px;}
-    .my-next{background:rgba(0,0,0,.2);border:1px solid rgba(245,240,232,.15);border-radius:var(--radius-sm);padding:12px 16px;margin-bottom:16px;}
-    .my-next-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-light);margin-bottom:4px;}
-    .my-next-time{font-family:var(--font-display);font-size:18px;font-weight:600;line-height:1.3;}
-    .my-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-    @media(max-width:600px){.my-grid{grid-template-columns:1fr;}}
-    .my-box{background:rgba(245,240,232,.08);border:1px solid rgba(245,240,232,.15);border-radius:var(--radius-sm);padding:14px;}
-    .my-box h3{font-family:var(--font-body);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-light);margin-bottom:10px;}
-    .my-list{list-style:none;display:grid;gap:6px;}
-    .my-list li{font-size:13px;padding:6px 10px;background:rgba(0,0,0,.15);border-radius:8px;line-height:1.4;}
-    .my-list li.list-header{background:transparent;padding:8px 10px 2px;font-weight:700;color:var(--gold-light);font-size:10px;letter-spacing:.08em;text-transform:uppercase;}
-    .my-contact-item{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;background:rgba(0,0,0,.15);border-radius:8px;}
-    .my-contact-name{font-size:13px;font-weight:500;}
-    .my-contact-role{font-size:11px;color:rgba(245,240,232,.6);}
-    .my-contact-actions{display:flex;gap:6px;}
-    .icon-btn{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:rgba(245,240,232,.15);font-size:14px;transition:background .2s;}
-    .icon-btn:hover{background:rgba(245,240,232,.25);}
+    /* BESKED */
+    .besked-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);margin-bottom:14px;}
 
-    .section-label{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
-    .section-label h2{font-family:var(--font-display);font-size:26px;font-weight:600;color:var(--text);}
-    .badge{display:inline-block;padding:3px 10px;border-radius:999px;background:var(--msg-border);color:white;font-size:11px;font-weight:700;}
+    .message-card{
+      background:var(--msg-bg);
+      border:1px solid var(--msg-border);
+      border-left:5px solid var(--msg-border);
+      border-radius:var(--radius);
+      padding:28px 28px 24px;
+      box-shadow:var(--shadow-sm);
+    }
+    .message-body{
+      font-size:16px;
+      line-height:1.85;
+      color:var(--text-mid);
+      white-space:pre-line;
+    }
+    .message-date{
+      margin-top:20px;
+      padding-top:16px;
+      border-top:1px solid var(--border);
+      font-size:11px;
+      color:var(--text-muted);
+      font-weight:600;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+    }
 
-    /* MESSAGES */
-    .message-card{background:var(--msg-bg);border:1px solid var(--msg-border);border-left:4px solid var(--msg-border);border-radius:var(--radius);padding:18px;margin-bottom:12px;box-shadow:var(--shadow-sm);}
-    .message-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px;}
-    .message-title{font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--bronze-dark);}
-    .msg-tags{display:flex;gap:6px;flex-wrap:wrap;}
-    .msg-tag{display:inline-block;padding:4px 10px;border-radius:999px;background:white;border:1px solid var(--msg-border);color:var(--bronze-dark);font-size:11px;font-weight:700;}
-    .message-body{font-size:14px;line-height:1.7;color:var(--text-mid);white-space:pre-line;}
-    .message-date{margin-top:10px;font-size:11px;color:var(--text-muted);font-weight:600;letter-spacing:.04em;text-transform:uppercase;}
-
-    /* DAY CARD */
-    .day-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);margin-bottom:16px;}
-    .day-card-header{background:var(--bronze-dark);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
-    .day-card-title{font-family:var(--font-display);font-size:22px;font-weight:700;color:#f5f0e8;}
-    .day-card-badge{font-size:11px;font-weight:700;padding:4px 12px;border-radius:999px;background:var(--gold-pale);color:var(--bronze-dark);border:1px solid var(--gold-light);white-space:nowrap;}
-    .day-card-body{padding:0;}
-    .time-block{display:flex;gap:0;border-bottom:1px solid var(--border);}
-    .time-block:last-child{border-bottom:none;}
-    .time-col{min-width:80px;padding:14px 16px;background:var(--card2);border-right:1px solid var(--border);font-family:var(--font-display);font-size:16px;font-weight:700;color:var(--bronze-dark);flex-shrink:0;}
-    .time-content{padding:14px 18px;font-size:14px;color:var(--text-mid);line-height:1.6;}
-    .time-content strong{color:var(--text);display:block;font-family:var(--font-display);font-size:16px;margin-bottom:2px;}
-    .time-note{font-size:12px;color:var(--text-muted);margin-top:4px;font-style:italic;}
-
-    /* SETLIST */
-    .setlist-section{margin-top:28px;}
-    .setlist-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);overflow:hidden;}
-    .setlist-blok-header{background:var(--bronze-dark);padding:14px 20px;display:flex;align-items:baseline;gap:14px;}
-    .setlist-blok-title{font-family:var(--font-display);font-size:22px;font-weight:700;color:#f5f0e8;letter-spacing:.04em;}
-    .setlist-blok-sub{font-size:11px;color:var(--gold-light);font-weight:600;letter-spacing:.1em;text-transform:uppercase;}
-    .setlist-row{display:grid;grid-template-columns:52px 1fr;align-items:center;border-bottom:1px solid var(--border);transition:background .15s;}
-    .setlist-row:last-child{border-bottom:none;}
-    .setlist-row:hover{background:var(--bg2);}
-    .setlist-num{font-family:var(--font-display);font-size:15px;font-weight:700;color:var(--gold-light);padding:14px 0 14px 18px;}
-    .setlist-song{padding:14px 18px 14px 12px;font-size:14px;color:var(--text-mid);line-height:1.4;}
-    .setlist-song strong{font-family:var(--font-display);font-size:16px;font-weight:700;color:var(--text);display:block;margin-bottom:2px;}
-
-    /* PEOPLE */
-    .stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:24px;}
-    @media(min-width:600px){.stats-grid{grid-template-columns:repeat(4,1fr);}}
-    .stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;text-align:center;box-shadow:var(--shadow-sm);}
-    .stat-value{font-family:var(--font-display);font-size:40px;font-weight:700;color:var(--bronze-dark);line-height:1;}
-    .stat-label{font-size:11px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-top:4px;}
-    .view-toggle{display:flex;gap:8px;margin-bottom:16px;}
-    .toggle-btn{padding:8px 16px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--card);font-family:var(--font-body);font-size:12px;font-weight:600;cursor:pointer;color:var(--text-mid);transition:all .15s;}
-    .toggle-btn.active{background:var(--bronze-dark);color:#f5f0e8;border-color:var(--bronze-dark);}
-    .people-filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
-    .people-filters input,.people-filters select{flex:1 1 200px;padding:12px 14px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--card);font-family:var(--font-body);font-size:14px;color:var(--text);min-height:48px;}
-    .people-filters input:focus,.people-filters select:focus{outline:none;border-color:var(--gold-light);box-shadow:0 0 0 3px rgba(196,160,90,.15);}
-    .people-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;}
-    .person-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:12px;transition:box-shadow .2s,transform .2s;}
-    .person-card:hover{box-shadow:var(--shadow);transform:translateY(-1px);}
-    .person-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
-    .person-name{font-family:var(--font-display);font-size:22px;font-weight:700;line-height:1.1;color:var(--text);}
-    .person-role{font-size:12px;font-weight:500;color:var(--accent);margin-top:4px;}
-    .group-tag{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 10px;border-radius:999px;background:var(--gold-pale);color:var(--bronze-dark);border:1px solid rgba(154,122,58,.3);white-space:nowrap;}
-    .person-org{font-size:12px;color:var(--text-muted);font-weight:500;}
-    .person-note{font-size:13px;color:var(--text-mid);line-height:1.55;padding:10px;background:var(--bg2);border-radius:var(--radius-sm);border-left:3px solid var(--border-dark);}
-    .person-contacts{display:grid;gap:6px;}
-    .contact-row{display:flex;align-items:center;gap:8px;font-size:13px;}
-    .contact-row-label{font-weight:600;color:var(--text-muted);min-width:52px;font-size:11px;letter-spacing:.04em;text-transform:uppercase;}
-    .contact-row a{color:var(--accent);font-weight:500;}
-    .contact-row a:hover{text-decoration:underline;}
-    .person-actions{display:flex;gap:8px;flex-wrap:wrap;}
-    .action-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:var(--radius-sm);font-family:var(--font-body);font-size:13px;font-weight:600;text-decoration:none;transition:all .15s;border:none;flex:1;justify-content:center;cursor:pointer;}
-    .action-btn.primary{background:var(--bronze-dark);color:#f5f0e8;}
-    .action-btn.primary:hover{background:var(--bronze);}
-    .action-btn.secondary{background:var(--card2);color:var(--text);border:1px solid var(--border);}
-    .action-btn.secondary:hover{background:var(--border);}
-    .table-wrap{overflow-x:auto;border-radius:var(--radius);box-shadow:var(--shadow-sm);}
-    table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--border);font-size:13px;}
-    th{background:var(--card2);color:var(--text-muted);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:12px 14px;border-bottom:1px solid var(--border);text-align:left;}
-    td{padding:12px 14px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5;color:var(--text-mid);}
-    tr:last-child td{border-bottom:none;}
-    tr:hover td{background:var(--bg2);}
-    td strong{color:var(--text);font-family:var(--font-display);font-size:15px;font-weight:700;}
-
-    /* OVERVIEW */
-    .overview-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px;margin-bottom:16px;box-shadow:var(--shadow-sm);}
-    .overview-card h3{font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--bronze-dark);margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--border);}
-    .meta-pairs{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-    @media(max-width:480px){.meta-pairs{grid-template-columns:1fr;}}
-    .meta-pair{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px;}
-    .meta-pair-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);margin-bottom:4px;}
-    .meta-pair-value{font-family:var(--font-display);font-size:17px;font-weight:700;color:var(--text);}
-    .role-list{list-style:none;display:grid;gap:6px;margin-top:12px;}
-    .role-item{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.45;color:var(--text-mid);}
-    .role-item::before{content:'—';color:var(--gold-light);font-weight:700;flex-shrink:0;}
-    .role-item strong{color:var(--text);}
-    .role-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-top:20px;}
-    .role-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow-sm);}
-    .role-card h4{font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--bronze-dark);margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--border);}
-
-    .empty-state{padding:40px 20px;text-align:center;color:var(--text-muted);font-style:italic;}
-    .hidden{display:none!important;}
-    @media(min-width:700px){.header{padding:20px 24px 0;}.brand-name{font-size:40px;}}
+    @media(min-width:600px){
+      .header{padding:44px 32px 48px;}
+      .brand-name{font-size:64px;}
+      .message-card{padding:36px 36px 28px;}
+      .message-body{font-size:16px;}
+    }
   </style>
 </head>
 <body>
 
 <header class="header">
-  <div class="header-top">
-    <div class="brand" id="brandHome">
-      <div class="brand-eye">Produktion portal</div>
-      <div class="brand-name">HOYDALAR</div>
-      <div class="brand-date">Lørdag 4. april 2026 · Tjarnir</div>
-    </div>
-    <div class="header-right">
-      <button class="home-btn" id="homeButton">↩ Home</button>
-      <div class="name-picker-wrap">
-        <span class="name-picker-label">Min plan</span>
-        <select id="personSelect" class="name-picker-select">
-          <option value="">Vælg dit navn</option>
-        </select>
-      </div>
-    </div>
-  </div>
-  <nav class="tabs-bar">
-    <button class="tab-btn active" data-tab="modeplan"><span class="tab-icon">📅</span><span>Mødeplan</span></button>
-    <button class="tab-btn" data-tab="beskeder"><span class="tab-icon">📢</span><span>Beskeder</span></button>
-    <button class="tab-btn" data-tab="kontakter"><span class="tab-icon">👥</span><span>Kontakter</span></button>
-    <button class="tab-btn" data-tab="overblik"><span class="tab-icon">🎭</span><span>Overblik</span></button>
-    <button class="tab-btn" data-tab="minplan" id="minplanTab"><span class="tab-icon">⭐</span><span>Min plan</span></button>
-  </nav>
+  <div class="brand-eye">Produktionsportal</div>
+  <div class="brand-name">HOYDALAR</div>
+  <div class="brand-date">4. april 2026 · Tjarnir</div>
 </header>
 
 <main class="main">
+  <div class="besked-label">Besked</div>
+  <div class="message-card">
+    <div class="message-body">Góðu tit øll
 
-  <!-- TAB: MØDEPLAN -->
-  <div class="tab-panel active" id="tab-modeplan">
-    <div class="section-label" style="margin-bottom:16px;"><h2>Lørdag 4. april — Koncertdag</h2></div>
+Nú er HOYDALAR konsertin liðug, og vegna leiðsluna vilja vit bera tykkum eina stóra og hjartaliga tøkk fyri ein megnar innsats.
 
-    <div class="day-card">
-      <div class="day-card-header">
-        <div class="day-card-title">Lørdag 4. april 2026</div>
-        <div class="day-card-badge">KONCERTDAG</div>
-      </div>
-      <div class="day-card-body">
-        <div class="time-block">
-          <div class="time-col">13:00</div>
-          <div class="time-content">
-            <strong>Gennemgang med Per Zachariassen</strong>
-            Alle i produktionen møder her. Den første time er gennemgang med Per Zachariassen, derefter generalprøve.
-            <div class="time-note">Forventes afsluttet kl. 16:00 eller 16:30</div>
-          </div>
-        </div>
-        <div class="time-block">
-          <div class="time-col">16:00</div>
-          <div class="time-content">
-            <strong>Fri til at hvile sig</strong>
-            Fra kl. 16:00 eller 16:30 har alle fri indtil de skal møde igen.
-          </div>
-        </div>
-        <div class="time-block">
-          <div class="time-col">18:30</div>
-          <div class="time-content">
-            <strong>NEMA arrangement — kun Spírar</strong>
-            Spírar deltager i NEMA arrangement i separat lokale i Tjarnir.
-          </div>
-        </div>
-        <div class="time-block">
-          <div class="time-col">19:00</div>
-          <div class="time-content">
-            <strong>Alle møder — ½ time inden koncertstart</strong>
-            Alle andre end Spírar møder kl. 19:00.
-          </div>
-        </div>
-        <div class="time-block">
-          <div class="time-col">19:30</div>
-          <div class="time-content">
-            <strong>KONCERTSTART</strong>
-          </div>
-        </div>
-        <div class="time-block">
-          <div class="time-col">Ca. 21:00</div>
-          <div class="time-content">
-            <strong>Koncert slut</strong>
-          </div>
-        </div>
-      </div>
-    </div>
+Konsertin var fantastisk, og tað hevði als ikki borið til uttan tykkum. Tað lá nógv arbeiði aftanfyri, og tit hava hvør í sínum lagi verið við til at skapa eitt serligt og minniligt kvøld. Hetta eru vit ómetaliga takksom fyri.
 
-    <!-- SANGPLAN -->
-    <div class="setlist-section">
-      <div class="section-label" style="margin-bottom:16px;">
-        <h2>Sangplan</h2>
-        <span style="display:inline-block;padding:3px 10px;border-radius:999px;background:var(--gold-pale);color:var(--bronze-dark);border:1px solid var(--gold-light);font-size:11px;font-weight:700;">4. april 2026</span>
-      </div>
-      <div class="setlist-card">
+Praktisk kunning
 
-        <div class="setlist-blok-header">
-          <div class="setlist-blok-title">BLOK 1</div>
-          <div class="setlist-blok-sub">Solo</div>
-        </div>
-        <div class="setlist-row"><div class="setlist-num">1</div><div class="setlist-song"><strong>Bjarki</strong>Spor í sandi</div></div>
-        <div class="setlist-row"><div class="setlist-num">2</div><div class="setlist-song"><strong>Bjarki</strong>Hugsi bert um teg</div></div>
-        <div class="setlist-row"><div class="setlist-num">3</div><div class="setlist-song"><strong>Emma</strong>Morgun</div></div>
-        <div class="setlist-row"><div class="setlist-num">4</div><div class="setlist-song"><strong>Emma</strong>Aldan</div></div>
-        <div class="setlist-row"><div class="setlist-num">5</div><div class="setlist-song"><strong>Filip</strong>Elisabeth &amp; Elinborg</div></div>
-        <div class="setlist-row"><div class="setlist-num">6</div><div class="setlist-song"><strong>Filip</strong>Í dans</div></div>
-        <div class="setlist-row"><div class="setlist-num">7</div><div class="setlist-song"><strong>Jóhanna</strong>Ró</div></div>
-        <div class="setlist-row"><div class="setlist-num">8</div><div class="setlist-song"><strong>Jóhanna</strong>Trúgv</div></div>
-        <div class="setlist-row"><div class="setlist-num">9</div><div class="setlist-song"><strong>Anna Lovisa</strong>Røttu skógvarnar</div></div>
-        <div class="setlist-row"><div class="setlist-num">10</div><div class="setlist-song"><strong>Anna Lovisa</strong>Summarið við tær</div></div>
-        <div class="setlist-row"><div class="setlist-num">11</div><div class="setlist-song"><strong>Sophilia</strong>Wall of silence</div></div>
-        <div class="setlist-row"><div class="setlist-num">12</div><div class="setlist-song"><strong>Sophilia</strong>15 ár</div></div>
+Rokningar skulu sendast beinleiðis til:
+EVENTZ FØROYAR
+Att.: Rúni Djurhuus
+rd@rd.fo
 
-        <div class="setlist-blok-header">
-          <div class="setlist-blok-title">BLOK 2</div>
-          <div class="setlist-blok-sub">Duetter og ensembler</div>
-        </div>
-        <div class="setlist-row"><div class="setlist-num">13</div><div class="setlist-song"><strong>Bjarki &amp; Filip</strong>Summar</div></div>
-        <div class="setlist-row"><div class="setlist-num">14</div><div class="setlist-song"><strong>Anna Lovisa, Emma, Jóhanna &amp; Sophilia</strong>Hvíta flykrur</div></div>
-        <div class="setlist-row"><div class="setlist-num">15</div><div class="setlist-song"><strong>Filip, Emma &amp; Martin</strong>60'ini</div></div>
-        <div class="setlist-row"><div class="setlist-num">16</div><div class="setlist-song"><strong>Filip, Sophilia &amp; Martin</strong>Motormani</div></div>
-        <div class="setlist-row"><div class="setlist-num">17</div><div class="setlist-song"><strong>Sophilia, Jóhanna &amp; Eyðun</strong>Á, um vit</div></div>
-        <div class="setlist-row"><div class="setlist-num">18</div><div class="setlist-song"><strong>Bjarki, Anna Lovisa &amp; Eyðun</strong>So nógvar røddir</div></div>
-        <div class="setlist-row"><div class="setlist-num">19</div><div class="setlist-song"><strong>Eyðun &amp; Spírar</strong>Tað er løtan (Originalurin)</div></div>
-        <div class="setlist-row"><div class="setlist-num">20</div><div class="setlist-song"><strong>Spírar og stjørnur</strong>Mítt land</div></div>
+Undirveitarar til Ljóð og Tøkni avrokna beinleiðis við Ljóð &amp; Tøkni. Ljóð og Tøkni avroknar við EVENTZ.
 
-      </div>
-    </div>
+Spírar skulu ikki senda rokning.
+
+Enn eina ferð. Túsund takk fyri hesa ferð :)
+
+Vegna leiðsluna
+Heilsan Michael Koba</div>
+    <div class="message-date">7. april 2026</div>
   </div>
-
-  <!-- TAB: BESKEDER -->
-  <div class="tab-panel" id="tab-beskeder">
-    <div class="section-label">
-      <h2>Beskeder</h2>
-      <span class="badge" id="msgBadge">0</span>
-    </div>
-    <div id="messageList"></div>
-  </div>
-
-  <!-- TAB: KONTAKTER -->
-  <div class="tab-panel" id="tab-kontakter">
-    <div class="stats-grid" id="statsGrid"></div>
-    <div class="view-toggle">
-      <button class="toggle-btn active" id="gridViewBtn">Kort</button>
-      <button class="toggle-btn" id="tableViewBtn">Tabel</button>
-    </div>
-    <div class="people-filters">
-      <input type="text" id="searchInput" placeholder="Søg navn, rolle, afdeling…" />
-      <select id="groupFilter"><option value="all">Alle grupper</option></select>
-    </div>
-    <div class="people-grid" id="peopleGrid"></div>
-    <div class="table-wrap hidden" id="tableWrap">
-      <table>
-        <thead><tr><th>Navn</th><th>Rolle</th><th>Gruppe</th><th>Organisation</th><th>Telefon</th><th>Email</th><th>Note</th></tr></thead>
-        <tbody id="contactTableBody"></tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- TAB: OVERBLIK -->
-  <div class="tab-panel" id="tab-overblik">
-    <div class="section-label" style="margin-bottom:16px;"><h2>Projektstruktur</h2></div>
-    <div class="overview-card">
-      <h3>Projekt overblik</h3>
-      <div class="meta-pairs">
-        <div class="meta-pair"><div class="meta-pair-label">Koncept ejer</div><div class="meta-pair-value">Per Zachariassen</div></div>
-        <div class="meta-pair"><div class="meta-pair-label">Koncertarrangør</div><div class="meta-pair-value">Rúni Djurhuus / Eventz</div></div>
-        <div class="meta-pair"><div class="meta-pair-label">Produktion og koordinering</div><div class="meta-pair-value">Michael Koba</div></div>
-        <div class="meta-pair"><div class="meta-pair-label">Venue</div><div class="meta-pair-value">Tjarnir</div></div>
-      </div>
-      <ul class="role-list">
-        <li class="role-item"><span><strong>Per Zachariassen</strong> — Koncept ejer og kunstnerisk leder</span></li>
-        <li class="role-item"><span><strong>Rúni Djurhuus</strong> — Formel koncertarrangør og marketing</span></li>
-        <li class="role-item"><span><strong>Maria Winther Olsen</strong> — Program og grafik</span></li>
-        <li class="role-item"><span><strong>Michael Koba</strong> — Produktion og koordinering</span></li>
-        <li class="role-item"><span><strong>Turið Thomsen</strong> — PR ansvarlig</span></li>
-        <li class="role-item"><span><strong>Regin Dalsgaard</strong> — Venue ansvarlig</span></li>
-        <li class="role-item"><span><strong>Kim Hansen</strong> — Kapelmester</span></li>
-        <li class="role-item"><span><strong>Pól Holm</strong> — Teknisk ansvarlig</span></li>
-        <li class="role-item"><span><strong>Pætur Høj</strong> — Broadcast ansvarlig</span></li>
-      </ul>
-    </div>
-    <div class="role-grid">
-      <div class="role-card"><h4>Ejerskab og økonomi</h4><ul class="role-list">
-        <li class="role-item"><span><strong>Per Zachariassen</strong> — Ejer af HOYDALAR konceptet</span></li>
-        <li class="role-item"><span>Per Zachariassen og <strong>Rúni Djurhuus</strong> deler økonomisk risiko</span></li>
-        <li class="role-item"><span><strong>Rúni Djurhuus / Eventz</strong> — Formel koncertarrangør</span></li>
-      </ul></div>
-      <div class="role-card"><h4>Kreativ, PR og program</h4><ul class="role-list">
-        <li class="role-item"><span><strong>Per Zachariassen</strong> — Kunstnerisk leder</span></li>
-        <li class="role-item"><span><strong>Maria Winther Olsen</strong> — Program og grafik</span></li>
-        <li class="role-item"><span><strong>Turið Thomsen</strong> — PR ansvarlig</span></li>
-        <li class="role-item"><span><strong>Michael Koba</strong> — Produktion og koordinering</span></li>
-      </ul></div>
-      <div class="role-card"><h4>Venue, musik og teknik</h4><ul class="role-list">
-        <li class="role-item"><span><strong>Regin Dalsgaard</strong> — Venue ansvarlig · Tjarnir</span></li>
-        <li class="role-item"><span><strong>Kim Hansen</strong> — Kapelmester</span></li>
-        <li class="role-item"><span><strong>Pól Holm</strong> — Teknisk ansvarlig · Ljóð &amp; Tøkni</span></li>
-        <li class="role-item"><span><strong>Hans Poulsen</strong> — PA lyd · Ljóð &amp; Tøkni</span></li>
-        <li class="role-item"><span><strong>Villiam Soo</strong> — Visual designer / lys / grafik / LED / IMAG</span></li>
-        <li class="role-item"><span><strong>Pætur Høj</strong> — Broadcast ansvarlig · Raclipp</span></li>
-      </ul></div>
-      <div class="role-card"><h4>Orkester</h4><ul class="role-list">
-        <li class="role-item"><span><strong>Kim Hansen</strong> — Kapelmester</span></li>
-        <li class="role-item"><span><strong>Vár Miðberg</strong></span></li>
-        <li class="role-item"><span><strong>Pauli Reinert Poulsen</strong></span></li>
-        <li class="role-item"><span><strong>Jóhannus á Rógvi Joensen</strong></span></li>
-      </ul></div>
-      <div class="role-card"><h4>Spírar (talenter)</h4><ul class="role-list">
-        <li class="role-item"><span><strong>Bjarki Virgarsson Trondesen</strong></span></li>
-        <li class="role-item"><span><strong>Anna Lovisa Mýri</strong></span></li>
-        <li class="role-item"><span><strong>Filip á Smið</strong></span></li>
-        <li class="role-item"><span><strong>Jóhanna Sámalsdóttir</strong></span></li>
-        <li class="role-item"><span><strong>Emma Højaard</strong></span></li>
-        <li class="role-item"><span><strong>Sophilia Wraae Mukisa</strong></span></li>
-      </ul></div>
-      <div class="role-card"><h4>Gæstesangere</h4><ul class="role-list">
-        <li class="role-item"><span><strong>Eyðun Nolsøe</strong></span></li>
-        <li class="role-item"><span><strong>Martin Joensen</strong></span></li>
-      </ul></div>
-    </div>
-  </div>
-
-  <!-- TAB: MIN PLAN -->
-  <div class="tab-panel" id="tab-minplan">
-    <div class="my-banner">
-      <div class="my-banner-eye">Din personlige plan</div>
-      <div class="my-banner-name" id="myBannerName"></div>
-      <div class="my-banner-role" id="myBannerRole"></div>
-      <div class="my-next">
-        <div class="my-next-label">Næste mødetid</div>
-        <div class="my-next-time" id="myNextTime"></div>
-      </div>
-      <div class="my-grid">
-        <div class="my-box"><h3>Min plan</h3><ul class="my-list" id="myScheduleList"></ul></div>
-        <div class="my-box"><h3>Mine kontaktpersoner</h3><ul class="my-list" id="myContactsList"></ul></div>
-      </div>
-      <div class="my-box" id="mySetlistBox" style="display:none;margin-top:12px;">
-        <h3>Mine sange</h3>
-        <ul class="my-list" id="mySetlistList"></ul>
-      </div>
-    </div>
-  </div>
-
 </main>
 
-<script>
-  // Individuelle setlister baseret på PDF
-  const SETLISTS = {
-    "Bjarki Virgarsson Trondesen": [
-      {num:"BLOK 1",song:"Solo",header:true},
-      {num:"1",song:"Spor í sandi"},
-      {num:"2",song:"Hugsi bert um teg"},
-      {num:"BLOK 2",song:"Duetter",header:true},
-      {num:"13",artist:"Bjarki & Filip",song:"Summar"},
-      {num:"18",artist:"Bjarki, Anna Lovisa & Eyðun",song:"So nógvar røddir"},
-      {num:"19",artist:"Eyðun & Spírar",song:"Tað er løtan (Originalurin)"},
-      {num:"20",artist:"Spírar og stjørnur",song:"Mítt land"}
-    ],
-    "Anna Lovisa Mýri": [
-      {num:"BLOK 1",song:"Solo",header:true},
-      {num:"9",song:"Røttu skógvarnar"},
-      {num:"10",song:"Summarið við tær"},
-      {num:"BLOK 2",song:"Duetter og ensembler",header:true},
-      {num:"14",artist:"Anna Lovisa, Emma, Jóhanna & Sophilia",song:"Hvíta flykrur"},
-      {num:"18",artist:"Bjarki, Anna Lovisa & Eyðun",song:"So nógvar røddir"},
-      {num:"19",artist:"Eyðun & Spírar",song:"Tað er løtan (Originalurin)"},
-      {num:"20",artist:"Spírar og stjørnur",song:"Mítt land"}
-    ],
-    "Filip á Smið": [
-      {num:"BLOK 1",song:"Solo",header:true},
-      {num:"5",song:"Elisabeth & Elinborg"},
-      {num:"6",song:"Í dans"},
-      {num:"BLOK 2",song:"Duetter",header:true},
-      {num:"13",artist:"Bjarki & Filip",song:"Summar"},
-      {num:"15",artist:"Filip, Emma & Martin",song:"60'ini"},
-      {num:"16",artist:"Filip, Sophilia & Martin",song:"Motormani"},
-      {num:"19",artist:"Eyðun & Spírar",song:"Tað er løtan (Originalurin)"},
-      {num:"20",artist:"Spírar og stjørnur",song:"Mítt land"}
-    ],
-    "Jóhanna Sámalsdóttir": [
-      {num:"BLOK 1",song:"Solo",header:true},
-      {num:"7",song:"Ró"},
-      {num:"8",song:"Trúgv"},
-      {num:"BLOK 2",song:"Duetter og ensembler",header:true},
-      {num:"14",artist:"Anna Lovisa, Emma, Jóhanna & Sophilia",song:"Hvíta flykrur"},
-      {num:"17",artist:"Sophilia, Jóhanna & Eyðun",song:"Á, um vit"},
-      {num:"19",artist:"Eyðun & Spírar",song:"Tað er løtan (Originalurin)"},
-      {num:"20",artist:"Spírar og stjørnur",song:"Mítt land"}
-    ],
-    "Emma Højaard": [
-      {num:"BLOK 1",song:"Solo",header:true},
-      {num:"3",song:"Morgun"},
-      {num:"4",song:"Aldan"},
-      {num:"BLOK 2",song:"Duetter og ensembler",header:true},
-      {num:"14",artist:"Anna Lovisa, Emma, Jóhanna & Sophilia",song:"Hvíta flykrur"},
-      {num:"15",artist:"Filip, Emma & Martin",song:"60'ini"},
-      {num:"19",artist:"Eyðun & Spírar",song:"Tað er løtan (Originalurin)"},
-      {num:"20",artist:"Spírar og stjørnur",song:"Mítt land"}
-    ],
-    "Sophilia Wraae Mukisa": [
-      {num:"BLOK 1",song:"Solo",header:true},
-      {num:"11",song:"Wall of silence"},
-      {num:"12",song:"15 ár"},
-      {num:"BLOK 2",song:"Duetter",header:true},
-      {num:"14",artist:"Anna Lovisa, Emma, Jóhanna & Sophilia",song:"Hvíta flykrur"},
-      {num:"16",artist:"Filip, Sophilia & Martin",song:"Motormani"},
-      {num:"17",artist:"Sophilia, Jóhanna & Eyðun",song:"Á, um vit"},
-      {num:"19",artist:"Eyðun & Spírar",song:"Tað er løtan (Originalurin)"},
-      {num:"20",artist:"Spírar og stjørnur",song:"Mítt land"}
-    ],
-    "Eyðun Nolsøe": [
-      {num:"17",artist:"Sophilia, Jóhanna & Eyðun",song:"Á, um vit"},
-      {num:"18",artist:"Bjarki, Anna Lovisa & Eyðun",song:"So nógvar røddir"},
-      {num:"19",artist:"Eyðun & Spírar",song:"Tað er løtan (Originalurin)"}
-    ],
-    "Martin Joensen": [
-      {num:"15",artist:"Filip, Emma & Martin",song:"60'ini"},
-      {num:"16",artist:"Filip, Sophilia & Martin",song:"Motormani"}
-    ]
-  };
-
-  const FULL_SETLIST = [
-    {num:"BLOK 1",song:"Solo",header:true},
-    {num:"1",artist:"Bjarki",song:"Spor í sandi"},
-    {num:"2",artist:"Bjarki",song:"Hugsi bert um teg"},
-    {num:"3",artist:"Emma",song:"Morgun"},
-    {num:"4",artist:"Emma",song:"Aldan"},
-    {num:"5",artist:"Filip",song:"Elisabeth & Elinborg"},
-    {num:"6",artist:"Filip",song:"Í dans"},
-    {num:"7",artist:"Jóhanna",song:"Ró"},
-    {num:"8",artist:"Jóhanna",song:"Trúgv"},
-    {num:"9",artist:"Anna Lovisa",song:"Røttu skógvarnar"},
-    {num:"10",artist:"Anna Lovisa",song:"Summarið við tær"},
-    {num:"11",artist:"Sophilia",song:"Wall of silence"},
-    {num:"12",artist:"Sophilia",song:"15 ár"},
-    {num:"BLOK 2",song:"Duetter og ensembler",header:true},
-    {num:"13",artist:"Bjarki & Filip",song:"Summar"},
-    {num:"14",artist:"Anna Lovisa, Emma, Jóhanna & Sophilia",song:"Hvíta flykrur"},
-    {num:"15",artist:"Filip, Emma & Martin",song:"60'ini"},
-    {num:"16",artist:"Filip, Sophilia & Martin",song:"Motormani"},
-    {num:"17",artist:"Sophilia, Jóhanna & Eyðun",song:"Á, um vit"},
-    {num:"18",artist:"Bjarki, Anna Lovisa & Eyðun",song:"So nógvar røddir"},
-    {num:"19",artist:"Eyðun & Spírar",song:"Tað er løtan (Originalurin)"},
-    {num:"20",artist:"Spírar og stjørnur",song:"Mítt land"}
-  ];
-
-  const messages = [
-    { title:"Besked til hele holdet", groups:["Alle"], date:"Aktuel besked", body:"Billetsalget går ekstremt godt og hele teamet glæder sig til koncerten 🎉" }
-  ];
-
-  // Fælles plan for lørdag
-  const SAT_ALL    = ["Lør 4. april 13:00 · Gennemgang med Per Zachariassen — alle møder","Lør 4. april 16:00–16:30 · Fri til at hvile sig","Lør 4. april 19:00 · Alle møder ½ time inden koncertstart","Lør 4. april 19:30 · KONCERTSTART","Lør 4. april ca. 21:00 · Koncert slut"];
-  const SAT_SPIRAR = ["Lør 4. april 13:00 · Gennemgang med Per Zachariassen — alle møder","Lør 4. april 16:00–16:30 · Fri til at hvile sig","Lør 4. april 18:30–19:00 · NEMA arrangement i Tjarnir","Lør 4. april 19:30 · KONCERTSTART","Lør 4. april ca. 21:00 · Koncert slut"];
-
-  const people = [
-    { name:"Per Zachariassen", role:"Koncept ejer og kunstnerisk leder", group:"Ledelse", organization:"HOYDALAR", email:"per.zachariassen@gmail.com", phone:"+45 40941939", note:"Udvikling af HOYDALAR konceptet. Overordnet kreativ retning. Medansvar for økonomisk risiko.", nextMeeting:"Lør 4. april 13:00 · Gennemgang", schedule:SAT_ALL, contacts:["Rúni Djurhuus","Maria Winther Olsen","Michael Koba","Regin Dalsgaard"] },
-    { name:"Rúni Djurhuus", role:"Koncertarrangør", group:"Ledelse", organization:"Eventz", email:"rd@rd.fo", phone:"+298 505550", note:"Formel koncertarrangør. Markedsføring. Praktisk afvikling. Medansvar for økonomisk risiko.", nextMeeting:"Lør 4. april 13:00 · Gennemgang", schedule:SAT_ALL, contacts:["Per Zachariassen","Michael Koba","Turið Thomsen","Regin Dalsgaard","Pól Holm"] },
-    { name:"Maria Winther Olsen", role:"Program og grafik", group:"Ledelse", organization:"HOYDALAR", email:"mariawintherolsen@gmail.com", phone:"+298 258447", note:"Program og grafik.", nextMeeting:"Lør 4. april 13:00 · Gennemgang", schedule:SAT_ALL, contacts:["Per Zachariassen","Michael Koba","Rúni Djurhuus"] },
-    { name:"Michael Koba", role:"Produktion og koordinering", group:"Produktion", organization:"HOYDALAR", email:"mk@fixer.fo", phone:"+298 591011", note:"Koordinering mellem alle parter. Aftaler og kontrakter. Produktionsplan. Call sheets.", nextMeeting:"Lør 4. april 13:00 · Gennemgang", schedule:SAT_ALL, contacts:["Rúni Djurhuus","Regin Dalsgaard","Turið Thomsen","Pól Holm","Kim Hansen"] },
-    { name:"Regin Dalsgaard", role:"Venue ansvarlig", group:"Venue", organization:"Tjarnir", email:"rwd@tjarnir.fo", phone:"+298 596061", note:"Venue ansvarlig.", nextMeeting:"Lør 4. april 13:00 · Gennemgang", schedule:SAT_ALL, contacts:["Michael Koba","Rúni Djurhuus","Kim Hansen","Pól Holm"] },
-    { name:"Turið Thomsen", role:"PR ansvarlig", group:"PR", organization:"Eventz", email:"tt@rd.fo", phone:"+298 235511", note:"PR ansvarlig.", nextMeeting:"Lør 4. april 13:00 · Gennemgang", schedule:SAT_ALL, contacts:["Rúni Djurhuus","Michael Koba","Maria Winther Olsen"] },
-    { name:"Pól Holm", role:"Teknisk ansvarlig", group:"Teknik", organization:"Ljóð & Tøkni", email:"ph@lt.fo", phone:"+298 565500", note:"Teknisk ansvarlig.", nextMeeting:"Lør 4. april 13:00 · Gennemgang", schedule:SAT_ALL, contacts:["Michael Koba","Regin Dalsgaard","Hans Poulsen","Villiam Soo","Pætur Høj"] },
-    { name:"Hans Poulsen", role:"PA lyd", group:"Teknik", organization:"Ljóð & Tøkni", email:"78hans@gmail.com", phone:"+298 595715", note:"PA lyd.", nextMeeting:"Lør 4. april 13:00 · Gennemgang", schedule:SAT_ALL, contacts:["Pól Holm","Michael Koba"] },
-    { name:"Villiam Soo", role:"Visual designer / lys / grafik / LED / IMAG", group:"Teknik", organization:"Ljóð & Tøkni", email:"vizo@vizo.fo", phone:"+298 278293", note:"Visual designer, lys, grafik og LED/IMAG.", nextMeeting:"Lør 4. april 13:00 · Gennemgang", schedule:SAT_ALL, contacts:["Pól Holm","Michael Koba","Pætur Høj"] },
-    { name:"Pætur Høj", role:"Broadcast ansvarlig", group:"Broadcast", organization:"Raclipp", email:"patur@raclip.com", phone:"+298 288007", note:"Broadcast ansvarlig.", nextMeeting:"Lør 4. april 13:00 · Gennemgang", schedule:SAT_ALL, contacts:["Pól Holm","Villiam Soo","Michael Koba"] },
-    { name:"Kim Hansen", role:"Kapelmester", group:"Orkester", organization:"HOYDALAR", email:"kimhansen72@gmail.com", phone:"+298 226000", note:"Kapelmester.", nextMeeting:"Lør 4. april 13:00 · Gennemgang", schedule:SAT_ALL, contacts:["Michael Koba","Regin Dalsgaard","Vár Miðberg","Pauli Reinert Poulsen","Jóhannus á Rógvi Joensen"], setlist:FULL_SETLIST },
-    { name:"Vár Miðberg", role:"Orkester", group:"Orkester", organization:"HOYDALAR", email:"var.midberg@gmail.com", phone:"+298 218753", note:"Orkester.", nextMeeting:"Lør 4. april 13:00 · Gennemgang", schedule:SAT_ALL, contacts:["Kim Hansen","Michael Koba"], setlist:FULL_SETLIST },
-    { name:"Pauli Reinert Poulsen", role:"Orkester", group:"Orkester", organization:"HOYDALAR", email:"pauli_poulsen@hotmail.com", phone:"+298 280523", note:"Orkester.", nextMeeting:"Lør 4. april 13:00 · Gennemgang", schedule:SAT_ALL, contacts:["Kim Hansen","Michael Koba"], setlist:FULL_SETLIST },
-    { name:"Jóhannus á Rógvi Joensen", role:"Orkester", group:"Orkester", organization:"HOYDALAR", email:"jarjoensen@yahoo.com", phone:"+45 31249375", note:"Orkester. Alternativt: +298 270080", nextMeeting:"Lør 4. april 13:00 · Gennemgang", schedule:SAT_ALL, contacts:["Kim Hansen","Michael Koba"], setlist:FULL_SETLIST },
-    { name:"Bjarki Virgarsson Trondesen", role:"Spíri", group:"Spírar", organization:"HOYDALAR", email:"virgar_trondesen@hotmail.com", phone:"+298 287766", note:"Under 18 år. Værge: Virgar Trondesen, +298 282811.", nextMeeting:"Lør 4. april 13:00 · Gennemgang med Per", schedule:SAT_SPIRAR, contacts:["Michael Koba","Kim Hansen","Rúni Djurhuus","Turið Thomsen"], setlist:SETLISTS["Bjarki Virgarsson Trondesen"] },
-    { name:"Anna Lovisa Mýri", role:"Spíri", group:"Spírar", organization:"HOYDALAR", email:"annalovisam@gmail.com", phone:"+298 277103", note:"Talent.", nextMeeting:"Lør 4. april 13:00 · Gennemgang med Per", schedule:SAT_SPIRAR, contacts:["Michael Koba","Kim Hansen","Rúni Djurhuus","Turið Thomsen"], setlist:SETLISTS["Anna Lovisa Mýri"] },
-    { name:"Filip á Smið", role:"Spíri", group:"Spírar", organization:"HOYDALAR", email:"filipasmid@gmail.com", phone:"+298 523738", note:"Talent.", nextMeeting:"Lør 4. april 13:00 · Gennemgang med Per", schedule:SAT_SPIRAR, contacts:["Michael Koba","Kim Hansen","Rúni Djurhuus","Turið Thomsen"], setlist:SETLISTS["Filip á Smið"] },
-    { name:"Jóhanna Sámalsdóttir", role:"Spíri", group:"Spírar", organization:"HOYDALAR", email:"johanna190307@gmail.com", phone:"+298 508668", note:"Talent.", nextMeeting:"Lør 4. april 13:00 · Gennemgang med Per", schedule:SAT_SPIRAR, contacts:["Michael Koba","Kim Hansen","Rúni Djurhuus","Turið Thomsen"], setlist:SETLISTS["Jóhanna Sámalsdóttir"] },
-    { name:"Emma Højaard", role:"Spíri", group:"Spírar", organization:"HOYDALAR", email:"karinhh88@gmail.com", phone:"+298 278816", note:"Under 18 år. Værge: Karin Højgaard, +298 258886.", nextMeeting:"Lør 4. april 13:00 · Gennemgang med Per", schedule:SAT_SPIRAR, contacts:["Michael Koba","Kim Hansen","Rúni Djurhuus","Turið Thomsen"], setlist:SETLISTS["Emma Højaard"] },
-    { name:"Sophilia Wraae Mukisa", role:"Spíri", group:"Spírar", organization:"HOYDALAR", email:"mukisasophilia@gmail.com", phone:"+298 277595", note:"Talent.", nextMeeting:"Lør 4. april 13:00 · Gennemgang med Per", schedule:SAT_SPIRAR, contacts:["Michael Koba","Kim Hansen","Rúni Djurhuus","Turið Thomsen"], setlist:SETLISTS["Sophilia Wraae Mukisa"] },
-    { name:"Eyðun Nolsøe", role:"Gæstesanger", group:"Gæstesangere", organization:"HOYDALAR", email:"eydunnolsoe@hotmail.com", phone:"+298 582501", note:"Gæstesanger.", nextMeeting:"Lør 4. april 13:00 · Gennemgang", schedule:SAT_ALL, contacts:["Michael Koba","Kim Hansen"], setlist:SETLISTS["Eyðun Nolsøe"] },
-    { name:"Martin Joensen", role:"Gæstesanger", group:"Gæstesangere", organization:"HOYDALAR", email:"", phone:"", note:"Email og telefon er ukendte.", nextMeeting:"Lør 4. april 13:00 · Gennemgang", schedule:SAT_ALL, contacts:["Michael Koba","Kim Hansen"], setlist:SETLISTS["Martin Joensen"] }
-  ];
-
-  // ── UTILS ──
-  function esc(v){return(v||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-  function phoneHref(p){return p?'tel:'+p.split('/')[0].trim().replace(/\s+/g,''):'';}
-  function getPerson(name){return people.find(p=>p.name===name);}
-
-  // ── TABS ──
-  const tabBtns=document.querySelectorAll('.tab-btn');
-  const tabPanels=document.querySelectorAll('.tab-panel');
-  function switchTab(name){
-    tabBtns.forEach(b=>b.classList.remove('active'));
-    tabPanels.forEach(p=>p.classList.remove('active'));
-    const btn=document.querySelector(`[data-tab="${name}"]`);
-    const panel=document.getElementById(`tab-${name}`);
-    if(btn)btn.classList.add('active');
-    if(panel)panel.classList.add('active');
-  }
-  tabBtns.forEach(btn=>btn.addEventListener('click',()=>switchTab(btn.dataset.tab)));
-
-  // ── MESSAGES ──
-  function renderMessages(){
-    document.getElementById('msgBadge').textContent=messages.length;
-    document.getElementById('messageList').innerHTML=messages.map(m=>`
-      <div class="message-card">
-        <div class="message-header">
-          <div class="message-title">${esc(m.title)}</div>
-          <div class="msg-tags">${m.groups.map(g=>`<span class="msg-tag">${esc(g)}</span>`).join('')}</div>
-        </div>
-        <div class="message-body">${esc(m.body)}</div>
-        <div class="message-date">${esc(m.date)}</div>
-      </div>`).join('');
-  }
-
-  // ── STATS ──
-  function renderStats(){
-    const total=people.length;
-    const artists=people.filter(p=>['Spírar','Orkester','Gæstesangere'].includes(p.group)).length;
-    const crew=people.filter(p=>['Produktion','Teknik','Broadcast','PR','Ledelse','Venue'].includes(p.group)).length;
-    const leads=people.filter(p=>['Ledelse','Venue','PR'].includes(p.group)).length;
-    document.getElementById('statsGrid').innerHTML=[
-      [total,'Samlet antal'],[artists,'Kunstnere'],[crew,'Produktion og teknik'],[leads,'Venue og ledelse']
-    ].map(([v,l])=>`<div class="stat-card"><div class="stat-value">${v}</div><div class="stat-label">${l}</div></div>`).join('');
-  }
-
-  // ── GROUPS + NAMES ──
-  function populateGroups(){
-    const sel=document.getElementById('groupFilter');
-    [...new Set(people.map(p=>p.group))].sort().forEach(g=>{
-      const o=document.createElement('option');o.value=g;o.textContent=g;sel.appendChild(o);
-    });
-  }
-  function populateNames(){
-    const sel=document.getElementById('personSelect');
-    [...people].sort((a,b)=>a.name.localeCompare(b.name)).forEach(p=>{
-      const o=document.createElement('option');o.value=p.name;o.textContent=p.name;sel.appendChild(o);
-    });
-  }
-
-  // ── PEOPLE ──
-  function filterPeople(){
-    const q=document.getElementById('searchInput').value.trim().toLowerCase();
-    const g=document.getElementById('groupFilter').value;
-    return people.filter(p=>{
-      const hay=[p.name,p.role,p.group,p.organization,p.note,p.email,p.phone].join(' ').toLowerCase();
-      return(q===''||hay.includes(q))&&(g==='all'||p.group===g);
-    });
-  }
-  function renderPeople(){
-    const filtered=filterPeople();
-    document.getElementById('peopleGrid').innerHTML=filtered.length
-      ?filtered.map(p=>{
-          const callBtn=p.phone?`<a class="action-btn primary" href="${phoneHref(p.phone)}">📞 Ring op</a>`:'';
-          const mailBtn=p.email?`<a class="action-btn secondary" href="mailto:${p.email}">✉ Send mail</a>`:'';
-          return`<div class="person-card">
-            <div class="person-card-top">
-              <div><div class="person-name">${esc(p.name)}</div><div class="person-role">${esc(p.role)}</div></div>
-              <span class="group-tag">${esc(p.group)}</span>
-            </div>
-            ${p.organization?`<div class="person-org">${esc(p.organization)}</div>`:''}
-            ${p.note?`<div class="person-note">${esc(p.note)}</div>`:''}
-            <div class="person-contacts">
-              <div class="contact-row"><span class="contact-row-label">Tlf</span>${p.phone?`<a href="${phoneHref(p.phone)}">${esc(p.phone)}</a>`:'<span style="color:var(--text-muted)">Ukendt</span>'}</div>
-              <div class="contact-row"><span class="contact-row-label">Mail</span>${p.email?`<a href="mailto:${p.email}">${esc(p.email)}</a>`:'<span style="color:var(--text-muted)">Ukendt</span>'}</div>
-            </div>
-            ${callBtn||mailBtn?`<div class="person-actions">${callBtn}${mailBtn}</div>`:''}
-          </div>`;
-        }).join('')
-      :`<div class="empty-state" style="grid-column:1/-1">Ingen resultater.</div>`;
-    document.getElementById('contactTableBody').innerHTML=filtered.map(p=>`<tr>
-      <td><strong>${esc(p.name)}</strong></td><td>${esc(p.role)}</td><td>${esc(p.group)}</td>
-      <td>${esc(p.organization||'')}</td>
-      <td>${p.phone?`<a href="${phoneHref(p.phone)}">${esc(p.phone)}</a>`:'—'}</td>
-      <td>${p.email?`<a href="mailto:${p.email}">${esc(p.email)}</a>`:'—'}</td>
-      <td>${esc(p.note||'')}</td>
-    </tr>`).join('');
-  }
-  document.getElementById('searchInput').addEventListener('input',renderPeople);
-  document.getElementById('groupFilter').addEventListener('change',renderPeople);
-  document.getElementById('gridViewBtn').addEventListener('click',()=>{
-    document.getElementById('peopleGrid').classList.remove('hidden');
-    document.getElementById('tableWrap').classList.add('hidden');
-    document.getElementById('gridViewBtn').classList.add('active');
-    document.getElementById('tableViewBtn').classList.remove('active');
-  });
-  document.getElementById('tableViewBtn').addEventListener('click',()=>{
-    document.getElementById('peopleGrid').classList.add('hidden');
-    document.getElementById('tableWrap').classList.remove('hidden');
-    document.getElementById('tableViewBtn').classList.add('active');
-    document.getElementById('gridViewBtn').classList.remove('active');
-  });
-
-  // ── MIN PLAN ──
-  function renderSetlistItems(items){
-    return items.map(s=>{
-      if(s.header)return`<li class="list-header">${esc(s.num)} — ${esc(s.song)}</li>`;
-      return`<li><span style="color:var(--gold-light);font-weight:700;margin-right:8px;">${esc(s.num)}</span>${s.artist?`<strong style="color:#f5f0e8;">${esc(s.artist)}</strong> · `:''}${esc(s.song)}</li>`;
-    }).join('');
-  }
-
-  function renderMinPlan(person){
-    document.getElementById('myBannerName').textContent=person.name;
-    document.getElementById('myBannerRole').textContent=`${person.role} · ${person.group}`;
-    document.getElementById('myNextTime').textContent=person.nextMeeting||'Ingen mødetid endnu';
-    document.getElementById('myScheduleList').innerHTML=(person.schedule||[]).map(s=>`<li>${esc(s)}</li>`).join('');
-    const contacts=(person.contacts||[]).map(n=>getPerson(n)).filter(Boolean);
-    document.getElementById('myContactsList').innerHTML=contacts.map(c=>`
-      <li class="my-contact-item">
-        <div><div class="my-contact-name">${esc(c.name)}</div><div class="my-contact-role">${esc(c.role)}</div></div>
-        <div class="my-contact-actions">
-          ${c.phone?`<a class="icon-btn" href="${phoneHref(c.phone)}">📞</a>`:''}
-          ${c.email?`<a class="icon-btn" href="mailto:${c.email}">✉️</a>`:''}
-        </div>
-      </li>`).join('');
-    const box=document.getElementById('mySetlistBox');
-    if(person.setlist&&person.setlist.length){
-      box.style.display='block';
-      document.getElementById('mySetlistList').innerHTML=renderSetlistItems(person.setlist);
-    }else{
-      box.style.display='none';
-    }
-  }
-
-  document.getElementById('personSelect').addEventListener('change',function(){
-    const person=this.value?getPerson(this.value):null;
-    const tab=document.getElementById('minplanTab');
-    if(person){
-      tab.classList.add('show');
-      renderMinPlan(person);
-      switchTab('minplan');
-    }else{
-      tab.classList.remove('show');
-      switchTab('modeplan');
-    }
-  });
-
-  function resetHome(){
-    document.getElementById('personSelect').value='';
-    document.getElementById('minplanTab').classList.remove('show');
-    document.getElementById('searchInput').value='';
-    document.getElementById('groupFilter').value='all';
-    renderPeople();
-    switchTab('modeplan');
-    window.scrollTo({top:0,behavior:'smooth'});
-  }
-  document.getElementById('brandHome').addEventListener('click',resetHome);
-  document.getElementById('homeButton').addEventListener('click',resetHome);
-
-  // ── INIT ──
-  renderMessages();
-  renderStats();
-  populateGroups();
-  populateNames();
-  renderPeople();
-</script>
 </body>
 </html>
